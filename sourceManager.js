@@ -4,6 +4,7 @@ exports.sourceManager = class{
         console.log(source);
         this.x = source.pos.x;
         this.y = source.pos.y;
+        this.terrain = Game.map.getRoomTerrain(this.source.room.name)
         this.getSlots();
     }
     getSlots(){
@@ -11,7 +12,7 @@ exports.sourceManager = class{
         this.cornerSlots = [];
         for(let i=-1;i<=1;i++){
             for(let j=-1;j<=1;j++){
-                if(Game.map.getTerrainAt(this.x + i, this.y + j, this.source.room.name) != 'wall'){
+                if(this.terrain.get(this.x + i, this.y + j) != 'wall'){
                     if(i == j || i == -j) this.cornerSlots.push(new RoomPosition(this.x + i,this.y + j,this.source.room.name));
                     this.slots.push(new RoomPosition(this.x + i,this.y + j,this.source.room.name));
                 }

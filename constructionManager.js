@@ -85,16 +85,16 @@ exports.constructionManager = class{
         let site = this.chamber.room.find(FIND_MINERALS)[0];
         this.chamber.room.createConstructionSite(site.pos.x, site.pos.y, STRUCTURE_EXTRACTOR);
         var target = [];
-            if (Game.map.getTerrainAt(site.pos.x - 2, site.pos.y, this.chamber.room.name) != 'wall' && Game.map.getTerrainAt(site.pos.x - 1, site.pos.y, this.chamber.room.name) != 'wall') {
+            if (this.chamber.terrain.get(site.pos.x - 2, site.pos.y) != 'wall' && this.chamber.terrain.get(site.pos.x - 1, site.pos.y) != 'wall') {
                 target.push(new RoomPosition(site.pos.x - 2, site.pos.y, this.chamber.room.name));
             }
-            if (Game.map.getTerrainAt(site.pos.x + 2, site.pos.y, this.chamber.room.name) != 'wall' && Game.map.getTerrainAt(site.pos.x + 1, site.pos.y, this.chamber.room.name) != 'wall') {
+            if (this.chamber.terrain.get(site.pos.x + 2, site.pos.y) != 'wall' && this.chamber.terrain.get(site.pos.x + 1, site.pos.y) != 'wall') {
                 target.push(new RoomPosition(site.pos.x + 2, site.pos.y, this.chamber.room.name));
             }
-            if (Game.map.getTerrainAt(site.pos.x, site.pos.y - 2, this.chamber.room.name) != 'wall' && Game.map.getTerrainAt(site.pos.x, site.pos.y - 1, this.chamber.room.name) != 'wall') {
+            if (this.chamber.terrain.get(site.pos.x, site.pos.y - 2) != 'wall' && this.chamber.terrain.get(site.pos.x, site.pos.y - 1) != 'wall') {
                 target.push(new RoomPosition(site.pos.x, site.pos.y - 2, this.chamber.room.name));
             }
-            if (Game.map.getTerrainAt(site.pos.x, site.pos.y + 2, this.chamber.room.name) != 'wall' && Game.map.getTerrainAt(site.pos.x, site.pos.y + 1, this.chamber.room.name) != 'wall') {
+            if (this.chamber.terrain.get(site.pos.x, site.pos.y + 2) != 'wall' && this.chamber.terrain.get(site.pos.x, site.pos.y + 1) != 'wall') {
                 target.push(new RoomPosition(site.pos.x, site.pos.y + 2, this.chamber.room.name));
             }
             if (target.length < 1) target = this.chamber.minm.slots
@@ -153,16 +153,16 @@ exports.constructionManager = class{
     createSourceContainers() {
         for (let i in this.chamber.sources) {
             var target = [];
-            if (Game.map.getTerrainAt(this.chamber.sources[i].pos.x - 2, this.chamber.sources[i].pos.y, this.chamber.room.name) != 'wall' && Game.map.getTerrainAt(this.chamber.sources[i].pos.x - 1, this.chamber.sources[i].pos.y, this.chamber.room.name) != 'wall') {
+            if (this.chamber.terrain.get(this.chamber.sources[i].pos.x - 2, this.chamber.sources[i].pos.y) != 'wall' && this.chamber.terrain.get(this.chamber.sources[i].pos.x - 1, this.chamber.sources[i].pos.y) != 'wall') {
                 target.push(new RoomPosition(this.chamber.sources[i].pos.x - 2, this.chamber.sources[i].pos.y, this.chamber.room.name));
             }
-            if (Game.map.getTerrainAt(this.chamber.sources[i].pos.x + 2, this.chamber.sources[i].pos.y, this.chamber.room.name) != 'wall' && Game.map.getTerrainAt(this.chamber.sources[i].pos.x + 1, this.chamber.sources[i].pos.y, this.chamber.room.name) != 'wall') {
+            if (this.chamber.terrain.get(this.chamber.sources[i].pos.x + 2, this.chamber.sources[i].pos.y) != 'wall' && this.chamber.terrain.get(this.chamber.sources[i].pos.x + 1, this.chamber.sources[i].pos.y) != 'wall') {
                 target.push(new RoomPosition(this.chamber.sources[i].pos.x + 2, this.chamber.sources[i].pos.y, this.chamber.room.name));
             }
-            if (Game.map.getTerrainAt(this.chamber.sources[i].pos.x, this.chamber.sources[i].pos.y - 2, this.chamber.room.name) != 'wall' && Game.map.getTerrainAt(this.chamber.sources[i].pos.x, this.chamber.sources[i].pos.y - 1, this.chamber.room.name) != 'wall') {
+            if (this.chamber.terrain.get(this.chamber.sources[i].pos.x, this.chamber.sources[i].pos.y - 2) != 'wall' && this.chamber.terrain.get(this.chamber.sources[i].pos.x, this.chamber.sources[i].pos.y - 1) != 'wall') {
                 target.push(new RoomPosition(this.chamber.sources[i].pos.x, this.chamber.sources[i].pos.y - 2, this.chamber.room.name));
             }
-            if (Game.map.getTerrainAt(this.chamber.sources[i].pos.x, this.chamber.sources[i].pos.y + 2, this.chamber.room.name) != 'wall' && Game.map.getTerrainAt(this.chamber.sources[i].pos.x, this.chamber.sources[i].pos.y + 1, this.chamber.room.name) != 'wall') {
+            if (this.chamber.terrain.get(this.chamber.sources[i].pos.x, this.chamber.sources[i].pos.y + 2) != 'wall' && this.chamber.terrain.get(this.chamber.sources[i].pos.x, this.chamber.sources[i].pos.y + 1) != 'wall') {
                 target.push(new RoomPosition(this.chamber.sources[i].pos.x, this.chamber.sources[i].pos.y + 2, this.chamber.room.name));
             }
             if (target.length < 1) target = this.chamber.srcm[i].slots
