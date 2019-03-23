@@ -1,7 +1,7 @@
 exports.sourceManager = class{
     constructor(source){
         this.source = source
-        console.log(source);
+        //console.log(source);
         this.x = source.pos.x;
         this.y = source.pos.y;
         this.terrain = Game.map.getRoomTerrain(this.source.room.name)
