@@ -133,7 +133,7 @@ exports.spawnPlacer = class{
             }
         }
         if(points.length > 0){
-            var spawnPoint = new RoomPosition(32,29).findClosestByRange(points);
+            var spawnPoint = new RoomPosition(32,29, this.chamber.name).findClosestByRange(points);
             Memory.chamber[this.chamber.name].bunker = spawnPoint;
             Memory.chamber[this.chamber.name].bunker.flipped = false;
 
