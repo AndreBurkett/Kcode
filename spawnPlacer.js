@@ -14,8 +14,8 @@ exports.spawnPlacer = class{
     setPoint(){
         var obstruction;
         var points = [];
-        for (let i = 2; i < 48; i++) {
-            for (let j = 2; j < 48; j++) {
+        for (let i = 2; i < 42; i++) {
+            for (let j = 2; j < 45; j++) {
                 obstruction = false;
                 for (let x = 0; x <= 15; x++) {
                     for (let y = 0; y < 13; y++) {
