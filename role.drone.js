@@ -12,11 +12,13 @@ var drone = {
                 creep.moveTo(target);
             }
         }
+        /*
         else if(creep.room.find(FIND_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER && s.store[RESOURCE_ENERGY] >= creep.carryCapacity})){
             creep.memory.task = 'widthdraw';
             target = creep.pos.findClosestByRange(FIND_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER && s.store[RESOURCE_ENERGY] >= creep.carryCapacity});
             if (creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) creep.moveTo(target);
         }
+        */
         else{
             creep.memory.task = 'mine';
             target = creep.pos.findClosestByRange(FIND_SOURCES);

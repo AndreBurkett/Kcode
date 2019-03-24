@@ -128,7 +128,7 @@ exports.spawnPlacer = class{
                     }
                     if(obstruction) break;
                 }
-                if(!obstruction) points.push(new RoomPosition(i+7,j+4));
+                if(!obstruction) points.push(new RoomPosition(i+7,j+4, this.chamber.name));
             }
         }
         if(points.length > 0){
