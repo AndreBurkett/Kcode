@@ -19,6 +19,7 @@ exports.World = class{
             let index = 0;
             //Find Closest Room to Flag
             for(let j in this.chamber){
+                console.log('spwn' + this.chamber[j].spawns)
                 let d = Game.map.getRoomLinearDistance(Game.flags[i].pos.roomName, this.chamber[j].name);
                 console.log(d);
                 if(d < min){
