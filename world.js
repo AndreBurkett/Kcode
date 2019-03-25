@@ -19,12 +19,12 @@ exports.World = class{
             let index = 0;
             //Find Closest Room to Flag
             for(let j in this.chamber){
-                console.log('spwn' + this.chamber[j].spawns)
-                let d = Game.map.getRoomLinearDistance(Game.flags[i].pos.roomName, this.chamber[j].name);
-                console.log(d);
-                if(d < min){
-                    min = d;
-                    index = j;
+                if(this.chamber[j].room.energyCapacityAvailable >= 650 && this.chamber[j].owner == 'Me'){
+                    let d = Game.map.getRoomLinearDistance(Game.flags[i].pos.roomName, this.chamber[j].name);
+                    if(d < min){
+                        min = d;
+                        index = j;
+                    }
                 }
             }
             this.requestHelp(Game.flags[i].pos.roomName, this.chamber[index].name, 'claimer');
