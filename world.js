@@ -13,8 +13,19 @@ exports.World = class{
             this.chamber[i] = new chamber.Chamber(Game.rooms[i]);
         }
 
+        //Send Claimers to Rooms with Flags
         for(let i in Game.flags){
-            console.log(Game.flags[i])
+            let min = 99;
+            let index = 0;
+            //Find Closest Room to Flag
+            for(let j in this.chamber){
+                let d = Game.map.getRoomLinearDistance(Game.flags[i].room.name, this.chamber[j].name);
+                if(d < min){
+                    min = d;
+                    index = j;
+                }
+            }
+            this.requestHelp(Game.flags[i].room.name, this.chamber[index].name, 'claimer')
         }
 
         for(let i in this.chamber){
@@ -86,7 +97,7 @@ exports.World = class{
     requestHelp(requester, creepRole){
         for(let i in this.chamber){
             if (this.chamber[i].owner == 'Me') {
-                if (Game.map.getRoomLinearDistance(requester, this.chamber[i].name) <= 2) {
+                if (Game.map.getRoomLinearDistance(requester, this.chamber[i].name) <= 5) {
                     switch (creepRole) {
                         case 'claimer':
                             this.chamber[i].claimerNeeded = requester;
