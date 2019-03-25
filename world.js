@@ -14,6 +14,7 @@ exports.World = class{
         }
 
         //Send Claimers to Rooms with Flags
+        /*
         for(let i in Game.flags){
             let min = 99;
             let index = 0;
@@ -27,7 +28,7 @@ exports.World = class{
             }
             this.requestHelp(Game.flags[i].room.name, this.chamber[index].name, 'claimer')
         }
-
+        */
         for(let i in this.chamber){
             //Send Scouts
             if(this.chamber[i].exits){
