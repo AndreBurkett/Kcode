@@ -12,6 +12,11 @@ exports.World = class{
         for(let i in Game.rooms){
             this.chamber[i] = new chamber.Chamber(Game.rooms[i]);
         }
+
+        for(let i in Game.flags){
+            console.log(Game.flags[i])
+        }
+
         for(let i in this.chamber){
             //Send Scouts
             if(this.chamber[i].exits){
