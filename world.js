@@ -20,12 +20,13 @@ exports.World = class{
             //Find Closest Room to Flag
             for(let j in this.chamber){
                 let d = Game.map.getRoomLinearDistance(Game.flags[i].pos.roomName, this.chamber[j].name);
+                console.log(d);
                 if(d < min){
                     min = d;
                     index = j;
                 }
             }
-            this.requestHelp(Game.flags[i].pos.roomName, this.chamber[index].name, 'claimer')
+            this.requestHelp(Game.flags[i].pos.roomName, this.chamber[index].name, 'claimer');
         }
 
         for(let i in this.chamber){
