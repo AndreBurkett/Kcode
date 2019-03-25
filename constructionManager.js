@@ -132,6 +132,8 @@ exports.constructionManager = class{
             for (let i = 1; i < Memory.chamber[this.chamber.room.name].paths.spawnToController[0].path.length; i++) {
                 this.chamber.room.createConstructionSite(Memory.chamber[this.chamber.room.name].paths.spawnToController[0].path[i].x, Memory.chamber[this.chamber.room.name].paths.spawnToController[0].path[i].y, STRUCTURE_ROAD);
             }
+            //Container Blueprint
+            this.chamber.room.createConstructionSite(Memory.chamber[this.chamber.room.name].paths.spawnToController[0].path[Memory.chamber[this.chamber.room.name].paths.spawnToController[0].path.length - 2].x, Memory.chamber[this.chamber.room.name].paths.spawnToController[0].path[Memory.chamber[this.chamber.room.name].paths.spawnToController[0].path.length - 2].y, STRUCTURE_CONTAINER);
             //Link Blueprint
             this.chamber.room.createConstructionSite(Memory.chamber[this.chamber.room.name].paths.spawnToController[0].path[Memory.chamber[this.chamber.room.name].paths.spawnToController[0].path.length - 1].x, Memory.chamber[this.chamber.room.name].paths.spawnToController[0].path[Memory.chamber[this.chamber.room.name].paths.spawnToController[0].path.length - 1].y, STRUCTURE_LINK);
             //Road from Spawn to Container
