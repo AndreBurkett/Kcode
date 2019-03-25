@@ -21,6 +21,7 @@ exports.World = class{
             for(let j in this.chamber){
                 if(this.chamber[j].room.energyCapacityAvailable >= 650 && this.chamber[j].owner == 'Me'){
                     let d = Game.map.getRoomLinearDistance(Game.flags[i].pos.roomName, this.chamber[j].name);
+                    console.log(d);
                     if(d < min){
                         min = d;
                         index = j;
