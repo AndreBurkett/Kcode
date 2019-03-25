@@ -14,21 +14,20 @@ exports.World = class{
         }
 
         //Send Claimers to Rooms with Flags
-        /*
         for(let i in Game.flags){
             let min = 99;
             let index = 0;
             //Find Closest Room to Flag
             for(let j in this.chamber){
-                let d = Game.map.getRoomLinearDistance(Game.flags[i].room.name, this.chamber[j].name);
+                let d = Game.map.getRoomLinearDistance(Game.flags[i].pos.roomName, this.chamber[j].name);
                 if(d < min){
                     min = d;
                     index = j;
                 }
             }
-            this.requestHelp(Game.flags[i].room.name, this.chamber[index].name, 'claimer')
+            this.requestHelp(Game.flags[i].pos.roomName, this.chamber[index].name, 'claimer')
         }
-        */
+
         for(let i in this.chamber){
             //Send Scouts
             if(this.chamber[i].exits){
