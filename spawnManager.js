@@ -114,6 +114,9 @@ exports.spawnManager = class{
             else if (this.chamber.sendScout){
                 this.chamber.spawns[0].spawnCreep([TOUGH, MOVE], nameBuilder.getName('scout'), {memory: {role: 'scout', target: this.chamber.sendScout}})
             }
+            else if (this.chamber.claimerNeeded){
+                this.chamber.spawns[0].spawnCreep([MOVE, CLAIM], nameBuilder.getName('c'), {memory: { role: 'claimer', target: this.chamber.claimerNeeded}});
+            }
         }
     }
     spawnLvl5(){
