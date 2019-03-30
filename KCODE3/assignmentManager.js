@@ -1,3 +1,5 @@
+nameBuilder = require('nameBuilder');
+
 exports.assignmentManager = class{
     constructor(){
         this.miner = [];
@@ -22,6 +24,8 @@ exports.assignmentManager = class{
 
     spawnMiner(workParts){
         let spawner = Game.spawns['Spawn1'];
-        spawner.spawnCreep([WORK,CARRY,MOVE], 'm', {memory: {role: 'miner'}});
+        if(spawner.spawnCreep([WORK,CARRY,MOVE], nameBuilder.getName('m'), {memory: {role: 'miner'}}) == 0){
+            nameBuilder.commitName('m');
+        }
     }
 }
