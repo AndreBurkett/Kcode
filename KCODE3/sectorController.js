@@ -8,8 +8,8 @@ exports.sectorController = class{
             Memory.sector[this.room.name] = {};
             for(let i in this.source){
                 Memory.source[this.source[i].id] = {};
-                Memory.source[this.source[i].id].space = this.getfreeSpace(this.source[i].pos);
                 Memory.source[this.source[i].id].miner = {};
+                Memory.source[this.source[i].id].space = this.getfreeSpace(this.source[i].pos);
             }
         }
     }
