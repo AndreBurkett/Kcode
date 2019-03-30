@@ -9,6 +9,8 @@ module.exports.loop = function(){
                 case 'miner':
                     delete Memory.source[assignment].miner[Game.creeps[name]];
                 case 'upgrader':
+                    console.log(assignment);
+                    console.log(Memory.controller);
                     delete Memory.controller[assignment].upgrader[Game.creeps[name]];
             }
             delete Memory.creeps[name];
