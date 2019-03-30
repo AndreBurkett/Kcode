@@ -4,12 +4,12 @@ exports.sectorController = class{
         this.terrain = Game.map.getRoomTerrain(this.room.name)
         //Create Sector Memory
         if(!Memory.sector[this.room.name]) Memory.sector[this.room.name] = {};
-        if(!Memory.sector[this.room.name].sources){
-            let sources = this.room.find(FIND_SOURCES);
-            console.log(sources);
-            for(let i in sources){
+        if(!Memory.sector[this.room.name].source){
+            let source = this.room.find(FIND_SOURCES);
+            console.log(source);
+            for(let i in source){
                 console.log(i);
-                Memory.sector[this.room.name].source.push(i.id);
+                Memory.sector[this.room.name].source.push(source[i].id);
                 Memory.sector[this.room.name].source[i].space = this.getfreeSpace(i.pos);
             }
         }
