@@ -1,4 +1,4 @@
-sector = require('sectorController')
+sector = require('sectorController');
 
 exports.gameController = class{
     constructor(){
