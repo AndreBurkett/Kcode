@@ -6,6 +6,7 @@ exports.sectorController = class{
         if(!Memory.sector[this.room.name]) Memory.sector[this.room.name] = {};
         if(!Memory.sector[this.room.name].sources){
             for(let i in this.room.find(FIND_SOURCES)){
+                console.log(i);
                 Memory.sector[this.room.name].source.push(i.id);
                 Memory.sector[this.room.name].source[i].space = this.getfreeSpace(i.pos);
             }
