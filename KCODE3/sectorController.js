@@ -5,6 +5,7 @@ exports.sectorController = class{
         //Create Sector Memory
         if(!Memory.sector[this.room.name]) Memory.sector[this.room.name] = {};
         if(!Memory.sector[this.room.name].source){
+            Memory.sector[this.room.name].source = [];
             let source = this.room.find(FIND_SOURCES);
             for(let i in source){
                 console.log(source[i].id);
