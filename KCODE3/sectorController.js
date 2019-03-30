@@ -15,7 +15,7 @@ exports.sectorController = class{
         }
     }
     getfreeSpace(pos){
-        let space = 10;
+        let space = 0;
             for(let i=-1;i<=1;i++){
                 for(let j=-1;j<=1;j++){
                     if(this.terrain.get(pos.x + i, pos.y + j) != 1){
