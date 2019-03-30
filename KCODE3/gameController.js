@@ -12,7 +12,6 @@ exports.gameController = class{
         }
 
         //Iterate over sources
-        /*
         for(let i in Memory.source){
             let workParts = 0
             for(let j in Memory.source[i].miner[j]){
@@ -22,7 +21,7 @@ exports.gameController = class{
             if(workParts < 5 && Memory.source[i].miner[j].length < Memory.source[i].space){
                 this.assignMiner(5-workParts, Memory.source[i])
             } 
-        }*/
+        }
     }
 
     assignMiner(workParts, source){
