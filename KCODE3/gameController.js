@@ -1,7 +1,9 @@
 s = require('sectorController');
+am = require('assignmentManager');
 
 exports.gameController = class{
     constructor(){
+        this.assigner = new am.assignmentManager();
         //Create Memory
         if(!Memory.sector) Memory.sector = {};
         if(!Memory.source) Memory.source = {};
@@ -13,7 +15,15 @@ exports.gameController = class{
         for(let i in Game.rooms){
             sector.push(new s.sectorController(Game.rooms[i]));
         }
-
+        //Iterate over creeps
+        for(let name in Game.creeps){
+            if(!Game.creeps[name].memory.assignment){
+                switch(Game.creeps[name].memory.role){
+                    case 'miner':
+                        this.assigner.miner.push(Game.creeps[name]);
+                }
+            }
+        }
         //Iterate over sources
         for(let i in Memory.source){
             let workParts = 0
@@ -23,30 +33,12 @@ exports.gameController = class{
                     workParts += _.filter(creep.body, function(bp){return bp == Worker;}).length;
                 }
                 if(workParts < 5 && Memory.source[i].miner[j].length < Memory.source[i].space){
-                    this.assignMiner(5-workParts, Memory.source[i]);
+                    this.assigner.assignMiner(5-workParts, Memory.source[i]);
                 }
             }
             else{
                 this.assignMiner(5-workParts, Memory.source[i]);                
             }
         }
-    }
-
-    assignMiner(workParts, source){
-        if(Memory.creepList.miner && Memory.creepList.miner.length > 0){
-            for(let i in Memory.creepList.miner){
-                if(Memory.creepList.miner[i].workParts == workParts){
-                    Memory.source[source].miner = Memory.creepList.miner[i];
-                    return;
-                }
-            }
-        }
-        this.spawnMiner(workParts);
-    }
-
-    spawnMiner(workParts){
-        let spawner = Game.spawns['Spawn1'];
-        console.log(spawner);
-        spawner.spawnCreep([WORK,CARRY,MOVE], 'm');
     }
 }
