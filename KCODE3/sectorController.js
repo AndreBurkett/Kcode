@@ -6,11 +6,10 @@ exports.sectorController = class{
         if(!Memory.sector[this.room.name]) Memory.sector[this.room.name] = {};
         if(!Memory.sector[this.room.name].source){
             let source = this.room.find(FIND_SOURCES);
-            console.log(source);
             for(let i in source){
                 console.log(source[i].id);
-                Memory.sector[this.room.name].source.push(source[i]);
-                Memory.sector[this.room.name].source[i].space = this.getfreeSpace(Game.getObjectById(source[i]));
+                Memory.sector[this.room.name].source.push(source[i].id);
+                Memory.sector[this.room.name].source[i].space = this.getfreeSpace(source[i]);
             }
         }
     }
