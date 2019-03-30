@@ -10,6 +10,7 @@ exports.gameController = class{
         //delete Memory.source;
         if(!Memory.sector) Memory.sector = {};
         if(!Memory.source) Memory.source = {};
+        if(!Memory.controller) Memory.controller = {};
         
         //Create Sector Controllers
         let sector = [];
@@ -22,6 +23,10 @@ exports.gameController = class{
                 switch(Game.creeps[name].memory.role){
                     case 'miner':
                         this.assigner.miner.push(Game.creeps[name]);
+                        break;
+                    case 'upgrader':
+                        this.assigner.upgrader.push(Game.creeps[name]);
+                        break;
                 }
             }
             let run = new tm.creepManager(Game.creeps[name]);
@@ -40,6 +45,12 @@ exports.gameController = class{
             }
             else{
                 this.assigner.assignMiner(5-workParts, i);                
+            }
+        }
+        //Iterate over controllers
+        for(let i of Object.keys(Memory.controller)){
+            if(!Memory.controller[i].upgrader || Memory.controller[i].upgrader.length == 0){
+                this.assigner.assignUpgrader(i);
             }
         }
     }

@@ -12,6 +12,11 @@ exports.sectorController = class{
                 Memory.source[this.source[i].id].space = this.getfreeSpace(this.source[i].pos);
             }
         }
+        if(!Memory.controller[this.room.controller.id]){
+            Memory.controller[this.room.controller.id] = {};
+            Memory.controller[this.room.controller.id].space = this.getfreeSpace(this.room.controller);
+            Memory.controller[this.room.controller.id].upgrader = [];            
+        }
     }
 
     getfreeSpace(pos){

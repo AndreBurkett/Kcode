@@ -3,6 +3,7 @@ nameBuilder = require('nameBuilder');
 exports.assignmentManager = class{
     constructor(){
         this.miner = [];
+        this.upgrader = [];
     }
 
     assignMiner(workNeeded, source){
@@ -24,10 +25,27 @@ exports.assignmentManager = class{
         this.spawnMiner(workNeeded);
     }
 
+    assignUpgrader(controller){
+        if(this.upgrader.length > 0){
+            for(let i in this.upgrader){
+                this.upgrader[i].memory.assignment = controller;
+                this.upgrader.splice(i,1);
+            }
+        }
+        else this.spawnUpgrader();
+    }
+
     spawnMiner(workParts){
         let spawner = Game.spawns['Spawn1'];
         if(spawner.spawnCreep([WORK,CARRY,MOVE], nameBuilder.getName('m'), {memory: {role: 'miner'}}) == 0){
             nameBuilder.commitName('m');
+        }
+    }
+    
+    spawnUpgrader(){
+        let spawner = Game.spawns['Spawn1'];
+        if(spawner.spawnCreep([WORK,CARRY,MOVE], nameBuilder.getName('u'), {memory: {role: 'upgrader'}}) == 0){
+            nameBuilder.commitName('u');
         }
     }
 }
