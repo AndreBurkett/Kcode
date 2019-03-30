@@ -45,6 +45,7 @@ exports.gameController = class{
     }
 
     spawnMiner(workParts){
+        console.log(Game.spawns['Spawn1']);
         let spawner = Game.spawns['Spawn1'];
         spawner.spawnCreep([WORK,CARRY,MOVE]);
     }
