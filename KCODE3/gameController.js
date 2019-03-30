@@ -1,3 +1,5 @@
+sector = require('sectorController')
+
 exports.gameController = class{
     constructor(){
         //Create Memory
@@ -5,7 +7,7 @@ exports.gameController = class{
         //Create Sector Controllers
         let sector = [];
         for(let i in Game.rooms){
-            sector.push(new sectorController(Game.rooms[i]));
+            sector.push(new sector.sectorController(Game.rooms[i]));
         }
     }
 }
