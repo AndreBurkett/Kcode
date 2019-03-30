@@ -5,7 +5,7 @@ exports.gameController = class{
         //Create Sector Controllers
         sector = [];
         for(let i in Game.rooms){
-            sector[i] = new sectorController(Game.rooms[i]);
+            sector.push(new sectorController(Game.rooms[i]));
         }
     }
 }
