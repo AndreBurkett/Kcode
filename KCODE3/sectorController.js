@@ -1,6 +1,4 @@
-import 'sourceController';
-
-export class sectorController{
+exports.sectorController = class{
     constructor(sector){
         this.room = sector;
         this.terrain = Game.map.getRoomTerrain(this.room.name)
