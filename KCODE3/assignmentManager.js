@@ -13,6 +13,7 @@ exports.assignmentManager = class{
                     console.log(source);
                     console.log(Memory.source[source]);
                     Memory.source[source].miner.push(this.miner[i].id);
+                    this.miner[i].assignment = source;
                     this.miner.splice(i,1);
                     workNeeded -= workParts;
                 }

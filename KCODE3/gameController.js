@@ -1,3 +1,4 @@
+tm = require('taskManager');
 s = require('sectorController');
 am = require('assignmentManager');
 
