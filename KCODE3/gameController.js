@@ -26,6 +26,9 @@ exports.gameController = class{
                     this.assignMiner(5-workParts, Memory.source[i]);
                 }
             }
+            else{
+                this.assignMiner(5-workParts, Memory.source[i]);                
+            }
         }
     }
 
