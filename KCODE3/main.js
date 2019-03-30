@@ -1,3 +1,5 @@
+import gameController from 'gameController';
+
 module.exports.loop = function(){
     //Clear Memory
     for(var name in Memory.creeps){
@@ -6,4 +8,5 @@ module.exports.loop = function(){
             console.log('Clearing non-existing creep memory:', name);
         }
     }
+    controller = new gameController();
 }
