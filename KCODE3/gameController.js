@@ -14,7 +14,7 @@ exports.gameController = class{
         //Iterate over sources
         for(let i in Memory.source){
             let workParts = 0
-            if(Memory.source[i].miner){
+            if(Memory.source[i].miner && Memory.source[i].miner.length > 0){
                 for(let j in Memory.source[i].miner[j]){
                     let creep = Game.getObjectById(Memory.source[i].miner[j])
                     workParts += _.filter(creep.body, function(bp){return bp == Worker;}).length;
