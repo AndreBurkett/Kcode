@@ -18,7 +18,7 @@ exports.sectorController = class{
         let space = 0;
             for(let i=-1;i<=1;i++){
                 for(let j=-1;j<=1;j++){
-                    if(this.terrain.get(pos.x + i, pos.y + j) != 'wall'){
+                    if(this.terrain.get(pos.x + i, pos.y + j) != TERRAIN_MASK_WALL){
                         space++;
                     }
                 }
