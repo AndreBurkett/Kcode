@@ -13,11 +13,11 @@ exports.assignmentManager = class{
                 }
             }
             if(workNeeded > 0){
-                this.spawnMiner(workParts);
+                this.spawnMiner(workNeeded);
                 return;
             }
         }
-        this.spawnMiner(workParts);
+        this.spawnMiner(workNeeded);
     }
 
     spawnMiner(workParts){
