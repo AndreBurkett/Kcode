@@ -8,8 +8,10 @@ module.exports.loop = function(){
             switch(Memory.creeps[name].role){
                 case 'miner':
                     delete Memory.source[assignment].miner[Memory.creeps[name].id];
+                    break;
                 case 'upgrader':
                     delete Memory.controller[assignment].upgrader[Memory.creeps[name].id];
+                    break;
             }
             delete Memory.creeps[name];
             console.log('Clearing non-existing creep memory:', name);
