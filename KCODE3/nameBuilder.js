@@ -4,7 +4,7 @@ var utilNameBuilder = {
             Memory.nameIndex = {};
         if ((Memory.nameIndex[role] === undefined) || (Memory.nameIndex[role] > 995))
             Memory.nameIndex[role] = 0;
-        return role + (Memory.nameIndex[role] + 1);
+        return role + (Memory.nameIndex[role]);
     },
     commitName: function (role) {
         var newIndex = Memory.nameIndex[role] + 1;
