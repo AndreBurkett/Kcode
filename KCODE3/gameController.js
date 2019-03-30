@@ -7,9 +7,7 @@ exports.gameController = class{
         //Create Memory
         if(!Memory.sector) Memory.sector = {};
         if(!Memory.source) Memory.source = {};
-        if(!Memory.creepList) Memory.creepList = {};
-        if(!Memory.creepList.miner) Memory.creepList.miner = {};
-
+        
         //Create Sector Controllers
         let sector = [];
         for(let i in Game.rooms){
