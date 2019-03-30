@@ -45,7 +45,7 @@ exports.gameController = class{
     }
 
     spawnMiner(workParts){
-        spawner = Game.spawns[0];
+        spawner = Game.spawns['Spawn1'];
         spawner.spawnCreep([WORK,CARRY,MOVE], 'm');
     }
 }
