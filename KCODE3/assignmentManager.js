@@ -12,7 +12,8 @@ exports.assignmentManager = class{
                 if(workParts <= workNeeded){
                     console.log(source);
                     console.log(Memory.source[source]);
-                    Memory.source[source].miner.push(this.miner[i]);
+                    Memory.source[source].miner.push(this.miner[i].id);
+                    this.miner.splice(i,1);
                     workNeeded -= workParts;
                 }
             }
