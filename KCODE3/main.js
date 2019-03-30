@@ -1,4 +1,4 @@
-gameController = require('gameController');
+game = require('gameController');
 
 module.exports.loop = function(){
     //Clear Memory
@@ -8,5 +8,5 @@ module.exports.loop = function(){
             console.log('Clearing non-existing creep memory:', name);
         }
     }
-    controller = new gameController();
+    controller = new game.gameController();
 }
