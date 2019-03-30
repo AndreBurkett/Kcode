@@ -7,7 +7,7 @@ module.exports.loop = function(){
             let assignment = Memory.creeps[name].assignment;
             switch(Memory.creeps[name].role){
                 case 'miner':
-                    delete Memory.source[assignment].miner[Game.creeps[name].id];
+                    delete Memory.source[assignment].miner[Memory.creeps[name].id];
                 case 'upgrader':
                     console.log(name);
                     console.log(Memory.controller[assignment]);
