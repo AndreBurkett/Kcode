@@ -10,9 +10,9 @@ exports.assignmentManager = class{
             for(let i in this.miner){
                 let workParts = _.filter(this.miner[i].body, function(bp){return bp == WORK;}).length;
                 if(workParts <= workNeeded){
-                    console.log(source.id);
-                    console.log(Memory.source[source.id]);
-                    Memory.source[source.id].miner.push(this.miner[i]);
+                    console.log(source);
+                    console.log(Memory.source[source]);
+                    Memory.source[source].miner.push(this.miner[i]);
                     workNeeded -= workParts;
                 }
             }
