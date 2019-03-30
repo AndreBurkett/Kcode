@@ -1,4 +1,4 @@
-import gameController from 'gameController';
+gameController = require('gameController');
 
 module.exports.loop = function(){
     //Clear Memory

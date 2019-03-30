@@ -1,6 +1,4 @@
-import sectorController from 'sectorController';
-
-export class gameController{
+exports.gameController = class{
     constructor(){
         //Create Memory
         if(!Memory.sector) Memory.sector = {};
