@@ -3,7 +3,7 @@ var upgrader = {
         var target;
         if(creep.carry.energy == creep.carryCapacity || (creep.carry.energy > 0 && creep.memory.task == 'upgrade')){
             creep.memory.task = 'upgrade';
-            target = creep.memory.assignment;
+            target = Game.getObjectById(creep.memory.assignment);
             if(creep.upgradeController(target) == ERR_NOT_IN_RANGE) creep.moveTo(target);
         }
         else if(creep.room.find(FIND_STRUCTURES, {filter: (s) => (s.structureType == STRUCTURE_CONTAINER && s.store[RESOURCE_ENERGY] > 0) || (s.structureType == STRUCTURE_LINK && s.energy > 0)}).length > 0){
