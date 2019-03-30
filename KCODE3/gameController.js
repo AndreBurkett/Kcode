@@ -5,8 +5,8 @@ exports.gameController = class{
     constructor(){
         this.assigner = new am.assignmentManager();
         //Create Memory
-        delete Memory.sector;
-        delete Memory.source;
+        //delete Memory.sector;
+        //delete Memory.source;
         if(!Memory.sector) Memory.sector = {};
         if(!Memory.source) Memory.source = {};
         
