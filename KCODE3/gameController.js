@@ -23,7 +23,7 @@ exports.gameController = class{
             }
         }
         //Iterate over sources
-        for(let i of Object.keys(Memory.source)){
+        for(let i of (Memory.source)){
             console.log(i);
             let workParts = 0
             if(Memory.source[i].miner && Memory.source[i].miner.length > 0){
