@@ -6,12 +6,10 @@ exports.sectorController = class{
         //Create Sector Memory
         if(!Memory.sector[this.room.name]){
             Memory.sector[this.room.name] = {};
-        }
-        if(!Memory.source[source[i].id]){
             for(let i in this.source){
-                Memory.source[source[i].id] = {};
-                Memory.source[source[i].id].space = this.getfreeSpace(source[i].pos);
-                Memory.source[source[i].id].miner = {};
+                Memory.source[this.source[i].id] = {};
+                Memory.source[this.source[i].id].space = this.getfreeSpace(source[i].pos);
+                Memory.source[this.source[i].id].miner = {};
             }
         }
     }
