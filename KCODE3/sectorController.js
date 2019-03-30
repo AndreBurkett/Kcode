@@ -5,12 +5,12 @@ exports.sectorController = class{
         this.source = this.room.find(FIND_SOURCES);
         //Create Sector Memory
         if(!Memory.sector[this.room.name]){
-            /*Memory.sector[this.room.name] = {};
+            //Memory.sector[this.room.name] = {};
             for(let i in this.source){
                 Memory.source[this.source[i].id] = {};
                 Memory.source[this.source[i].id].miner = {};
                 Memory.source[this.source[i].id].space = this.getfreeSpace(this.source[i].pos);
-            }*/
+            }
         }
     }
 
