@@ -11,7 +11,7 @@ module.exports.loop = function(){
                 case 'upgrader':
                     console.log(name);
                     console.log(Memory.controller[assignment]);
-                    delete Memory.controller[assignment].upgrader[name];
+                    delete Memory.controller[assignment].upgrader[Memory.creeps[name]];
             }
             delete Memory.creeps[name];
             console.log('Clearing non-existing creep memory:', name);

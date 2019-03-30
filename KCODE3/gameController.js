@@ -19,6 +19,7 @@ exports.gameController = class{
         }
         //Iterate over creeps
         for(let name in Game.creeps){
+            if(!Game.creeps[name].id) Game.creeps[name].memory.id = Game.creeps[name].id;
             if(!Game.creeps[name].memory.assignment){
                 switch(Game.creeps[name].memory.role){
                     case 'miner':
