@@ -9,7 +9,7 @@ exports.sectorController = class{
             console.log(source);
             for(let i in source){
                 console.log(i);
-                Memory.sector[this.room.name].source.push(source[i].id);
+                Memory.sector[this.room.name].source.push(source[i]);
                 Memory.sector[this.room.name].source[i].space = this.getfreeSpace(i.pos);
             }
         }
