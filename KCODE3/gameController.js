@@ -23,8 +23,7 @@ exports.gameController = class{
             }
         }
         //Iterate over sources
-        for(let i of (Memory.source)){
-            console.log(i);
+        for(let i of Object.keys(Memory.source)){
             let workParts = 0
             if(Memory.source[i].miner && Memory.source[i].miner.length > 0){
                 for(let j in Memory.source[i].miner[j]){
@@ -32,7 +31,7 @@ exports.gameController = class{
                     workParts += _.filter(creep.body, function(bp){return bp == Worker;}).length;
                 }
                 if(workParts < 5 && Memory.source[i].miner[j].length < Memory.source[i].space){
-                    this.assigner.assignMiner(5-workParts, Memory.source[i]);
+                    this.assigner.assignMiner(5-workParts, i);
                 }
             }
             else{
