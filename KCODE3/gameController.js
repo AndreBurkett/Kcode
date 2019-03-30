@@ -24,6 +24,7 @@ exports.gameController = class{
                         this.assigner.miner.push(Game.creeps[name]);
                 }
             }
+            let run = new tm.creepManager(Game.creeps[name]);
         }
         //Iterate over sources
         for(let i of Object.keys(Memory.source)){
