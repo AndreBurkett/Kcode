@@ -19,7 +19,7 @@ exports.gameController = class{
         }
         //Iterate over creeps
         for(let name in Game.creeps){
-            if(!Game.creeps[name].id) Game.creeps[name].memory.id = Game.creeps[name].id;
+            if(!Game.creeps[name].memory.id) Game.creeps[name].memory.id = Game.creeps[name].id;
             if(!Game.creeps[name].memory.assignment){
                 switch(Game.creeps[name].memory.role){
                     case 'miner':
@@ -38,9 +38,14 @@ exports.gameController = class{
             if(Memory.source[i].miner && Memory.source[i].miner.length > 0){
                 for(let j in Memory.source[i].miner){
                     let creep = Game.getObjectById(Memory.source[i].miner[j]);
-                    workParts += _.filter(creep.body, function(bp){return bp == WORK;}).length;
-                    if(workParts < 5 && Memory.source[i].miner[j].length < Memory.source[i].space){
-                        this.assigner.assignMiner(5-workParts, i);
+                    if(creep){
+                        workParts += _.filter(creep.body, function(bp){return bp == WORK;}).length;
+                        if(workParts < 5 && Memory.source[i].miner[j].length < Memory.source[i].space){
+                            this.assigner.assignMiner(5-workParts, i);
+                        }
+                    else{
+                        delete Memory.source[i].miner[j];
+                    }
                     }
                 }
             }
