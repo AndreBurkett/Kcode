@@ -12,8 +12,13 @@ exports.sectorController = class{
         for(let i in this.source){
             if(!Memory.source[this.source[i].id]){
                 Memory.source[this.source[i].id] = {};
-                Memory.source[this.source[i].id].miner = [];
                 Memory.source[this.source[i].id].space = this.getfreeSpace(this.source[i].pos);
+            }
+            if(!Memory.source[this.source[i].id].miner){
+                Memory.source[this.source[i].id].miner = [];
+            }
+            if(!Memory.source[this.source[i].id].transporter){
+                Memory.source[this.source[i].id].transporter = [];
             }
             if(this.spawns.length >0 && !Memory.source[this.source[i].id].spawnPath){
                 for(let j in this.spawns){
@@ -28,9 +33,6 @@ exports.sectorController = class{
         }
         if(!Memory.controller[this.room.controller.id].upgrader){
             Memory.controller[this.room.controller.id].upgrader = [];
-        }
-        if(!Memory.controller[this.room.controller.id].transporter){
-            Memory.controller[this.room.controller.id].transporter = [];
         }
     }
 
