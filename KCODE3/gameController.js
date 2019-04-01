@@ -70,8 +70,8 @@ exports.gameController = class{
                         }
                     }
                     else{
-                        //delete Memory.source[i].miner[j];
-                        Memory.source[i].miner[j].splice(j,1);
+                        delete Memory.source[i].miner[j];
+                        //Memory.source[i].miner[j].splice(j,1);
                     }
                 }
             }
@@ -105,17 +105,15 @@ exports.gameController = class{
         }
         //Iterate over controllers
         for(let i of Object.keys(Memory.controller)){
-            console.log(Memory.controller[i].upgrader[0]);
-            console.log(Memory.controller[i].upgrader[0] == null);
-            if(Memory.controller[i].upgrader && Memory.controller[i].upgrader.length > 0 && Memory.controller[i].upgrader[0]){
+            if(Memory.controller[i].upgrader && Memory.controller[i].upgrader.length > 0){// && Memory.controller[i].upgrader[0]){
                 for(let j in Memory.controller[i].upgrader){
                     let creep = Game.getObjectById(Memory.controller[i].upgrader[j]);
                     if(creep && creep != null){
                         console.log(creep);
                     }
                     else{
-                        delete Memory.controller[i].upgrader[j];
-                        //Memory.controller[i].upgrader[j].splice(j,1);
+                        //delete Memory.controller[i].upgrader[j];
+                        Memory.controller[i].upgrader.splice(j,1);
                     }
                 }
             }
