@@ -4,7 +4,7 @@ var miner = {
         if(creep.carry.energy == creep.carryCapacity){
             let pos = new RoomPosition(Memory.source[source].spawnPath.path[0].x, Memory.source[source].spawnPath.path[0].y, Memory.source[source].spawnPath.path[0].roomName);
             let container = pos.lookFor(STRUCTURE_CONTAINER)[0];
-            let site = _.find(pos.look());//, function(s){s.structureType == STRUCTURE_CONTAINER});
+            let site = pos.look();//, function(s){s.structureType == STRUCTURE_CONTAINER});
             console.log(site[0].structureType, site[1].structureType);
             switch(creep.transfer(container, RESOURCE_ENERGY)){
                 case ERR_NOT_IN_RANGE:
