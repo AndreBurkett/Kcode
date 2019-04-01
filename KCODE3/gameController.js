@@ -36,6 +36,7 @@ exports.gameController = class{
                 }
                 delete Memory.creeps[name];
                 console.log('Clearing non-existing creep memory:', name);
+                continue;
             }
             if(!Game.creeps[name].memory.id) Game.creeps[name].memory.id = Game.creeps[name].id;
             //Assign Creeps
