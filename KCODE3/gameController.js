@@ -6,8 +6,6 @@ exports.gameController = class{
     constructor(){
         this.assigner = new am.assignmentManager();
         //Create Memory
-        //delete Memory.sector;
-        //delete Memory.source;
         if(!Memory.sector) Memory.sector = {};
         if(!Memory.source) Memory.source = {};
         if(!Memory.controller) Memory.controller = {};
@@ -114,7 +112,7 @@ exports.gameController = class{
                 for(let j in Memory.controller[i].upgrader){
                     let creep = Game.getObjectById(Memory.controller[i].upgrader[j]);
                     if(creep && creep != null){
-                        
+
                     }
                     else{
                         //delete Memory.controller[i].upgrader[j];

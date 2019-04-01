@@ -1,6 +1,5 @@
 var transporter = {
     run: function (creep) {
-        
         if(creep.carry.energy == creep.carryCapacity || (creep.carry.energy > 0 && creep.memory.task == 'deposit')){
             creep.memory.task = 'deposit';
             let target = creep.pos.findClosestByRange(FIND_STRUCTURES, {
@@ -13,7 +12,7 @@ var transporter = {
         else{
             creep.memory.task = 'withdraw';
             let source = creep.memory.assignment;
-            if (source){
+            if(source && Memory.source[source].spawnPath){
                 let pos = new RoomPosition(Memory.source[source].spawnPath.path[0].x, Memory.source[source].spawnPath.path[0].y, Memory.source[source].spawnPath.path[0].roomName);
                 let container = pos.lookFor(STRUCTURE_CONTAINER)[0];
                 if(container && container.store >= creep.carryCapacity){
