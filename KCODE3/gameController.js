@@ -89,7 +89,7 @@ exports.gameController = class{
                 }
             }
             else{
-                this.assigner.assignTransporter();
+                this.assigner.assignTransporter(i);
             }
             //Create Source Containers
             if(Memory.source[i].spawnPath){
