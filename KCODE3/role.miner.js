@@ -8,8 +8,10 @@ var miner = {
                 if(creep.transfer(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) creep.moveTo(container);
             }
             else{
-                let site = pos.findClosestByRange(FIND_CONSTRUCTION_SITES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER});
-                if(creep.build(site) == ERR_NOT_IN_RANGE) creep.moveTo(site);
+                //let site = pos.findClosestByRange(FIND_CONSTRUCTION_SITES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER});
+                //if(creep.build(site) == ERR_NOT_IN_RANGE) creep.moveTo(site);
+                let target = Game.getObjectById(source);
+                if(creep.harvest(target) == ERR_NOT_IN_RANGE) creep.moveTo(target);
             }
         }
         else{

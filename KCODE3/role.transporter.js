@@ -21,6 +21,10 @@ var transporter = {
                         creep.moveTo(container);
                     }
                 }
+                else{
+                    energy = pos.findClosestByRange(FIND_DROPPED_ENERGY);
+                    if(creep.pickUp(energy) == ERR_NOT_IN_RANGE) creep.moveTo(energy);
+                }
             }
        }
        
