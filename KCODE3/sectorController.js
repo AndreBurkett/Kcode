@@ -42,7 +42,7 @@ exports.sectorController = class{
         return space;
     }
     getPath(pos1, pos2){
-        let path = PathFinder.search({pos1, range: 1}, {pos2, range: 1}, {swampCost: 1, ignoreRoads: true, roomCallback: this.roomCostMatrix()});
+        let path = PathFinder.search({pos1}, {pos2, range: 1}, {swampCost: 1, ignoreRoads: true, roomCallback: this.roomCostMatrix()});
         return path;
     }
 
