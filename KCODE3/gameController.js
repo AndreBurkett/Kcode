@@ -73,7 +73,7 @@ exports.gameController = class{
                 this.assigner.assignMiner(5-workParts, i);                
             }
             if(Memory.source[i].spawnPath){
-                let pos = new RoomPosition(Memory.source[i].spawnPath[0].x, Memory.source[i].spawnPath[0].y, Memory.source[i].spawnPath[0].roomName);
+                let pos = new RoomPosition(Memory.source[i].spawnPath.path[0].x, Memory.source[i].spawnPath.path[0].y, Memory.source[i].spawnPath.path[0].roomName);
                 if(pos.lookFor(STRUCTURE_CONTAINER).length == 0){
                     Game.rooms[pos.roomName].createConstructionSite(pos, STRUCTURE_CONTAINER);
                 }
