@@ -18,7 +18,7 @@ exports.gameController = class{
             sector.push(new s.sectorController(Game.rooms[i]));
         }
         //Iterate over creeps
-        for(let name in Game.creeps){
+        for(let name in Memory.creeps){
             //Clear Memory
             if(!Game.creeps[name]){
                 let assignment = Memory.creeps[name].assignment;
@@ -27,6 +27,8 @@ exports.gameController = class{
                         case 'miner':
                             delete Memory.source[assignment].miner[Memory.creeps[name].id];
                             break;
+                        case 'transporter':
+                            delete Memory.source[assignment].transporter[Memory.creeps[name].id];
                         case 'upgrader':
                             delete Memory.controller[assignment].upgrader[Memory.creeps[name].id];
                             break;
@@ -54,6 +56,7 @@ exports.gameController = class{
         }
         //Iterate over sources
         for(let i of Object.keys(Memory.source)){
+            //Assign Miners
             let workParts = 0
             if(Memory.source[i].miner && Memory.source[i].miner.length > 0){
                 for(let j in Memory.source[i].miner){
@@ -63,20 +66,35 @@ exports.gameController = class{
                         if(workParts < 5 && Memory.source[i].miner[j].length < Memory.source[i].space){
                             this.assigner.assignMiner(5-workParts, i);
                         }
+                    }
                     else{
                         delete Memory.source[i].miner[j];
-                    }
                     }
                 }
             }
             else{
                 this.assigner.assignMiner(5-workParts, i);                
             }
+            //Assign Transporters
+            if(Memory.source[i].transporter && Memory.source[i].transporter.length > 0){
+                for(let j in Memory.source[i].transporter){
+                    let creep = Game.getObjectById(Memory.source[i].transporter[j]);
+                    if(creep){
+
+                    }
+                    else{
+                        delete Memory.source[i].transporter[j];
+                    }
+                }
+            }
+            else{
+                this.assigner.assignTransporter();
+            }
+            //Create Source Containers
             if(Memory.source[i].spawnPath){
                 let pos = new RoomPosition(Memory.source[i].spawnPath.path[0].x, Memory.source[i].spawnPath.path[0].y, Memory.source[i].spawnPath.path[0].roomName);
-                console.log(pos.lookFor(STRUCTURE_CONTAINER).length == 0);
-                if(!pos.lookFor(STRUCTURE_CONTAINER).length){
-                    console.log(Game.rooms[pos.roomName]);
+                let container = pos.lookFor(STRUCTURE_CONTAINER);
+                if(!container){
                     Game.rooms[pos.roomName].createConstructionSite(pos, STRUCTURE_CONTAINER);
                 }
             }

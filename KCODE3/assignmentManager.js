@@ -25,6 +25,17 @@ exports.assignmentManager = class{
         }
         this.spawnMiner(workNeeded);
     }
+    
+    assignTransporter(source){
+        if(this.transporter.length > 0){
+            for(let i in this.transporter){
+                Memory.source[source].transporter.push(this.transporter[i].id);
+                this.transporter[i].memory.assignment = source;
+                this.transporter.splice(i,1);
+            }
+        }
+        else this.spawnTransporter();
+    }
 
     assignUpgrader(controller){
         if(this.upgrader.length > 0){
@@ -41,6 +52,13 @@ exports.assignmentManager = class{
         let spawner = Game.spawns['Spawn1'];
         if(spawner.spawnCreep([WORK,CARRY,MOVE], nameBuilder.getName('m'), {memory: {role: 'miner'}}) == 0){
             nameBuilder.commitName('m');
+        }
+    }
+
+    spawnTransporter(){
+        let spawner = Game.spawns['Spawn1'];
+        if(spawner.spawnCreep([WORK,CARRY,MOVE], nameBuilder.getName('t'), {memory: {role: 'transporter'}}) == 0){
+            nameBuilder.commitName('t');
         }
     }
     
