@@ -86,8 +86,7 @@ exports.gameController = class{
                     if(!creep.memory.assignment) creep.memory.assignment = i;
                     }
                     else{
-                        //delete Memory.source[i].transporter[j];
-                        Memory.source[i].transporter[j].splice(j,1);
+                        delete Memory.source[i].transporter[j];
                     }
                 }
             }
