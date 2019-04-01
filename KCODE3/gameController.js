@@ -24,6 +24,8 @@ exports.gameController = class{
                 let assignment = Memory.creeps[name].assignment;
                 if(assignment){
                     switch(Memory.creeps[name].role){
+                        case 'builder':
+                            break;
                         case 'miner':
                             //delete Memory.source[assignment].miner[Memory.creeps[name].id];
                             break;
@@ -43,6 +45,9 @@ exports.gameController = class{
             //Assign Creeps
             if(!Game.creeps[name].memory.assignment){
                 switch(Game.creeps[name].memory.role){
+                    case 'builder':
+                        this.assigner.builder.push(Game.creeps[name]);
+                        break;
                     case 'miner':
                         this.assigner.miner.push(Game.creeps[name]);
                         break;

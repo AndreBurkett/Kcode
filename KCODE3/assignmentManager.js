@@ -2,11 +2,22 @@ nameBuilder = require('nameBuilder');
 
 exports.assignmentManager = class{
     constructor(){
+        this.builder = [];
         this.miner = [];
         this.upgrader = [];
         this.transporter = [];
     }
 
+    assignBuilder(site){
+        if(this.builder.length > 0 ){
+            for(let i in this.builder){
+                //Memory.site[site].builder.push(this.builder[i].id);
+                this.builder[i].memory.assignment = site;
+                this.builder.splice(i,1);
+            }
+        }
+        else this.spawnBuilder;
+    }
     assignMiner(workNeeded, source){
         if(this.miner.length > 0){
             for(let i in this.miner){
@@ -48,6 +59,13 @@ exports.assignmentManager = class{
         else this.spawnUpgrader();
     }
 
+    spawnBuilder(){
+        let spawner = Game.spawns['Spawn1'];
+        if(spawner.spawnCreep([WORK,CARRY,MOVE], nameBuilder.getName('b'), {memory: {role: 'builder'}}) == 0){
+            nameBuilder.commitName('b');
+        }
+    }
+    
     spawnMiner(workParts){
         let spawner = Game.spawns['Spawn1'];
         if(spawner.spawnCreep([WORK,CARRY,MOVE], nameBuilder.getName('m'), {memory: {role: 'miner'}}) == 0){
@@ -57,7 +75,7 @@ exports.assignmentManager = class{
 
     spawnTransporter(){
         let spawner = Game.spawns['Spawn1'];
-        if(spawner.spawnCreep([WORK,CARRY,MOVE], nameBuilder.getName('t'), {memory: {role: 'transporter'}}) == 0){
+        if(spawner.spawnCreep([CARRY,MOVE], nameBuilder.getName('t'), {memory: {role: 'transporter'}}) == 0){
             nameBuilder.commitName('t');
         }
     }
