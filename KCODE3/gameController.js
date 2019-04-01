@@ -83,7 +83,7 @@ exports.gameController = class{
                 for(let j in Memory.source[i].transporter){
                     let creep = Game.getObjectById(Memory.source[i].transporter[j]);
                     if(creep){
-
+                    if(!creep.memory.assignment) creep.memory.assignment = i;
                     }
                     else{
                         //delete Memory.source[i].transporter[j];
