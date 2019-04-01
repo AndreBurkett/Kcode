@@ -115,8 +115,8 @@ exports.gameController = class{
                         console.log(creep);
                     }
                     else{
-                        //delete Memory.controller[i].upgrader[j];
-                        Memory.controller[i].upgrader[j].splice(j,1);
+                        delete Memory.controller[i].upgrader[j];
+                        //Memory.controller[i].upgrader[j].splice(j,1);
                     }
                 }
             }
