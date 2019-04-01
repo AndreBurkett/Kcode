@@ -22,7 +22,7 @@ var transporter = {
                     }
                 }
                 else{
-                    energy = pos.findClosestByRange(FIND_RESOURCE_ENERGY, {filter: (r) => r.resourceType == RESOURCE_ENERGY});
+                    energy = pos.findClosestByRange(FIND_DROPPED_RESOURCES, {filter: (r) => r.resourceType == RESOURCE_ENERGY});
                     if(creep.pickup(energy) == ERR_NOT_IN_RANGE) creep.moveTo(energy);
                 }
             }
