@@ -65,6 +65,7 @@ exports.gameController = class{
                     let creep = Game.getObjectById(Memory.source[i].miner[j]);
                     if(creep){
                         workParts += _.filter(creep.body, function(bp){return bp == WORK;}).length;
+                        console.log('m');
                         if(workParts < 5 && Memory.source[i].miner[j].length < Memory.source[i].space){
                             this.assigner.assignMiner(5-workParts, i);
                         }
@@ -90,7 +91,7 @@ exports.gameController = class{
                 }
             }
             else{
-                console.log('t')
+                console.log('t');
                 this.assigner.assignTransporter(i);
             }
             //Create Source Containers
@@ -104,9 +105,10 @@ exports.gameController = class{
         }
         //Iterate over controllers
         for(let i of Object.keys(Memory.controller)){
-            console.log(!Memory.controller[i].upgrader , Memory.controller[i].upgrader.length == 0)
+            console.log(!Memory.controller[i].upgrader , Memory.controller[i].upgrader.length == 0);
+            console.log(Memory.controller[i].upgrader);
             if(!Memory.controller[i].upgrader || Memory.controller[i].upgrader.length == 0){
-                console.log('u1')
+                console.log('u1');
                 this.assigner.assignUpgrader(i);
             }
         }
