@@ -9,7 +9,7 @@ var miner = {
             }
             else{
                 let site = pos.findClosestByRange(FIND_CONSTRUCTION_SITES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER});
-                if(creep.build(container) == ERR_NOT_IN_RANGE) creep.moveTo(site);
+                if(creep.build(site) == ERR_NOT_IN_RANGE) creep.moveTo(site);
             }
         }
         else{
