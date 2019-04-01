@@ -25,13 +25,13 @@ exports.gameController = class{
                 if(assignment){
                     switch(Memory.creeps[name].role){
                         case 'miner':
-                            delete Memory.source[assignment].miner[Memory.creeps[name].id];
+                            //delete Memory.source[assignment].miner[Memory.creeps[name].id];
                             break;
                         case 'transporter':
-                            delete Memory.source[assignment].transporter[Memory.creeps[name].id];
+                            //delete Memory.source[assignment].transporter[Memory.creeps[name].id];
                             break;
                         case 'upgrader':
-                            delete Memory.controller[assignment].upgrader[Memory.creeps[name].id];
+                            //delete Memory.controller[assignment].upgrader[Memory.creeps[name].id];
                             break;
                     }
                 }
@@ -70,7 +70,8 @@ exports.gameController = class{
                         }
                     }
                     else{
-                        delete Memory.source[i].miner[j];
+                        //delete Memory.source[i].miner[j];
+                        Memory.source[i].miner[j].splice(j,1);
                     }
                 }
             }
@@ -85,7 +86,8 @@ exports.gameController = class{
 
                     }
                     else{
-                        delete Memory.source[i].transporter[j];
+                        //delete Memory.source[i].transporter[j];
+                        Memory.source[i].transporter[j].splice(j,1);
                     }
                 }
             }
@@ -113,7 +115,8 @@ exports.gameController = class{
                         console.log(creep);
                     }
                     else{
-                        delete Memory.controller[i].upgrader[j];
+                        //delete Memory.controller[i].upgrader[j];
+                        Memory.controller[i].upgrader[j].splice(j,1);
                     }
                 }
             }
