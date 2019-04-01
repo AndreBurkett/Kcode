@@ -4,6 +4,7 @@ exports.assignmentManager = class{
     constructor(){
         this.miner = [];
         this.upgrader = [];
+        this.transporter = [];
     }
 
     assignMiner(workNeeded, source){
@@ -28,6 +29,7 @@ exports.assignmentManager = class{
     assignUpgrader(controller){
         if(this.upgrader.length > 0){
             for(let i in this.upgrader){
+                Memory.controller[controller].upgrader.push(this.upgrader[i].id);
                 this.upgrader[i].memory.assignment = controller;
                 this.upgrader.splice(i,1);
             }
