@@ -29,6 +29,7 @@ exports.gameController = class{
                             break;
                         case 'transporter':
                             delete Memory.source[assignment].transporter[Memory.creeps[name].id];
+                            break;
                         case 'upgrader':
                             delete Memory.controller[assignment].upgrader[Memory.creeps[name].id];
                             break;
