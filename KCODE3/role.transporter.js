@@ -13,11 +13,13 @@ var transporter = {
         else{
             creep.memory.task = 'withdraw';
             let source = creep.memory.assignment;
-            let pos = new RoomPosition(Memory.source[source].spawnPath.path[0].x, Memory.source[source].spawnPath.path[0].y, Memory.source[source].spawnPath.path[0].roomName);
-            let container = pos.lookFor(STRUCTURE_CONTAINER)[0];
-            if(container && container.store >= creep.carryCapacity){
-                if(creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
-                    creep.moveTo(container);
+            if (source){
+                let pos = new RoomPosition(Memory.source[source].spawnPath.path[0].x, Memory.source[source].spawnPath.path[0].y, Memory.source[source].spawnPath.path[0].roomName);
+                let container = pos.lookFor(STRUCTURE_CONTAINER)[0];
+                if(container && container.store >= creep.carryCapacity){
+                    if(creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
+                        creep.moveTo(container);
+                    }
                 }
             }
        }
