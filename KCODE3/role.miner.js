@@ -4,7 +4,7 @@ var miner = {
         if(creep.carry.energy == creep.carryCapacity){
             let pos = new RoomPosition(Memory.source[source].spawnPath.path[0].x, Memory.source[source].spawnPath.path[0].y, Memory.source[source].spawnPath.path[0].roomName);
             let container = pos.lookFor(STRUCTURE_CONTAINER)[0];
-            console.log(pos.x, pos.y, pos.roomName);
+            console.log(look(pos));
             let site = pos.lookFor(FIND_CONSTRUCTION_SITES);//, {filter: (s) => s.structureType == STRUCTURE_CONTAINER});
             console.log(site);
             switch(creep.transfer(container, RESOURCE_ENERGY)){
