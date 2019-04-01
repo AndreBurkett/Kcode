@@ -106,7 +106,7 @@ exports.gameController = class{
         //Iterate over controllers
         for(let i of Object.keys(Memory.controller)){
             console.log(Memory.controller[i].upgrader , Memory.controller[i].upgrader.length);
-            console.log(Memory.controller[i].upgrader);
+            console.log(Memory.controller[i].upgrader == null);
             if(Memory.controller[i].upgrader && Memory.controller[i].upgrader.length > 0){
                 for(let j in Memory.controller[i].upgrader){
                         let creep = Game.getObjectById(Memory.controller[i].upgrader[j]);
