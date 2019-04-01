@@ -5,7 +5,7 @@ var miner = {
             let pos = new RoomPosition(Memory.source[source].spawnPath.path[0].x, Memory.source[source].spawnPath.path[0].y, Memory.source[source].spawnPath.path[0].roomName);
             let container = pos.lookFor(STRUCTURE_CONTAINER)[0];
             console.log(container);
-            let site = pos.lookFor(FIND_CONSTRUCTION_SITES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER});
+            let site = pos.lookFor(FIND_CONSTRUCTION_SITES);//, {filter: (s) => s.structureType == STRUCTURE_CONTAINER});
             console.log(site);
             switch(creep.transfer(container, RESOURCE_ENERGY)){
                 case ERR_NOT_IN_RANGE:
