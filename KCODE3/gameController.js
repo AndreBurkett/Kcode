@@ -104,8 +104,8 @@ exports.gameController = class{
         }
         //Iterate over controllers
         for(let i of Object.keys(Memory.controller)){
-            console.log('u')
             if(!Memory.controller[i].upgrader || Memory.controller[i].upgrader.length == 0){
+                console.log('u1')
                 this.assigner.assignUpgrader(i);
             }
         }
