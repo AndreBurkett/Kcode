@@ -65,7 +65,6 @@ exports.gameController = class{
                     let creep = Game.getObjectById(Memory.source[i].miner[j]);
                     if(creep){
                         workParts += _.filter(creep.body, function(bp){return bp == WORK;}).length;
-                        console.log('m');
                         if(workParts < 5 && Memory.source[i].miner[j].length < Memory.source[i].space){
                             this.assigner.assignMiner(5-workParts, i);
                         }
@@ -105,11 +104,9 @@ exports.gameController = class{
         }
         //Iterate over controllers
         for(let i of Object.keys(Memory.controller)){
-            console.log(Memory.controller[i].upgrader , Memory.controller[i].upgrader.length);
-            console.log(Memory.controller[i].upgrader == null);
+            console.log(typeof Memory.controller.upgrader);
             if(Memory.controller[i].upgrader && Memory.controller[i].upgrader.length > 0){
                 for(let j in Memory.controller[i].upgrader){
-                    console.log(j);
                     let creep = Game.getObjectById(Memory.controller[i].upgrader[j]);
                     if(creep && creep != null){
                         console.log(creep);
