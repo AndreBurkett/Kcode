@@ -107,7 +107,18 @@ exports.gameController = class{
         for(let i of Object.keys(Memory.controller)){
             console.log(!Memory.controller[i].upgrader , Memory.controller[i].upgrader.length == 0);
             console.log(Memory.controller[i].upgrader);
-            if(!Memory.controller[i].upgrader || Memory.controller[i].upgrader.length == 0){
+            if(Memory.controller[i].upgrader && Memory.controller[i].upgrader.length > 0){
+                for(let j in Memory.controller[i].upgrader){
+                        let creep = Game.getObjectById(Memory.source[i].miner[j]);
+                        if(creep){
+
+                        }
+                        else{
+                            delete Memory.controller[i].upgrader[j];
+                        }
+                }
+            }
+            else{
                 console.log('u1');
                 this.assigner.assignUpgrader(i);
             }
