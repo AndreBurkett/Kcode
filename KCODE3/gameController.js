@@ -74,8 +74,8 @@ exports.gameController = class{
             }
             if(Memory.source[i].spawnPath){
                 let pos = new RoomPosition(Memory.source[i].spawnPath.path[0].x, Memory.source[i].spawnPath.path[0].y, Memory.source[i].spawnPath.path[0].roomName);
-                console.log(pos.lookFor(STRUCTURE_CONTAINER).length);
-                if(pos.lookFor(STRUCTURE_CONTAINER).length == 0){
+                console.log(pos.lookFor(STRUCTURE_CONTAINER).length == 0);
+                if(!pos.lookFor(STRUCTURE_CONTAINER).length){
                     console.log(Game.rooms[pos.roomName]);
                     Game.rooms[pos.roomName].createConstructionSite(pos, STRUCTURE_CONTAINER);
                 }
