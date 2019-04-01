@@ -97,7 +97,6 @@ exports.gameController = class{
                 }
             }
             else{
-                console.log('t');
                 this.assigner.assignTransporter(i);
             }
             //Create Source Containers
@@ -124,7 +123,6 @@ exports.gameController = class{
                 }
             }
             else{
-                console.log('u1');
                 this.assigner.assignUpgrader(i);
             }
         }
