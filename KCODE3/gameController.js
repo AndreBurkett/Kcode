@@ -90,6 +90,7 @@ exports.gameController = class{
                 }
             }
             else{
+                console.log('t')
                 this.assigner.assignTransporter(i);
             }
             //Create Source Containers
@@ -103,6 +104,7 @@ exports.gameController = class{
         }
         //Iterate over controllers
         for(let i of Object.keys(Memory.controller)){
+            console.log('u')
             if(!Memory.controller[i].upgrader || Memory.controller[i].upgrader.length == 0){
                 this.assigner.assignUpgrader(i);
             }
