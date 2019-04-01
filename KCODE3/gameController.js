@@ -121,7 +121,7 @@ exports.gameController = class{
                     }
                 }
             }
-            else{
+            else if(controller.my){
                 this.assigner.assignUpgrader(i);
             }
         }
