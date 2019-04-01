@@ -70,8 +70,8 @@ exports.gameController = class{
                         }
                     }
                     else{
-                        delete Memory.source[i].miner[j];
-                        //Memory.source[i].miner[j].splice(j,1);
+                        //delete Memory.source[i].miner[j];
+                        Memory.source[i].miner.splice(j,1);
                     }
                 }
             }
@@ -86,7 +86,8 @@ exports.gameController = class{
                     if(!creep.memory.assignment) creep.memory.assignment = i;
                     }
                     else{
-                        delete Memory.source[i].transporter[j];
+                        //delete Memory.source[i].transporter[j];
+                        Memory.source[i].transporter.splice(j,1);
                     }
                 }
             }
