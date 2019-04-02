@@ -131,6 +131,10 @@ exports.gameController = class{
         //Iterate over spawns
         for(let i in Game.spawns){
             console.log(Game.spawns[i].id);
+            if(!Memory.spawn[Game.spawns[i].id]){
+                Memory.spawn[Game.spawns[i].id] = {};
+                Memory.spawn[Game.spawns[i].id].tower = {};
+            }
         }
         //Spawn Creeps
         this.assigner.spawnManager.spawn();

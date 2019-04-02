@@ -13,7 +13,7 @@ exports.assignmentManager = class{
     assignBuilder(site){
         if(this.builder.length > 0 ){
             for(let i in this.builder){
-                //Memory.site[site].builder.push(this.builder[i].id);
+                Memory.construction[site].builder.push(this.builder[i].id);
                 this.builder[i].memory.assignment = site;
                 this.builder.splice(i,1);
             }
