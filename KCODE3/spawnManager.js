@@ -8,6 +8,13 @@ exports.spawnManager = class{
         this.upgrader = 0;
     }
 
+    spawn(){
+        if(this.miner > 0) this.spawnMiner(1);
+        else if(this.transporter > 0) this.spawnTransporter();
+        else if(this.builder > 0) this.spawnBuilder();
+        else if(this.upgrader > 0) this.spawnUpgrader();
+    }
+
     spawnBuilder(){
         let spawner = Game.spawns['Spawn1'];
         if(spawner.spawnCreep([WORK,CARRY,MOVE], nameBuilder.getName('b'), {memory: {role: 'builder'}}) == 0){
@@ -34,12 +41,5 @@ exports.spawnManager = class{
         if(spawner.spawnCreep([WORK,CARRY,MOVE], nameBuilder.getName('u'), {memory: {role: 'upgrader'}}) == 0){
             nameBuilder.commitName('u');
         }
-    }
-    
-    spawn(){
-        if(this.miner > 0) spawnMiner(1);
-        else if(this.transporter > 0) this.spawnTransporter();
-        else if(this.builder > 0) this.spawnBuilder();
-        else if(this.upgrader > 0) this.spawnUpgrader();
     }
 }
