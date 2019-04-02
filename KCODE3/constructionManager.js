@@ -18,8 +18,8 @@ exports.constructionManager = class{
         }
 
         //Iterate over containers
-        console.log(Memory.construction.container.length);
-        if(Memory.construction.container && Memory.construction.container.length > 0){
+        console.log(Object.keys(Memory.construction.container).length);
+        if(Memory.construction.container && Object.keys(Memory.construction.container).length > 0){
             for(let i in Memory.construction.container){
                 console.log(i);
                 if(Game.constructionSites[i]){
