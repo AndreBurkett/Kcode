@@ -36,7 +36,7 @@ exports.constructionManager = class{
                         }
                     }
                     else{
-                        this.assigner.assignBuilder(i);
+                        this.assigner.assignBuilder(i, 'container');
                     }
                 }
                 else{

@@ -10,11 +10,15 @@ exports.assignmentManager = class{
         this.transporter = [];
     }
 
-    assignBuilder(site){
+    assignBuilder(site, type){
         console.log(this.builder);
         if(this.builder.length > 0 ){
             for(let i in this.builder){
-                Memory.construction.container[site].builder.push(this.builder[i].id);
+                switch(type){
+                    case 'container':
+                        Memory.construction.container[site].builder.push(this.builder[i].id);
+                        break;
+                }
                 this.builder[i].memory.assignment = site;
                 this.builder.splice(i,1);
             }
