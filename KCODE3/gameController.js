@@ -10,6 +10,7 @@ exports.gameController = class{
         //Create Memory
         if(!Memory.sector) Memory.sector = {};
         if(!Memory.source) Memory.source = {};
+        if(!Memory.spawn) Memory.spawn = {};
         if(!Memory.controller) Memory.controller = {};
         
         //Create Sector Controllers
@@ -126,6 +127,10 @@ exports.gameController = class{
             else if(controller && controller.my){
                 this.assigner.assignUpgrader(i);
             }
+        }
+        //iterate over spawns
+        for(let i in Game.spawns){
+            console.log(i);
         }
         //Spawn Creeps
         this.assigner.spawnManager.spawn();
