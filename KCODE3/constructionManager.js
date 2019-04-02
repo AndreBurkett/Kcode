@@ -15,8 +15,8 @@ exports.constructionManager = class{
                         Memory.construction.container[i] = {};
                     }
                     if(!Memory.construction.container[i].builder){
-                        Memory.construction.container[i].builder = {};
                     }
+                    Memory.construction.container[i].builder = [];
             }
         }
 
