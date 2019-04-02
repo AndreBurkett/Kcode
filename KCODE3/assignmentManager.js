@@ -11,6 +11,7 @@ exports.assignmentManager = class{
     }
 
     assignBuilder(site){
+        console.log(this.builder);
         if(this.builder.length > 0 ){
             for(let i in this.builder){
                 Memory.construction[site].builder.push(this.builder[i].id);
