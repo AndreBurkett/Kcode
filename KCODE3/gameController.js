@@ -6,7 +6,6 @@ cm = require('constructionManager');
 exports.gameController = class{
     constructor(){
         this.assigner = new am.assignmentManager();
-        this.constructor = new cm.constructionManager(this.assigner);
         //Create Memory
         if(!Memory.sector) Memory.sector = {};
         if(!Memory.source) Memory.source = {};
@@ -62,6 +61,9 @@ exports.gameController = class{
             }
             let run = new tm.creepManager(Game.creeps[name]);
         }
+        //Create Construction Manager
+        this.constructor = new cm.constructionManager(this.assigner);
+
         //Iterate over sources
         for(let i of Object.keys(Memory.source)){
             //Assign Miners
