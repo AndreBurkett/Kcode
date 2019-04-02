@@ -36,7 +36,7 @@ exports.assignmentManager = class{
                 return;
             }
         }
-        this.spawnManager.Miner++;
+        this.spawnManager.miner++;
     }
     
     assignTransporter(source){
@@ -47,7 +47,7 @@ exports.assignmentManager = class{
                 this.transporter.splice(i,1);
             }
         }
-        else this.spawnManager.Transporter++;
+        else this.spawnManager.transporter++;
     }
 
     assignUpgrader(controller){
