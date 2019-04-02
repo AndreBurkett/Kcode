@@ -128,9 +128,9 @@ exports.gameController = class{
                 this.assigner.assignUpgrader(i);
             }
         }
-        //iterate over spawns
+        //Iterate over spawns
         for(let i in Game.spawns){
-            console.log(i);
+            console.log(Game.spawns[i].id);
         }
         //Spawn Creeps
         this.assigner.spawnManager.spawn();
