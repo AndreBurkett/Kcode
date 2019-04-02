@@ -17,5 +17,10 @@ exports.constructionManager = class{
             }
         }
 
+        //Iterate over containers
+        for(let i in Memory.construction.container){
+            console.log(i);
+        }
+
     }
 }
