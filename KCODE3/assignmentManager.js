@@ -1,7 +1,9 @@
 nameBuilder = require('nameBuilder');
+sm = require('spawnManager');
 
 exports.assignmentManager = class{
     constructor(){
+        this.spawnManager = new sm.spawnManager()
         this.builder = [];
         this.miner = [];
         this.upgrader = [];
@@ -16,7 +18,7 @@ exports.assignmentManager = class{
                 this.builder.splice(i,1);
             }
         }
-        else this.spawnBuilder;
+        else this.spawnManager.builder++;
     }
     assignMiner(workNeeded, source){
         if(this.miner.length > 0){
@@ -34,7 +36,7 @@ exports.assignmentManager = class{
                 return;
             }
         }
-        this.spawnMiner(workNeeded);
+        this.spawnManager.Miner++;
     }
     
     assignTransporter(source){
@@ -45,7 +47,7 @@ exports.assignmentManager = class{
                 this.transporter.splice(i,1);
             }
         }
-        else this.spawnTransporter();
+        else this.spawnManager.Transporter++;
     }
 
     assignUpgrader(controller){
@@ -56,34 +58,6 @@ exports.assignmentManager = class{
                 this.upgrader.splice(i,1);
             }
         }
-        else this.spawnUpgrader();
-    }
-
-    spawnBuilder(){
-        let spawner = Game.spawns['Spawn1'];
-        if(spawner.spawnCreep([WORK,CARRY,MOVE], nameBuilder.getName('b'), {memory: {role: 'builder'}}) == 0){
-            nameBuilder.commitName('b');
-        }
-    }
-    
-    spawnMiner(workParts){
-        let spawner = Game.spawns['Spawn1'];
-        if(spawner.spawnCreep([WORK,CARRY,MOVE], nameBuilder.getName('m'), {memory: {role: 'miner'}}) == 0){
-            nameBuilder.commitName('m');
-        }
-    }
-
-    spawnTransporter(){
-        let spawner = Game.spawns['Spawn1'];
-        if(spawner.spawnCreep([CARRY,MOVE], nameBuilder.getName('t'), {memory: {role: 'transporter'}}) == 0){
-            nameBuilder.commitName('t');
-        }
-    }
-    
-    spawnUpgrader(){
-        let spawner = Game.spawns['Spawn1'];
-        if(spawner.spawnCreep([WORK,CARRY,MOVE], nameBuilder.getName('u'), {memory: {role: 'upgrader'}}) == 0){
-            nameBuilder.commitName('u');
-        }
-    }
+        else this.spawnManager.upgrader++;
+    }    
 }
