@@ -6,6 +6,7 @@ cm = require('constructionManager');
 exports.gameController = class{
     constructor(){
         this.assigner = new am.assignmentManager();
+        this.constructor = new cm.constuctionManager();
         //Create Memory
         if(!Memory.sector) Memory.sector = {};
         if(!Memory.source) Memory.source = {};
