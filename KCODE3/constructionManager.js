@@ -8,11 +8,11 @@ exports.constructionManager = class{
 
         //Iterate over sites
         for(let i in Game.constructionSites){
-            console.log(Game.constructionSites[i][1]);
+            console.log(Game.constructionSites[i], i);
             switch(Game.constructionSites[i].structureType){
                 case STRUCTURE_CONTAINER:
-                    if(!Memory.construction.container[i.id]){
-                        Memory.construction.container[i.id] = {};
+                    if(!Memory.construction.container[i]){
+                        Memory.construction.container[i] = {};
                     }
             }
         }
