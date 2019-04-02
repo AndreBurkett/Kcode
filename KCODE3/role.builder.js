@@ -15,7 +15,7 @@ var builder = {
         }
         else{
             creep.memory.task = 'pickup';
-            target = creep.pos.findClosestByRange(FIND_RESOURCE_ENERGY, {filter: (r) => r.resourceType == RESOURCE_ENERGY});
+            target = creep.pos.findClosestByRange(FIND_DROPPED_RESOURCE, {filter: (r) => r.resourceType == RESOURCE_ENERGY});
             if (creep.pickup(target) == ERR_NOT_IN_RANGE) creep.moveTo(target);
         }
     }
