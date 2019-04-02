@@ -38,8 +38,8 @@ exports.spawnManager = class{
     
     spawn(){
         if(this.miner > 0) spawnMiner(1);
-        else if(this.transporter > 0) spawnTransporter();
-        else if(this.builder > 0) spawnBuilder();
-        else if(this.upgrader > 0) spawnUpgrader();
+        else if(this.transporter > 0) this.spawnTransporter();
+        else if(this.builder > 0) this.spawnBuilder();
+        else if(this.upgrader > 0) this.spawnUpgrader();
     }
 }
