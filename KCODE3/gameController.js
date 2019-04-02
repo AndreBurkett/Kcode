@@ -6,7 +6,7 @@ cm = require('constructionManager');
 exports.gameController = class{
     constructor(){
         this.assigner = new am.assignmentManager();
-        this.constructor = new cm.constructionManager();
+        this.constructor = new cm.constructionManager(this.assigner);
         //Create Memory
         if(!Memory.sector) Memory.sector = {};
         if(!Memory.source) Memory.source = {};
@@ -88,7 +88,7 @@ exports.gameController = class{
                 for(let j in Memory.source[i].transporter){
                     let creep = Game.getObjectById(Memory.source[i].transporter[j]);
                     if(creep){
-                    if(!creep.memory.assignment) creep.memory.assignment = i;
+                        if(!creep.memory.assignment) creep.memory.assignment = i;
                     }
                     else{
                         //delete Memory.source[i].transporter[j];
