@@ -32,7 +32,7 @@ exports.assignmentManager = class{
                 }
             }
             if(workNeeded > 0){
-                this.spawnMiner(workNeeded);
+                this.spawnManager.miner++;
                 return;
             }
         }
