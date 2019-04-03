@@ -80,7 +80,7 @@ exports.gameController = class{
                             }
                         }
                         else{
-                            //delete Memory.source[i].miner[j];
+                            console.log(workParts, 1);
                             Memory.source[i].miner.splice(j,1);
                         }
                     }
