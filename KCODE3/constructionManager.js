@@ -33,7 +33,7 @@ exports.constructionManager = class{
                                     if(!creep.memory.assignment) creep.memory.assignment = j;
                                 }
                                 else{
-                                    //Memory.construction[i][j].builder.splice(k,1);
+                                    Memory.construction[i][j].builder.splice(k,1);
                                 }
                             }
                         }
