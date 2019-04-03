@@ -2,7 +2,7 @@ exports.bunkerController = class{
     constructor(spawn){
         this.level = spawn.room.controller.level;
         this.x = spawn.pos.x;
-        this.y = spawn.pos.y - 2;
+        this.y = spawn.pos.y + 2;
         this.room = spawn.room;
         this.createSites();
     }
