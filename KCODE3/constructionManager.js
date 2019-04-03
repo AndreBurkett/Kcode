@@ -48,6 +48,14 @@ exports.constructionManager = class{
                 }
             }
         }
-        
+
+        //Iterate over all construction sites
+        for(let i in Memory.construction){
+            console.log(i);
+            if(Memory.construction[i] && Object.keys(Memory.construction[i].length > 0)){
+                console.log(Memory.construction[i]);
+            }
+        }
+
     }
 }
