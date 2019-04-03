@@ -21,7 +21,7 @@ exports.constructionManager = class{
         }
 
         //Iterate over containers
-        if(Memory.construction.container && Object.keys(Memory.construction.container).length > 0){
+        /*if(Memory.construction.container && Object.keys(Memory.construction.container).length > 0){
             for(let i in Memory.construction.container){
                 if(Game.constructionSites[i]){
                     if(Memory.construction.container[i].builder && Memory.construction.container[i].builder.length > 0){
@@ -47,13 +47,36 @@ exports.constructionManager = class{
                     delete Memory.construction.container[i];
                 }
             }
-        }
+        }*/
 
         //Iterate over all construction sites
         for(let i in Memory.construction){
-            console.log(i);
             if(Memory.construction[i] && Object.keys(Memory.construction[i].length > 0)){
-                console.log(Memory.construction[i]);
+                for(let j in Memory.construction[i]){
+                    if(Game.constructionSites[j]){
+                        if(Memory.construction[i][j].builder && Memory.construction[i][j].builder.length > 0){
+                            for(let k in Memory.construction[i][j].builder){
+                                let creep = Game.getObjectById(k);
+                                if(creep){
+                                    if(!creep.memory.assignment) creep.memory.assignment = j;
+                                }
+                                else{
+                                    Memory.construction[i][j].builder.splice(k,1);
+                                }
+                            }
+                        }
+                        else{
+                            this.assigner.assignBuilder(j, i);
+                        }
+                    }
+                    else{
+                        for(let k in Memory.construction[i][j].builder){
+                            let creep = Game.getObjectById(k);
+                            if(creep) delete creep.memory.assignment;
+                        }
+                        delete Memory.construction[i][j];
+                    }
+                }
             }
         }
 
