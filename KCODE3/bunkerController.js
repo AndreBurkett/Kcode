@@ -4,6 +4,7 @@ exports.bunkerController = class{
         this.x = spawn.pos.x;
         this.y = spawn.pos.y - 2;
         this.room = spawn.room;
+        this.createSites();
     }
 
     build(site){
