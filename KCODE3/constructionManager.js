@@ -18,6 +18,15 @@ exports.constructionManager = class{
                     if(!Memory.construction.container[i].builder){
                         Memory.construction.container[i].builder = [];
                     }
+                    break;
+                case STRUCTURE_EXTENSION:
+                    if(!Memory.construction.extension[i]){
+                        Memory.construction.extension[i] = {};
+                    }
+                    if(!Memory.construction.extension[i].builder){
+                        Memory.construction.extension[i].builder = [];
+                    }
+                    break;
             }
         }
 
