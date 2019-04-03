@@ -75,6 +75,7 @@ exports.gameController = class{
                         if(creep){
                             workParts += _.filter(creep.body, function(bp){return bp == WORK;}).length;
                             if(workParts < 5 && Memory.source[i].miner[j].length < Memory.source[i].space){
+                                console.log(workParts);
                                 this.assigner.assignMiner(5-workParts, i);
                             }
                         }
@@ -85,7 +86,7 @@ exports.gameController = class{
                     }
                 }
                 else{
-                    this.assigner.assignMiner(5-workParts, i);                
+                    this.assigner.assignMiner(5-workParts, i);
                 }
                 //Assign Transporters
                 if(Memory.source[i].transporter && Memory.source[i].transporter.length > 0){
