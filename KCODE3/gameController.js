@@ -11,6 +11,9 @@ exports.gameController = class{
         if(!Memory.source) Memory.source = {};
         if(!Memory.spawn) Memory.spawn = {};
         if(!Memory.controller) Memory.controller = {};
+        //test
+        if(!Memory.test) Memory.test = [];
+        Memory.test.push('t');
         
         //Create Sector Controllers
         let sector = [];
@@ -67,7 +70,7 @@ exports.gameController = class{
         //Iterate over sources
         for(let i of Object.keys(Memory.source)){
             if(Memory.source[i].owner == 'hostile'){
-                
+
             }
             //Assign Miners
             let workParts = 0
