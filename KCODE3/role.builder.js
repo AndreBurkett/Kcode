@@ -1,7 +1,7 @@
 var builder = {
     run: function (creep) {
         var target;
-        delete creep.memory.assignment;
+        //delete creep.memory.assignment;
 
         if(creep.carry.energy == creep.carryCapacity || (creep.carry.energy > 0 && creep.memory.task == 'build')){
             creep.memory.task = 'build';
