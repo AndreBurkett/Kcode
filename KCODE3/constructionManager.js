@@ -20,35 +20,6 @@ exports.constructionManager = class{
             }
         }
 
-        //Iterate over containers
-        /*if(Memory.construction.container && Object.keys(Memory.construction.container).length > 0){
-            for(let i in Memory.construction.container){
-                if(Game.constructionSites[i]){
-                    if(Memory.construction.container[i].builder && Memory.construction.container[i].builder.length > 0){
-                        for(let j in Memory.construction.container[i].builder){
-                            let creep = Game.getObjectById(Memory.construction.container[i].builder[j]);
-                            if(creep){
-                                if(!creep.memory.assignment) creep.memory.assignment = i;
-                            }
-                            else{
-                                Memory.construction.container[i].builder.splice(j,1);
-                            }
-                        }
-                    }
-                    else{
-                        this.assigner.assignBuilder(i, 'container');
-                    }
-                }
-                else{
-                    for(let j in Memory.construction.container[i].builder){
-                        let creep = Game.getObjectById(j);
-                        if(creep) delete creep.memory.assignment;
-                    }
-                    delete Memory.construction.container[i];
-                }
-            }
-        }*/
-
         //Iterate over all construction sites
         for(let i in Memory.construction){
             if(Memory.construction[i] && Object.keys(Memory.construction[i].length > 0)){
