@@ -15,6 +15,7 @@ exports.constructionManager = class{
                         Memory.construction.container[i] = {};
                     }
                     if(!Memory.construction.container[i].builder){
+                        console.log('reset');
                         Memory.construction.container[i].builder = [];
                     }
             }
