@@ -4,7 +4,7 @@ exports.sectorController = class{
         this.terrain = Game.map.getRoomTerrain(this.room.name)
         this.source = this.room.find(FIND_SOURCES);
         this.spawns = this.room.find(FIND_MY_SPAWNS);
-        this.owner = getOwner();
+        this.owner = this.getOwner();
         //Create Sector Memory
         if(!Memory.sector[this.room.name]){
             Memory.sector[this.room.name] = {};
