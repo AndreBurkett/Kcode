@@ -66,6 +66,7 @@ exports.gameController = class{
 
         //Iterate over sources
         for(let i of Object.keys(Memory.source)){
+            if(Memory.source[i].owner == 'hostile')
             //Assign Miners
             let workParts = 0
             if(Memory.source[i].miner && Memory.source[i].miner.length > 0){
@@ -73,7 +74,6 @@ exports.gameController = class{
                     let creep = Game.getObjectById(Memory.source[i].miner[j]);
                     if(creep){
                         workParts += _.filter(creep.body, function(bp){return bp == WORK;}).length;
-                        console.log(workParts);
                         if(workParts < 5 && Memory.source[i].miner[j].length < Memory.source[i].space){
                             this.assigner.assignMiner(5-workParts, i);
                         }
