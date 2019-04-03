@@ -1,11 +1,17 @@
 exports.constructionManager = class{
     constructor(assigner){
         this.assigner = assigner;
+        this.types = ['container', 'extension', 'road', 'tower'];
         //Allocate Memory
         if(!Memory.construction) Memory.construction = {};
+        for(let i of this.types){
+            if(!Memory.construction[i]) Memory.construction[i] = {};
+        }
+        /*
         if(!Memory.construction.container) Memory.construction.container = {};
         if(!Memory.construction.road) Memory.construction.road = {};
         if(!Memory.construction.tower) Memory.construction.tower = {};
+        */
 
         //Iterate over sites
         for(let i in Game.constructionSites){
