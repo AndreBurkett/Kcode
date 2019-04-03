@@ -107,10 +107,11 @@ exports.gameController = class{
             if(Memory.source[i].spawnPath){
                 let pos = new RoomPosition(Memory.source[i].spawnPath.path[0].x, Memory.source[i].spawnPath.path[0].y, Memory.source[i].spawnPath.path[0].roomName);
                 let container = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER});
-                console.log(container == false);
                 if(container == false){
-                    console.log('csite');
-                    Game.rooms[pos.roomName].createConstructionSite(pos, STRUCTURE_CONTAINER);
+                    let site = pos.lookFor(LOOK_CONSTRUCTION_SITES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER});
+                    if(site == false){
+                        Game.rooms[pos.roomName].createConstructionSite(pos, STRUCTURE_CONTAINER);
+                    }
                 }
             }
         }
