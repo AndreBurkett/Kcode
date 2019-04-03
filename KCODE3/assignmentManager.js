@@ -11,6 +11,7 @@ exports.assignmentManager = class{
     }
 
     assignBuilder(site, type){
+        console.log('assign builder');
         Memory.construction[type][site].builder = [];
         Memory.construction[type][site].builder.push('t1');
         //Memory.construction[type][site].builder.push('test');
