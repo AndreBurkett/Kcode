@@ -66,53 +66,52 @@ exports.gameController = class{
 
         //Iterate over sources
         for(let i of Object.keys(Memory.source)){
-            if(Memory.source[i].owner == 'hostile'){
-
-            }
-            //Assign Miners
-            let workParts = 0
-            if(Memory.source[i].miner && Memory.source[i].miner.length > 0){
-                for(let j in Memory.source[i].miner){
-                    let creep = Game.getObjectById(Memory.source[i].miner[j]);
-                    if(creep){
-                        workParts += _.filter(creep.body, function(bp){return bp == WORK;}).length;
-                        if(workParts < 5 && Memory.source[i].miner[j].length < Memory.source[i].space){
-                            this.assigner.assignMiner(5-workParts, i);
+            if(Memory.source[i].owner != 'hostile'){
+                //Assign Miners
+                let workParts = 0
+                if(Memory.source[i].miner && Memory.source[i].miner.length > 0){
+                    for(let j in Memory.source[i].miner){
+                        let creep = Game.getObjectById(Memory.source[i].miner[j]);
+                        if(creep){
+                            workParts += _.filter(creep.body, function(bp){return bp == WORK;}).length;
+                            if(workParts < 5 && Memory.source[i].miner[j].length < Memory.source[i].space){
+                                this.assigner.assignMiner(5-workParts, i);
+                            }
+                        }
+                        else{
+                            //delete Memory.source[i].miner[j];
+                            Memory.source[i].miner.splice(j,1);
                         }
                     }
-                    else{
-                        //delete Memory.source[i].miner[j];
-                        Memory.source[i].miner.splice(j,1);
+                }
+                else{
+                    this.assigner.assignMiner(5-workParts, i);                
+                }
+                //Assign Transporters
+                if(Memory.source[i].transporter && Memory.source[i].transporter.length > 0){
+                    for(let j in Memory.source[i].transporter){
+                        let creep = Game.getObjectById(Memory.source[i].transporter[j]);
+                        if(creep){
+                            if(!creep.memory.assignment) creep.memory.assignment = i;
+                        }
+                        else{
+                            //delete Memory.source[i].transporter[j];
+                            Memory.source[i].transporter.splice(j,1);
+                        }
                     }
                 }
-            }
-            else{
-                this.assigner.assignMiner(5-workParts, i);                
-            }
-            //Assign Transporters
-            if(Memory.source[i].transporter && Memory.source[i].transporter.length > 0){
-                for(let j in Memory.source[i].transporter){
-                    let creep = Game.getObjectById(Memory.source[i].transporter[j]);
-                    if(creep){
-                        if(!creep.memory.assignment) creep.memory.assignment = i;
-                    }
-                    else{
-                        //delete Memory.source[i].transporter[j];
-                        Memory.source[i].transporter.splice(j,1);
-                    }
+                else{
+                    this.assigner.assignTransporter(i);
                 }
-            }
-            else{
-                this.assigner.assignTransporter(i);
-            }
-            //Create Source Containers
-            if(Memory.source[i].spawnPath){
-                let pos = new RoomPosition(Memory.source[i].spawnPath.path[0].x, Memory.source[i].spawnPath.path[0].y, Memory.source[i].spawnPath.path[0].roomName);
-                let container = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER});
-                if(container == false){
-                    let site = pos.lookFor(LOOK_CONSTRUCTION_SITES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER});
-                    if(site == false){
-                        Game.rooms[pos.roomName].createConstructionSite(pos, STRUCTURE_CONTAINER);
+                //Create Source Containers
+                if(Memory.source[i].spawnPath){
+                    let pos = new RoomPosition(Memory.source[i].spawnPath.path[0].x, Memory.source[i].spawnPath.path[0].y, Memory.source[i].spawnPath.path[0].roomName);
+                    let container = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER});
+                    if(container == false){
+                        let site = pos.lookFor(LOOK_CONSTRUCTION_SITES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER});
+                        if(site == false){
+                            Game.rooms[pos.roomName].createConstructionSite(pos, STRUCTURE_CONTAINER);
+                        }
                     }
                 }
             }

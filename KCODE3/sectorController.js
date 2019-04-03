@@ -4,6 +4,7 @@ exports.sectorController = class{
         this.terrain = Game.map.getRoomTerrain(this.room.name)
         this.source = this.room.find(FIND_SOURCES);
         this.spawns = this.room.find(FIND_MY_SPAWNS);
+        this.owner = getOwner();
         //Create Sector Memory
         if(!Memory.sector[this.room.name]){
             Memory.sector[this.room.name] = {};
@@ -25,6 +26,8 @@ exports.sectorController = class{
                     Memory.source[this.source[i].id].spawnPath = this.getPath(this.source[i].pos, this.spawns[j].pos);
                 }
             }
+            //update owner
+            Memory.source[this.source[i].id].owner = this.owner;
         }
         //Create Controller Memory
         if(!Memory.controller[this.room.controller.id]){
@@ -46,6 +49,15 @@ exports.sectorController = class{
                 }
             }
         return space;
+    }
+    getOwner(){
+        let owner;
+        if(this.room.controller && this.room.controller.level && this.room.controller.level > 0){
+            if(this.room.controller.my) owner = 'me'
+            else owner = 'hostile';
+        }
+        else owner = 'neutral';
+        return owner;
     }
     getPath(pos1, pos2){
         let path = PathFinder.search(pos1, pos2, {swampCost: 1, ignoreRoads: true, roomCallback: this.roomCostMatrix()});
