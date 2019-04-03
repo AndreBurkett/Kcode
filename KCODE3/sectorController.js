@@ -1,3 +1,5 @@
+bc = require('bunkerController');
+
 exports.sectorController = class{
     constructor(sector){
         this.room = sector;
@@ -5,6 +7,9 @@ exports.sectorController = class{
         this.source = this.room.find(FIND_SOURCES);
         this.spawns = this.room.find(FIND_MY_SPAWNS);
         this.owner = this.getOwner();
+        //Create Bunker Controller
+        if(this.spawns[0]) this.bunker = new bc.bunkerController(this.spawns[0]);
+
         //Create Sector Memory
         if(!Memory.sector[this.room.name]){
             Memory.sector[this.room.name] = {};
