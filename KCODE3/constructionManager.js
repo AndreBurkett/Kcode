@@ -26,7 +26,7 @@ exports.constructionManager = class{
                 for(let j in Memory.construction[i]){
                     if(Game.constructionSites[j]){
                         if(Memory.construction[i][j].builder && Memory.construction[i][j].builder.length > 0){
-                            for(let k in Memory.construction[i][j].builder){
+                            for(let k of Memory.construction[i][j].builder){
                                 let creep = Game.getObjectById(k);
                                 console.log(k);
                                 if(creep){
