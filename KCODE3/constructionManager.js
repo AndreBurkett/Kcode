@@ -15,7 +15,6 @@ exports.constructionManager = class{
                         Memory.construction.container[i] = {};
                     }
                     if(!Memory.construction.container[i].builder){
-                        console.log('reset');
                         Memory.construction.container[i].builder = [];
                     }
             }
@@ -29,6 +28,7 @@ exports.constructionManager = class{
                         if(Memory.construction[i][j].builder && Memory.construction[i][j].builder.length > 0){
                             for(let k in Memory.construction[i][j].builder){
                                 let creep = Game.getObjectById(k);
+                                console.log(k);
                                 if(creep){
                                     if(!creep.memory.assignment) creep.memory.assignment = j;
                                 }
