@@ -108,7 +108,7 @@ exports.gameController = class{
                 let pos = new RoomPosition(Memory.source[i].spawnPath.path[0].x, Memory.source[i].spawnPath.path[0].y, Memory.source[i].spawnPath.path[0].roomName);
                 let container = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER});
                 console.log(container == false);
-                if(!container){
+                if(container == false){
                     console.log('csite');
                     Game.rooms[pos.roomName].createConstructionSite(pos, STRUCTURE_CONTAINER);
                 }
