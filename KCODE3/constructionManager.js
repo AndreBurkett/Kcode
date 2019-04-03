@@ -25,7 +25,6 @@ exports.constructionManager = class{
             if(Memory.construction[i] && Object.keys(Memory.construction[i].length > 0)){
                 for(let j in Memory.construction[i]){
                     if(Game.constructionSites[j]){
-                        console.log(j);
                         if(Memory.construction[i][j].builder && Memory.construction[i][j].builder.length > 0){
                             for(let k of Memory.construction[i][j].builder){
                                 let creep = Game.getObjectById(k);
@@ -46,7 +45,7 @@ exports.constructionManager = class{
                             let creep = Game.getObjectById(k);
                             if(creep) delete creep.memory.assignment;
                         }
-                        //delete Memory.construction[i][j];
+                        delete Memory.construction[i][j];
                     }
                 }
             }
