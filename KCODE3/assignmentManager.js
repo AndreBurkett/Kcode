@@ -11,7 +11,6 @@ exports.assignmentManager = class{
     }
 
     assignBuilder(site, type){
-        console.log(this.builder);
         if(this.builder.length > 0 ){
             for(let i in this.builder){
                 switch(type){
