@@ -66,7 +66,9 @@ exports.gameController = class{
 
         //Iterate over sources
         for(let i of Object.keys(Memory.source)){
-            if(Memory.source[i].owner == 'hostile')
+            if(Memory.source[i].owner == 'hostile'){
+                
+            }
             //Assign Miners
             let workParts = 0
             if(Memory.source[i].miner && Memory.source[i].miner.length > 0){
