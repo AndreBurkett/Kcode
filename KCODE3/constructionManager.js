@@ -46,7 +46,7 @@ exports.constructionManager = class{
                             let creep = Game.getObjectById(k);
                             if(creep) delete creep.memory.assignment;
                         }
-                        delete Memory.construction[i][j];
+                        //delete Memory.construction[i][j];
                     }
                 }
             }
