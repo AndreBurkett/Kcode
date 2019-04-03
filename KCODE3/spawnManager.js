@@ -32,7 +32,7 @@ exports.spawnManager = class{
 
     spawnTransporter(){
         let spawner = Game.spawns['Spawn1'];
-        if(spawner.spawnCreep([CARRY,MOVE], nameBuilder.getName('t'), {memory: {role: 'transporter'}}) == 0){
+        if(spawner.spawnCreep([CARRY,CARRY,MOVE], nameBuilder.getName('t'), {memory: {role: 'transporter'}}) == 0){
             nameBuilder.commitName('t');
         }
     }
