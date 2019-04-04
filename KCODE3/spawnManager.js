@@ -6,6 +6,10 @@ exports.spawnManager = class{
         this.miner = 0;
         this.transporter = 0;
         this.upgrader = 0;
+
+        this.body = [];
+        this.spawner = Game.spawns['Spawn1'];
+        this.energy = this.spawner.room.energyAvailable;
     }
 
     spawn(){
@@ -17,29 +21,30 @@ exports.spawnManager = class{
     }
 
     spawnBuilder(){
-        let spawner = Game.spawns['Spawn1'];
-        if(spawner.spawnCreep([WORK,CARRY,MOVE], nameBuilder.getName('b'), {memory: {role: 'builder'}}) == 0){
+        if(this.spawner.spawnCreep([WORK,CARRY,MOVE], nameBuilder.getName('b'), {memory: {role: 'builder'}}) == 0){
             nameBuilder.commitName('b');
         }
     }
     
     spawnMiner(workParts){
-        let spawner = Game.spawns['Spawn1'];
-        if(spawner.spawnCreep([WORK,CARRY,MOVE], nameBuilder.getName('m'), {memory: {role: 'miner'}}) == 0){
+        if(this.spawner.spawnCreep([WORK,CARRY,MOVE], nameBuilder.getName('m'), {memory: {role: 'miner'}}) == 0){
             nameBuilder.commitName('m');
         }
     }
 
     spawnTransporter(){
-        let spawner = Game.spawns['Spawn1'];
-        if(spawner.spawnCreep([CARRY,CARRY,MOVE], nameBuilder.getName('t'), {memory: {role: 'transporter'}}) == 0){
+        if(this.energy < 300) this.energy = 300;
+        let cost = 150;
+        for(let i=0;i<this.energy; i+=cost){
+            this.body.push(CARRY,CARRY,MOVE);
+        }
+        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('t'), {memory: {role: 'transporter'}}) == 0){
             nameBuilder.commitName('t');
         }
     }
     
     spawnUpgrader(){
-        let spawner = Game.spawns['Spawn1'];
-        if(spawner.spawnCreep([WORK,CARRY,MOVE], nameBuilder.getName('u'), {memory: {role: 'upgrader'}}) == 0){
+        if(this.spawner.spawnCreep([WORK,CARRY,MOVE], nameBuilder.getName('u'), {memory: {role: 'upgrader'}}) == 0){
             nameBuilder.commitName('u');
         }
     }
