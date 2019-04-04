@@ -16,8 +16,8 @@ var transporter = {
             if(source && Memory.source[source].spawnPath){
                 let pos = new RoomPosition(Memory.source[source].spawnPath.path[0].x, Memory.source[source].spawnPath.path[0].y, Memory.source[source].spawnPath.path[0].roomName);
                 let container = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER})[0];
+                console.log(container);
                 if(container && container.store >= creep.carryCapacity){
-                    console.log('t4');
                     if(creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
                         creep.moveTo(container);
                     }
