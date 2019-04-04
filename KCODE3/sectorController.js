@@ -42,6 +42,12 @@ exports.sectorController = class{
         if(!Memory.controller[this.room.controller.id].upgrader){
             Memory.controller[this.room.controller.id].upgrader = [];
         }
+        if(this.spawns.length >0 && !Memory.controller[this.room.controller.id].spawnPath){
+            for(let i in this.spawns){
+                Memory.controller[this.room.controller.id].spawnPath = this.getPath(this.room.controller.pos, this.spawns[i].pos);
+            }
+        }
+
     }
 
     getfreeSpace(pos){
