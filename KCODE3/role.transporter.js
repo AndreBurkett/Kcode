@@ -11,6 +11,7 @@ var transporter = {
                 }
             }
         else{
+            console.log('t2');
             creep.memory.task = 'withdraw';
             let source = creep.memory.assignment;
             if(source && Memory.source[source].spawnPath){
