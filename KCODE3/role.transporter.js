@@ -1,5 +1,6 @@
 var transporter = {
     run: function (creep) {
+        console.log('trun');
         if(creep.carry.energy == creep.carryCapacity || (creep.carry.energy > 0 && creep.memory.task == 'deposit')){
             creep.memory.task = 'deposit';
             let target = creep.pos.findClosestByRange(FIND_STRUCTURES, {
