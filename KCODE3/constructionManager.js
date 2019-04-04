@@ -27,6 +27,14 @@ exports.constructionManager = class{
                         Memory.construction.extension[i].builder = [];
                     }
                     break;
+                case STRUCTURE_TOWER:
+                    if(!Memory.construction.tower[i]){
+                        Memory.construction.tower[i] = {};
+                    }
+                    if(!Memory.construction.tower[i].builder){
+                        Memory.construction.tower[i].builder = [];
+                    }
+                    break;
             }
         }
 
