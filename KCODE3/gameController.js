@@ -74,13 +74,11 @@ exports.gameController = class{
                         let creep = Game.getObjectById(Memory.source[i].miner[j]);
                         if(creep){
                             workParts += _.filter(creep.body, function(bp){return bp == WORK;}).length;
-                            console.log(Memory.source[i].miner.length);
                             if(workParts < 5 && Memory.source[i].miner.length < Memory.source[i].space){
                                 this.assigner.assignMiner(5-workParts, i);
                             }
                         }
                         else{
-                            console.log(workParts, 1);
                             Memory.source[i].miner.splice(j,1);
                         }
                     }
