@@ -3,8 +3,8 @@ exports.transporter = class{
         this.assignmentId = creep.memory.assignment;
         this.assignment = Game.getObjectById(creep.memory.assignment);
         if(this.assignment){
-            if(Memory.source[this.assignmentId]) sourceTransport();
-            else if(Memory.controller[this.assignmentId]) controllerTransport();    
+            if(Memory.source[this.assignmentId]) this.sourceTransport();
+            else if(Memory.controller[this.assignmentId]) this.controllerTransport();    
         }
     }
 
