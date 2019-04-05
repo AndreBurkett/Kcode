@@ -17,7 +17,7 @@ exports.bunkerController = class{
 
     createSites(){
         let siteList = this.setSites();
-        let smax = 11;
+        let smax = 21;
         switch(this.level){
             case 1:
                 smax = 0;
@@ -27,6 +27,9 @@ exports.bunkerController = class{
                 break;
             case 3:
                 smax = 11;
+                break;
+            case 4:
+                smax = 21;
                 break;
         }
         for(let i=0; i<smax; i++){
@@ -41,14 +44,27 @@ exports.bunkerController = class{
             {x:2,y:-3, s:STRUCTURE_EXTENSION},
             {x:2,y:-2, s:STRUCTURE_EXTENSION},
             {x:3,y:-2, s:STRUCTURE_EXTENSION},
+            //3
             {x:-1,y:-1, s:STRUCTURE_TOWER},
             {x:3,y:-1, s:STRUCTURE_EXTENSION},
             {x:4,y:-1, s:STRUCTURE_EXTENSION},
             {x:-1,y:-4, s:STRUCTURE_EXTENSION},
             {x:-1,y:-3, s:STRUCTURE_EXTENSION},
             {x:-2,y:-3, s:STRUCTURE_EXTENSION},
-
-
+            //4
+            {x:-2,y:-2, s:STRUCTURE_EXTENSION},
+            {x:-3,y:-2, s:STRUCTURE_EXTENSION},
+            {x:-3,y:-1, s:STRUCTURE_EXTENSION},
+            {x:-4,y:-1, s:STRUCTURE_EXTENSION},
+            {x:4,y:1, s:STRUCTURE_EXTENSION},
+            {x:3,y:1, s:STRUCTURE_EXTENSION},
+            {x:3,y:2, s:STRUCTURE_EXTENSION},
+            {x:2,y:2, s:STRUCTURE_EXTENSION},
+            {x:2,y:3, s:STRUCTURE_EXTENSION},
+            {x:1,y:3, s:STRUCTURE_EXTENSION},
+            //5
+            {x:1,y:4, s:STRUCTURE_EXTENSION},
+            
             ]
         return sites;
     }
