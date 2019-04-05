@@ -40,6 +40,7 @@ exports.spawnManager = class{
         for(let i=0;i<this.energy; i+=cost){
             this.body.push(CARRY,CARRY,MOVE);
         }
+        console.log(this.body);
         if(this.spawner.spawnCreep(this.body, nameBuilder.getName('t'), {memory: {role: 'transporter'}}) == 0){
             nameBuilder.commitName('t');
         }
