@@ -31,7 +31,7 @@ exports.transporter = class{
                     }
                 }
                 else{
-                    energy = pos.findClosestByRange(FIND_DROPPED_RESOURCES, {filter: (r) => r.resourceType == RESOURCE_ENERGY});
+                    let energy = pos.findClosestByRange(FIND_DROPPED_RESOURCES, {filter: (r) => r.resourceType == RESOURCE_ENERGY});
                     if(this.creep.pickup(energy) == ERR_NOT_IN_RANGE) this.creep.moveTo(energy);
                 }
             }
@@ -74,12 +74,12 @@ exports.transporter = class{
                     }
                 }
                 else{
-                    energy = pos.findClosestByRange(FIND_DROPPED_RESOURCES, {filter: (r) => r.resourceType == RESOURCE_ENERGY});
+                    let energy = pos.findClosestByRange(FIND_DROPPED_RESOURCES, {filter: (r) => r.resourceType == RESOURCE_ENERGY});
                     if(this.creep.pickup(energy) == ERR_NOT_IN_RANGE) this.creep.moveTo(energy);
                 }
             }
             else{
-                energy = pos.findClosestByRange(FIND_DROPPED_RESOURCES, {filter: (r) => r.resourceType == RESOURCE_ENERGY});
+                let energy = pos.findClosestByRange(FIND_DROPPED_RESOURCES, {filter: (r) => r.resourceType == RESOURCE_ENERGY});
                 if(this.creep.pickup(energy) == ERR_NOT_IN_RANGE) this.creep.moveTo(energy);
             }
         }  
