@@ -65,6 +65,7 @@ exports.transporter = class{
             if(this.assignmentId && Memory.controller[this.assignmentId].spawnPath){
                 let pos = new RoomPosition(Memory.controller[this.assignmentId].spawnPath.path[0].x, Memory.controller[this.assignmentId].spawnPath.path[0].y, Memory.controller[this.assignmentId].spawnPath.path[0].roomName);
                 let container = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER})[0];
+                console.log(container);
                 let target = this.creep.pos.findClosestByRange(FIND_STRUCTURES, {
                     filter: (s) => (s != container) && (s.structureType == STRUCTURE_CONTAINER || s.structureType == s.structureType == STRUCTURE_STORAGE) && s.energy > this.creep.carry.energy
                 });
