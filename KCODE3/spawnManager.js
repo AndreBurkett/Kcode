@@ -37,7 +37,8 @@ exports.spawnManager = class{
     spawnTransporter(){
         if(this.energy < 300) this.energy = 300;
         let cost = 150;
-        for(let i=0;i<this.energy; i+=cost){
+        let parts = Math.floor(this.energy/cost);
+        for(let i=0;i<parts; i++){
             this.body.push(CARRY,CARRY,MOVE);
         }
         console.log(this.energy);
