@@ -58,15 +58,16 @@ exports.gameController = class{
                         let creep = Game.getObjectById(Memory.source[i].miner[j]);
                         if(creep){
                             workParts += _.filter(creep.body, function(bp){return bp.type == WORK;}).length;
-                            console.log(JSON.stringify(creep.body));
-                            console.log(workParts);
-                            if(workParts < 5 && Memory.source[i].miner.length < Memory.source[i].space){
-                                this.assigner.assignMiner(5-workParts, i);
-                            }
+                            
                         }
                         else{
                             Memory.source[i].miner.splice(j,1);
                         }
+                    }
+                    console.log(JSON.stringify(creep.body));
+                    console.log(workParts);
+                    if(workParts < 5 && Memory.source[i].miner.length < Memory.source[i].space){
+                        this.assigner.assignMiner(5-workParts, i);
                     }
                 }
                 else{
