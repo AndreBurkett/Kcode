@@ -118,6 +118,7 @@ exports.gameController = class{
         //Iterate over controllers
         for(let i of Object.keys(Memory.controller)){
             let controller = Game.getObjectById(i);
+            //Assign Upgraders
             if(Memory.controller[i].upgrader && Memory.controller[i].upgrader.length > 0 && controller && controller.my){// && Memory.controller[i].upgrader[0]){
                 for(let j in Memory.controller[i].upgrader){
                     let creep = Game.getObjectById(Memory.controller[i].upgrader[j]);
@@ -133,6 +134,18 @@ exports.gameController = class{
             else if(controller && controller.my){
                 this.assigner.assignUpgrader(i);
             }
+            //Create Controller Container
+            if(Memory.controller[i].spawnPath){
+                let pos = new RoomPosition(Memory.controller[i].spawnPath.path[0].x, Memory.controller[i].spawnPath.path[0].y, Memory.controller[i].spawnPath.path[0].roomName);
+                let container = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER});
+                if(container == false){
+                    let site = pos.lookFor(LOOK_CONSTRUCTION_SITES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER});
+                    if(site == false){
+                        Game.rooms[pos.roomName].createConstructionSite(pos, STRUCTURE_CONTAINER);
+                    }
+                }
+            }
+
         }
         //Iterate over spawns
         for(let i in Game.spawns){
