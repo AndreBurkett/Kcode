@@ -14,9 +14,9 @@ var upgrader = {
             if(creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) creep.moveTo(target);
         }
         else{
-            creep.memory.task = 'mine';
-            target = creep.room.controller.pos.findClosestByRange(FIND_SOURCES);
-            if (creep.harvest(target) == ERR_NOT_IN_RANGE) creep.moveTo(target);
+            creep.memory.task = 'pickup';
+            energy = pos.findClosestByRange(FIND_DROPPED_RESOURCES, {filter: (r) => r.resourceType == RESOURCE_ENERGY});
+            if(creep.pickup(energy) == ERR_NOT_IN_RANGE) creep.moveTo(energy);
         }
     }
 };
