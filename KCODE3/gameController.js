@@ -20,23 +20,7 @@ exports.gameController = class{
         //Iterate over creeps
         for(let name in Memory.creeps){
             //Clear Memory
-            if(!Game.creeps[name]){
-                let assignment = Memory.creeps[name].assignment;
-                if(assignment){
-                    switch(Memory.creeps[name].role){
-                        case 'builder':
-                            break;
-                        case 'miner':
-                            //delete Memory.source[assignment].miner[Memory.creeps[name].id];
-                            break;
-                        case 'transporter':
-                            //delete Memory.source[assignment].transporter[Memory.creeps[name].id];
-                            break;
-                        case 'upgrader':
-                            //delete Memory.controller[assignment].upgrader[Memory.creeps[name].id];
-                            break;
-                    }
-                }
+            if(!Game.creeps[name]){        
                 delete Memory.creeps[name];
                 console.log('Clearing non-existing creep memory:', name);
                 continue;
@@ -146,13 +130,6 @@ exports.gameController = class{
                 }
             }
 
-        }
-        //Iterate over spawns
-        for(let i in Game.spawns){
-            if(!Memory.spawn[Game.spawns[i].id]){
-                Memory.spawn[Game.spawns[i].id] = {};
-                Memory.spawn[Game.spawns[i].id].tower = {};
-            }
         }
         //Spawn Creeps
         this.assigner.spawnManager.spawn();
