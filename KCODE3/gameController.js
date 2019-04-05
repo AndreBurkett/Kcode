@@ -64,7 +64,6 @@ exports.gameController = class{
                             Memory.source[i].miner.splice(j,1);
                         }
                     }
-                    console.log(JSON.stringify(creep.body));
                     console.log(workParts);
                     if(workParts < 5 && Memory.source[i].miner.length < Memory.source[i].space){
                         this.assigner.assignMiner(5-workParts, i);
