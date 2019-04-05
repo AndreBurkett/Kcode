@@ -44,7 +44,12 @@ exports.spawnManager = class{
     }
     
     spawnUpgrader(){
-        if(this.spawner.spawnCreep([WORK,CARRY,MOVE], nameBuilder.getName('u'), {memory: {role: 'upgrader'}}) == 0){
+        if(this.energy < 300) this.energy = 300;
+        let cost = 150;
+        for(let i=0;i<this.energy; i+=cost){
+            this.body.push(WORK,CARRY,MOVE);
+        }
+        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('u'), {memory: {role: 'upgrader'}}) == 0){
             nameBuilder.commitName('u');
         }
     }
