@@ -67,7 +67,7 @@ exports.transporter = class{
                 let container = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER})[0];
                 console.log(container);
                 let target = this.creep.pos.findClosestByRange(FIND_STRUCTURES, {
-                    filter: (s) => (s != container) && (s.structureType == STRUCTURE_CONTAINER || s.structureType == s.structureType == STRUCTURE_STORAGE) && s.energy > this.creep.carry.energy
+                    filter: (s) => (s != container) && (s.structureType == STRUCTURE_CONTAINER || s.structureType == s.structureType == STRUCTURE_STORAGE) && s.store[RESOURCE_ENERGY] > this.creep.carry.energy
                 });
                 if(target){
                     if(this.creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
