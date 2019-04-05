@@ -104,7 +104,7 @@ exports.gameController = class{
         for(let i of Object.keys(Memory.controller)){
             let controller = Game.getObjectById(i);
             //Assign Upgraders
-            if(Memory.controller[i].upgrader && Memory.controller[i].upgrader.length > 0 && controller && controller.my){// && Memory.controller[i].upgrader[0]){
+            if(Memory.controller[i].upgrader && Memory.controller[i].upgrader.length > 0 && controller && controller.my){
                 for(let j in Memory.controller[i].upgrader){
                     let creep = Game.getObjectById(Memory.controller[i].upgrader[j]);
                     if(creep && creep != null){
@@ -118,6 +118,21 @@ exports.gameController = class{
             }
             else if(controller && controller.my){
                 this.assigner.assignUpgrader(i);
+            }
+            //Assign Transporters
+            if(Memory.controller[i].transporter && Memory.controller[i].transporter.length > 0 && controller && controller.my){
+                for(let j in Memory.controller[i].transporter){
+                    let creep = Game.getObjectById(Memory.controller[i].transporter[j]);
+                    if(creep && creep != null){
+
+                    }
+                    else{
+                        Memory.controller[i].transporter.splice(j,1);
+                    }
+                }
+            }
+            else if(controller && controller.my){
+                this.assigner.assignTransporter(i);
             }
             //Create Controller Container
             if(Memory.controller[i].spawnPath){

@@ -1,5 +1,13 @@
-var transporter = {
-    run: function (creep) {
+exports.role.transporter = class{
+    constructor(creep){
+        this.assignment = Game.getOjbectById(creep.memory.assignment);
+        if(this.assignment){
+            if(Memory.source[this.assignment]) sourceTransport();
+            else if(Memory.controller[this.assignment]) controllerTransport();    
+        }
+    }
+
+    sourceTransport(){
         if(creep.carry.energy == creep.carryCapacity || (creep.carry.energy > 0 && creep.memory.task == 'deposit')){
             creep.memory.task = 'deposit';
             let target = creep.pos.findClosestByRange(FIND_STRUCTURES, {
@@ -28,5 +36,4 @@ var transporter = {
        }
        
     }
-};
-module.exports = transporter;
+}

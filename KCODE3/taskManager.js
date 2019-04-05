@@ -13,7 +13,7 @@ exports.creepManager = class{
                 miner.run(creep);
                 break;
             case 'transporter':
-                transporter.run(creep);
+                let run = new transporter(creep);
                 break;
             case 'upgrader':
                 upgrader.run(creep);
