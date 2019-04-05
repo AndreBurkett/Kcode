@@ -21,13 +21,15 @@ exports.spawnManager = class{
     }
 
     spawnBuilder(){
-        if(this.spawner.spawnCreep([WORK,CARRY,MOVE], nameBuilder.getName('b'), {memory: {role: 'builder'}}) == 0){
+        this.body = [MOVE,MOVE,CARRY,CARRY,WORK];
+        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('b'), {memory: {role: 'builder'}}) == 0){
             nameBuilder.commitName('b');
         }
     }
     
     spawnMiner(workParts){
-        if(this.spawner.spawnCreep([WORK,CARRY,MOVE], nameBuilder.getName('m'), {memory: {role: 'miner'}}) == 0){
+        this.body = [MOVE,CARRY,WORK,WORK];
+        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('m'), {memory: {role: 'miner'}}) == 0){
             nameBuilder.commitName('m');
         }
     }
