@@ -132,6 +132,11 @@ exports.gameController = class{
             }
 
         }
+        //Iterate over towers
+        var tower = _.filter(Game.structures, (s) => s.structureType == STRUCTURE_TOWER);
+        for(let i in tower){
+            let run = new tm.towerManager(tower[i]);
+        }
         //Spawn Creeps
         this.assigner.spawnManager.spawn();
     }
