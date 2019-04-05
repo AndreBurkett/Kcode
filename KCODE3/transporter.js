@@ -1,5 +1,6 @@
 exports.transporter = class{
     constructor(creep){
+        this.assignmentId = creep.memory.assignment;
         this.assignment = Game.getObjectById(creep.memory.assignment);
         if(this.assignment){
             if(Memory.source[this.assignment]) sourceTransport();
@@ -35,5 +36,51 @@ exports.transporter = class{
             }
        }
        
+    }
+
+    controllerTransport(){
+        if(creep.carry.energy == creep.carryCapacity || (creep.carry.energy > 0 && creep.memory.task == 'deposit')){
+            creep.memory.task = 'deposit';
+            if(this.assignmentId && Memory.controller[this.assignmentId].spawnPath){
+                let pos = new RoomPosition(Memory.controller[this.assignmentId].spawnPath.path[0].x, Memory.controller[this.assignmentId].spawnPath.path[0].y, Memory.controller[this.assignmentId].spawnPath.path[0].roomName);
+                let container = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER})[0];
+                if(container){
+                    if (creep.transfer(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(container);
+                    }
+                }
+                else if(Memory.controller[this.assignmentId].upgrader[0]){
+                    let upgrader = Game.getObjectById(Memory.controller[this.assignmentId].upgrader[0]);
+                    if(upgrader){
+                        if (creep.transfer(upgrader, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                            creep.moveTo(upgrader);
+                        }
+                    }
+                }
+            }
+        }
+        else{
+            creep.memory.task = 'withdraw';
+            if(this.assignmentId && Memory.controller[this.assignmentId].spawnPath){
+                let pos = new RoomPosition(Memory.controller[this.assignmentId].spawnPath.path[0].x, Memory.controller[this.assignmentId].spawnPath.path[0].y, Memory.controller[this.assignmentId].spawnPath.path[0].roomName);
+                let container = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER})[0];
+                let target = creep.pos.findClosestByRange(FIND_STRUCTURES, {
+                    filter: (s) => (s != container) && (s.structureType == STRUCTURE_CONTAINER || s.structureType == s.structureType == STRUCTURE_STORAGE) && s.energy > creep.carry.energy
+                });
+                if(target){
+                    if(creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
+                        creep.moveTo(target);
+                    }
+                }
+                else{
+                    energy = pos.findClosestByRange(FIND_DROPPED_RESOURCES, {filter: (r) => r.resourceType == RESOURCE_ENERGY});
+                    if(creep.pickup(energy) == ERR_NOT_IN_RANGE) creep.moveTo(energy);
+                }
+            }
+            else{
+                energy = pos.findClosestByRange(FIND_DROPPED_RESOURCES, {filter: (r) => r.resourceType == RESOURCE_ENERGY});
+                if(creep.pickup(energy) == ERR_NOT_IN_RANGE) creep.moveTo(energy);
+            }
+        }  
     }
 }
