@@ -1,6 +1,6 @@
 var builder = require('role.builder');
 var miner = require('role.miner');
-var transporter = require('role.transporter');
+var transporter = require('transporter');
 var upgrader = require('role.upgrader');
 
 exports.creepManager = class{
