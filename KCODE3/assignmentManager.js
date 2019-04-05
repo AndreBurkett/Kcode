@@ -39,11 +39,16 @@ exports.assignmentManager = class{
         this.spawnManager.miner++;
     }
     
-    assignTransporter(source){
+    assignTransporter(assignment){
         if(this.transporter.length > 0){
             for(let i in this.transporter){
-                Memory.source[source].transporter.push(this.transporter[i].id);
-                this.transporter[i].memory.assignment = source;
+                if(Memory.source[assignment]){
+                    Memory.source[assignment].transporter.push(this.transporter[i].id);
+                }
+                else if(Memory.controller[assignment]){
+                    Memory.controller[assignment].transporter.push(this.transporter[i].id);
+                }
+                this.transporter[i].memory.assignment = assignment;
                 this.transporter.splice(i,1);
             }
         }
