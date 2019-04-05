@@ -1,6 +1,6 @@
 exports.transporter = class{
     constructor(creep){
-        this.assignment = Game.getOjbectById(creep.memory.assignment);
+        this.assignment = Game.getObjectById(creep.memory.assignment);
         if(this.assignment){
             if(Memory.source[this.assignment]) sourceTransport();
             else if(Memory.controller[this.assignment]) controllerTransport();    
