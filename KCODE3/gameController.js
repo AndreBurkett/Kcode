@@ -57,8 +57,9 @@ exports.gameController = class{
                     for(let j in Memory.source[i].miner){
                         let creep = Game.getObjectById(Memory.source[i].miner[j]);
                         if(creep){
-                            workParts += _.filter(creep.body, function(bp){return bp == WORK;});
+                            workParts += _.filter(creep.body, function(bp){return bp.type == WORK;});
                             console.log(JSON.stringify(creep.body));
+                            console.log(workParts);
                             if(workParts < 5 && Memory.source[i].miner.length < Memory.source[i].space){
                                 this.assigner.assignMiner(5-workParts, i);
                             }
