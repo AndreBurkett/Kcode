@@ -2,6 +2,7 @@ var miner = {
     run: function (creep) {
         let source = creep.memory.assignment;
         if(creep.carry.energy == creep.carryCapacity){
+            console.log(Memory.source[source].transporter.length);
             let pos = new RoomPosition(Memory.source[source].spawnPath.path[0].x, Memory.source[source].spawnPath.path[0].y, Memory.source[source].spawnPath.path[0].roomName);
             let container = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER})[0];
             if(container){
