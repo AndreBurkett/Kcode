@@ -41,9 +41,6 @@ exports.spawnManager = class{
         for(let i=0;i<parts; i++){
             this.body.push(CARRY,CARRY,MOVE);
         }
-        console.log(this.energy);
-        console.log(this.body);
-        console.log(this.spawner.spawnCreep(this.body, nameBuilder.getName('t'), {memory: {role: 'transporter'}}));
         if(this.spawner.spawnCreep(this.body, nameBuilder.getName('t'), {memory: {role: 'transporter'}}) == 0){
             nameBuilder.commitName('t');
         }
@@ -53,7 +50,8 @@ exports.spawnManager = class{
         if(this.energy < 300) this.energy = 300;
         this.energy -= 100;
         let cost = 100;
-        for(let i=0;i<this.energy; i+=cost){
+        let parts = Math.floor(this.energy/cost);
+        for(let i=0;i<parts; i++){
             this.body.push(WORK);
         }
         this.body.push(CARRY,MOVE)
