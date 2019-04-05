@@ -1,4 +1,4 @@
-exports.role.transporter = class{
+exports.transporter = class{
     constructor(creep){
         this.assignment = Game.getOjbectById(creep.memory.assignment);
         if(this.assignment){
