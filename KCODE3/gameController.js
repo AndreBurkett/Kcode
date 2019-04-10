@@ -144,6 +144,7 @@ exports.gameController = class{
                         Game.rooms[pos.roomName].createConstructionSite(pos, STRUCTURE_CONTAINER);
                     }
                 }
+                console.log(controller.level);
                 if(controller.level >= 5){
                     let lpos = new RoomPosition(Memory.controller[i].spawnPath.path[2].x, Memory.controller[i].spawnPath.path[2].y, Memory.controller[i].spawnPath.path[2].roomName);
                     let link = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_LINK});
