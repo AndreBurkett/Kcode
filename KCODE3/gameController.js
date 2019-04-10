@@ -144,6 +144,16 @@ exports.gameController = class{
                         Game.rooms[pos.roomName].createConstructionSite(pos, STRUCTURE_CONTAINER);
                     }
                 }
+                if(controller.level >= 5){
+                    let lpos = new RoomPosition(Memory.controller[i].spawnPath.path[2].x, Memory.controller[i].spawnPath.path[2].y, Memory.controller[i].spawnPath.path[2].roomName);
+                    let link = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_LINK});
+                    if(link == false){
+                        let site = pos.lookFor(LOOK_CONSTRUCTION_SITES, {filter: (s) => s.structureType == STRUCTURE_LINK});
+                        if(site == false){
+                            Game.rooms[pos.roomName].createConstructionSite(pos, STRUCTURE_LINK);
+                        }
+                    }
+                }
             }
 
         }
