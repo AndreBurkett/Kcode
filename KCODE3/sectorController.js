@@ -90,11 +90,14 @@ exports.sectorController = class{
     }
     getOwner(){
         let owner;
-        if(this.room.controller && this.room.controller.level && this.room.controller.level > 0){
-            if(this.room.controller.my) owner = 'me'
-            else owner = 'hostile';
+        if(this.room.controller){
+            if(this.room.controller.level && this.room.controller.level > 0){
+                if(this.room.controller.my) owner = 'me'
+                else owner = 'hostile';
+            }
+            else owner = 'neutral';
         }
-        else owner = 'neutral';
+        else owner = 'hostile';
         return owner;
     }
     getPath(pos1, pos2){
