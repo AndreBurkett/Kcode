@@ -41,12 +41,10 @@ exports.assignmentManager = class{
     }
     assignScout(assignment){
         if(this.scout.length > 0){
-            for(let i in this.scout){
-                if(Memory.sector[assignment]){
-                    Memory.sector[assignment].scout.push(this.scout[i].id);
-                    this.scout[i].memory.assignment = assignment;
-                    this.scout.slice(i,1);
-                }
+            if(Memory.sector[assignment]){
+                Memory.sector[assignment].scout.push(this.scout[0].id);
+                this.scout[0].memory.assignment = assignment;
+                this.scout.slice(0,1);
             }
         }
         else this.spawnManager.scout++;
