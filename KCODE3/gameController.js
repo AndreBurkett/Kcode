@@ -21,17 +21,19 @@ exports.gameController = class{
         for(let i in this.sector){
             if(this.sector[i].owner == 'me'){
                 for(let j in this.sector[i].exits){
-                    if(Game.rooms[this.sector[i].exits[j]]){
+                    let exit = this.sector[i].exits[j];
+                    if(Game.rooms[exit]){
                         //console.log(Game.rooms[this.sector[i].exits[j]]);
                     }
                     else{
-                        console.log(this.sector[i].exits[j]);
                         //Assign Scout
-                        if(Memory.sector[this.sector[i].exits[j]]){
+                        if(Memory.sector[exit] && Memory.sector[exit].scout){
+                            console.log(exit);
 
                         }
                         else{
-                            Memory.sector[this.sector[i].exits[j]] = {};
+                            Memory.sector[exit] = {};
+                            Memory.sector[exit].scout = [];
                         }
                     }
                 }
