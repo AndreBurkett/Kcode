@@ -1,4 +1,4 @@
-exports.transporter = class{
+exports.scout = class{
     constructor(creep){
         this.creep = creep;
         this.assignment = creep.memory.assignment;
