@@ -63,6 +63,7 @@ exports.gameController = class{
                         //Assign Scout
                         let minDistance = 99;
                         for(let k in Game.spawns){
+                            console.log(Game.spawns[k]);
                             let d = Game.map.getRoomLinearDistance(Game.spawns[k].room.name, exit);
                             if(d < minDistance) minDistance = d;
                         }
