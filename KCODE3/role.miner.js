@@ -25,22 +25,24 @@ var miner = {
         }
         
         let source = creep.memory.assignment;
-        if(creep.carry.energy == creep.carryCapacity){
-            if(Memory.source[source].transporter.length == 0){
-                transport();
+        if(source){
+            if(creep.carry.energy == creep.carryCapacity){
+                if(Memory.source[source].transporter.length == 0){
+                    transport();
+                }
+                else{
+                    dump();
+                }
             }
             else{
-                dump();
-            }
-        }
-        else{
-            let target = Game.getObjectById(source);
-            if(target){
-                if(creep.harvest(target) == ERR_NOT_IN_RANGE) creep.moveTo(target);
-            }
-            else{
-                target = new RoomPosition(Memory.source[source].pos.x, Memory.source[source].pos.y, Memory.source[source].pos.roomName);
-                creep.moveTo(target);
+                let target = Game.getObjectById(source);
+                if(target){
+                    if(creep.harvest(target) == ERR_NOT_IN_RANGE) creep.moveTo(target);
+                }
+                else{
+                    target = new RoomPosition(Memory.source[source].pos.x, Memory.source[source].pos.y, Memory.source[source].pos.roomName);
+                    creep.moveTo(target);
+                }
             }
         }
     }
