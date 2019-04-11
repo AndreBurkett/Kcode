@@ -17,6 +17,40 @@ exports.gameController = class{
         for(let i in Game.rooms){
             this.sector.push(new s.sectorController(Game.rooms[i]));
         }
+        //Iterate over creeps
+        for(let name in Memory.creeps){
+            //Clear Memory
+            if(!Game.creeps[name]){        
+                delete Memory.creeps[name];
+                console.log('Clearing non-existing creep memory:', name);
+                continue;
+            }
+            if(!Game.creeps[name].memory.id) Game.creeps[name].memory.id = Game.creeps[name].id;
+            //Assign Creeps
+            if(!Game.creeps[name].memory.assignment){
+                switch(Game.creeps[name].memory.role){
+                    case 'builder':
+                    this.assigner.builder.push(Game.creeps[name]);
+                    break;
+                    case 'miner':
+                    this.assigner.miner.push(Game.creeps[name]);
+                    break;
+                    case 'scout':
+                    this.assigner.scout.push(Game.creeps[name]);
+                    break;
+                    case 'upgrader':
+                    this.assigner.upgrader.push(Game.creeps[name]);
+                    break;
+                    case 'transporter':
+                    this.assigner.transporter.push(Game.creeps[name]);
+                    break;
+                }
+            }
+            let run = new tm.creepManager(Game.creeps[name]);
+        }
+        //Create Construction Manager
+        this.constructor = new cm.constructionManager(this.assigner);
+        
         //Iterate over sectors
         for(let i in this.sector){
             if(this.sector[i].owner == 'me'){
@@ -48,39 +82,6 @@ exports.gameController = class{
                 }
             }
         }
-        //Iterate over creeps
-        for(let name in Memory.creeps){
-            //Clear Memory
-            if(!Game.creeps[name]){        
-                delete Memory.creeps[name];
-                console.log('Clearing non-existing creep memory:', name);
-                continue;
-            }
-            if(!Game.creeps[name].memory.id) Game.creeps[name].memory.id = Game.creeps[name].id;
-            //Assign Creeps
-            if(!Game.creeps[name].memory.assignment){
-                switch(Game.creeps[name].memory.role){
-                    case 'builder':
-                        this.assigner.builder.push(Game.creeps[name]);
-                        break;
-                    case 'miner':
-                        this.assigner.miner.push(Game.creeps[name]);
-                        break;
-                    case 'scout':
-                        this.assigner.scout.push(Game.creeps[name]);
-                        break;
-                    case 'upgrader':
-                        this.assigner.upgrader.push(Game.creeps[name]);
-                        break;
-                    case 'transporter':
-                        this.assigner.transporter.push(Game.creeps[name]);
-                        break;
-                }
-            }
-            let run = new tm.creepManager(Game.creeps[name]);
-        }
-        //Create Construction Manager
-        this.constructor = new cm.constructionManager(this.assigner);
 
         //Iterate over sources
         for(let i of Object.keys(Memory.source)){
