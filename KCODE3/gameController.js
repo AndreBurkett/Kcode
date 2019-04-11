@@ -149,6 +149,9 @@ exports.gameController = class{
         for(let i of Object.keys(Memory.controller)){
             let controller = Game.getObjectById(i);
             //Assign Upgraders
+            if(Memory.controller[i].upgraderRequest > 0){
+                this.assigner.assignUpgrader(i);
+            }
             if(Memory.controller[i].upgrader && Memory.controller[i].upgrader.length > 0 && controller && controller.my){
                 for(let j in Memory.controller[i].upgrader){
                     let creep = Game.getObjectById(Memory.controller[i].upgrader[j]);
