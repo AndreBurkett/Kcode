@@ -6,6 +6,7 @@ var upgrader = require('role.upgrader');
 
 exports.creepManager = class{
     constructor(creep){
+        var run;
         switch(creep.memory.role){
             case 'builder':
                 builder.run(creep);
@@ -14,10 +15,10 @@ exports.creepManager = class{
                 miner.run(creep);
                 break;
             case 'scout':
-                let run = new s.scout(creep);
+                run = new s.scout(creep);
                 break;
             case 'transporter':
-                let run = new t.transporter(creep);
+                run = new t.transporter(creep);
                 break;
             case 'upgrader':
                 upgrader.run(creep);
