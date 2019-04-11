@@ -34,10 +34,7 @@ exports.gameController = class{
                                     if(creep && creep != null){
                 
                                     }
-                                    else{
-                                        //delete Memory.controller[i].scout[j];
-                                        Memory.sector[exit].scout.splice(k,1);
-                                    }
+                                    else Memory.sector[exit].scout.splice(k,1);
                                 }
                             }
                             else this.assigner.assignScout();
