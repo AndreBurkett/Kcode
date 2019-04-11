@@ -14,7 +14,7 @@ exports.creepManager = class{
                 miner.run(creep);
                 break;
             case 'scout':
-                let run = new t.scout(creep);
+                let run = new s.scout(creep);
                 break;
             case 'transporter':
                 let run = new t.transporter(creep);
