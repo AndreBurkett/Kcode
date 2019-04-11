@@ -53,7 +53,7 @@ exports.gameController = class{
         
         //Iterate over sectors
         for(let i in this.sector){
-            if(this.sector[i].owner == 'me'){
+            if(this.sector[i].owner == 'me'){//remove this?
                 for(let j in this.sector[i].exits){
                     let exit = this.sector[i].exits[j];
                     if(Game.rooms[exit]){
@@ -64,7 +64,7 @@ exports.gameController = class{
                         let minDistance = 99;
                         for(let k in Game.spawns){
                             let d = Game.map.getRoomLinearDistance(Game.spawns[k].room.name, exit);
-                            console.log(exit, d);
+                            //console.log(exit, d);
                             if(d < minDistance) minDistance = d;
                         }
                         if(minDistance <= 2){
