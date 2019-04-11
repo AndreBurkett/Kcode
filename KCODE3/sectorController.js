@@ -3,6 +3,7 @@ bc = require('bunkerController');
 exports.sectorController = class{
     constructor(sector){
         this.room = sector;
+        this.exits = Game.map.describeExits(this.room.name);
         this.terrain = Game.map.getRoomTerrain(this.room.name)
         this.source = this.room.find(FIND_SOURCES);
         this.spawns = this.room.find(FIND_MY_SPAWNS);
@@ -10,14 +11,10 @@ exports.sectorController = class{
         //Create Bunker Controller
         if(this.spawns[0]) this.bunker = new bc.bunkerController(this.spawns[0]);
 
-        //Get Exits
-        let exits = Game.map.describeExits(this.room.name);
-        for(let i in exits){
-            console.log(exits[i]);
-        }
         //Create Sector Memory
         if(!Memory.sector[this.room.name]){
             Memory.sector[this.room.name] = {};
+            Memory.sector[this.room.name].scout = [];
         }
         //Create Source Memory
         for(let i in this.source){

@@ -13,9 +13,26 @@ exports.gameController = class{
         if(!Memory.controller) Memory.controller = {};
         
         //Create Sector Controllers
-        let sector = [];
+        this.sector = [];
         for(let i in Game.rooms){
-            sector.push(new s.sectorController(Game.rooms[i]));
+            this.sector.push(new s.sectorController(Game.rooms[i]));
+        }
+        //Iterate over sectors
+        for(let i in this.sector){
+            if(sector.owner == 'me'){
+                for(let j in this.sector.exits){
+                    if(Game.rooms[this.sector.exits[j]]){
+
+                    }
+                    else{
+                        //Assign Scout
+                        console.log(i);
+                        if(Memory.sector){
+
+                        }
+                    }
+                }
+            }
         }
         //Iterate over creeps
         for(let name in Memory.creeps){
