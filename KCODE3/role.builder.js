@@ -11,6 +11,10 @@ var builder = {
             }
             else{
                 delete creep.memory.assignment;
+                target = creep.pos.findClosestByRange(FIND_STRUCTURES, {filter: (s) => s.hits < s.hitsMax});
+                if(target){
+                    if(creep.build(target) == ERR_NOT_IN_RANGE) creep.moveTo(target);
+                }
             }
         }
         else if(creep.room.find(FIND_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER && s.store[RESOURCE_ENERGY] > 0}).length > 0){
