@@ -41,7 +41,7 @@ exports.sectorController = class{
                     Memory.source[this.source[i].id].spawnPath = this.getPath(this.source[i].pos, this.spawns[0].pos);
                 }
                 else{
-                    let spawn = Game.spawns[0];
+                    let spawn = Game.spawns['Spawn1'];
                     console.log(spawn);
                     Memory.source[this.source[i].id].spawnPath = this.getPath(this.source[i].pos, spawn.pos);
                 }
