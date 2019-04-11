@@ -53,40 +53,38 @@ exports.gameController = class{
         
         //Iterate over sectors
         for(let i in this.sector){
-            if(this.sector[i].owner == 'me'){//remove this?
-                for(let j in this.sector[i].exits){
-                    let exit = this.sector[i].exits[j];
-                    if(Game.rooms[exit]){
-                        
+            for(let j in this.sector[i].exits){
+                let exit = this.sector[i].exits[j];
+                if(Game.rooms[exit]){
+                    
+                }
+                else{
+                    //Assign Scout
+                    let minDistance = 99;
+                    for(let k in Game.spawns){
+                        let d = Game.map.getRoomLinearDistance(Game.spawns[k].room.name, exit);
+                        //console.log(exit, d);
+                        if(d < minDistance) minDistance = d;
                     }
-                    else{
-                        //Assign Scout
-                        let minDistance = 99;
-                        for(let k in Game.spawns){
-                            let d = Game.map.getRoomLinearDistance(Game.spawns[k].room.name, exit);
-                            //console.log(exit, d);
-                            if(d < minDistance) minDistance = d;
-                        }
-                        if(minDistance <= 2){
-                            if(Memory.sector[exit]){
-                                if(Memory.sector[exit].owner != 'hostile'){
-                                    if(Memory.sector[exit].scout && Memory.sector[exit].scout.length > 0){
-                                        for(let k in Memory.sector[exit].scout){
-                                            let creep = Game.getObjectById(Memory.sector[exit].scout[k]);
-                                            if(creep && creep != null){
-                        
-                                            }
-                                            else Memory.sector[exit].scout.splice(k,1);
+                    if(minDistance <= 2){
+                        if(Memory.sector[exit]){
+                            if(Memory.sector[exit].owner != 'hostile'){
+                                if(Memory.sector[exit].scout && Memory.sector[exit].scout.length > 0){
+                                    for(let k in Memory.sector[exit].scout){
+                                        let creep = Game.getObjectById(Memory.sector[exit].scout[k]);
+                                        if(creep && creep != null){
+                    
                                         }
+                                        else Memory.sector[exit].scout.splice(k,1);
                                     }
-                                    else this.assigner.assignScout(exit);
                                 }
-    
+                                else this.assigner.assignScout(exit);
                             }
-                            else{
-                                Memory.sector[exit] = {};
-                                Memory.sector[exit].scout = [];
-                            }
+
+                        }
+                        else{
+                            Memory.sector[exit] = {};
+                            Memory.sector[exit].scout = [];
                         }
                     }
                 }
@@ -156,7 +154,6 @@ exports.gameController = class{
 
                     }
                     else{
-                        //delete Memory.controller[i].upgrader[j];
                         Memory.controller[i].upgrader.splice(j,1);
                     }
                 }
