@@ -27,8 +27,8 @@ exports.gameController = class{
                     }
                     else{
                         //Assign Scout
-                        if(Memory.sector[exit] && Memory.sector[exit].scout){
-                            console.log(exit);
+                        if(Memory.sector[exit] && !Memory.sector.scout){
+                            console.log('assign scout');
 
                         }
                         else{
