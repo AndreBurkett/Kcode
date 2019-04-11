@@ -19,8 +19,8 @@ exports.transporter = class{
                 if(!target){
                     let l = Memory.source[this.assignmentId].spawnPath.path.length - 1;
                     let path = Memory.source[this.assignmentId].spawnPath.path[l];
-                    if(creep.room.name == path.roomName){
-                        this.sendUpgraderRequest(creep.room.name);
+                    if(this.creep.room.name == path.roomName){
+                        this.sendUpgraderRequest(this.creep.room.name);
                     }
                     else{
                         let pos = new RoomPosition(path.x, path.y, path.roomName);
