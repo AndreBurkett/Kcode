@@ -19,9 +19,14 @@ exports.transporter = class{
                 if(!target){
                     let l = Memory.source[this.assignmentId].spawnPath.path.length - 1;
                     let path = Memory.source[this.assignmentId].spawnPath.path[l];
-                    let pos = new RoomPosition(path.x, path.y, path.roomName);
-                    this.creep.moveTo(pos);
-                    return;
+                    if(creep.room.name == path.roomName){
+                        this.sendUpgraderRequest(creep.room.name);
+                    }
+                    else{
+                        let pos = new RoomPosition(path.x, path.y, path.roomName);
+                        this.creep.moveTo(pos);
+                        return;
+                    }
                 }
                     
                 if (this.creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
@@ -92,5 +97,11 @@ exports.transporter = class{
                 if(this.creep.pickup(energy) == ERR_NOT_IN_RANGE) this.creep.moveTo(energy);
             }
         }  
+    }
+    sendUpgraderRequest(name){
+        let id = Game.rooms[name].controller.id;
+        if(id){
+            Memory.controller['id'].upgraderRequest++;
+        }
     }
 }

@@ -66,6 +66,9 @@ exports.assignmentManager = class{
     }
 
     assignUpgrader(controller){
+        if(Memory.controller[controller].upgraderRequest > 0){
+            Memory.controller[controller].upgraderRequest--;
+        }
         if(this.upgrader.length > 0){
             for(let i in this.upgrader){
                 Memory.controller[controller].upgrader.push(this.upgrader[i].id);
