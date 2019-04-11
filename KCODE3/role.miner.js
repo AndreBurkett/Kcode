@@ -35,7 +35,13 @@ var miner = {
         }
         else{
             let target = Game.getObjectById(source);
-            if(creep.harvest(target) == ERR_NOT_IN_RANGE) creep.moveTo(target);
+            if(target){
+                if(creep.harvest(target) == ERR_NOT_IN_RANGE) creep.moveTo(target);
+            }
+            else{
+                target = new RoomPosition(Memory.source[source].x, Memory.source[source].y, Memory.source[source].roomName);
+                creep.moveTo(target);
+            }
         }
     }
 };
