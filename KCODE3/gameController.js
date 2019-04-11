@@ -62,16 +62,18 @@ exports.gameController = class{
                     else{
                         //Assign Scout
                         if(Memory.sector[exit]){
-                            if(Memory.sector[exit].scout && Memory.sector[exit].scout.length > 0){
-                                for(let k in Memory.sector[exit].scout){
-                                    let creep = Game.getObjectById(Memory.sector[exit].scout[k]);
-                                    if(creep && creep != null){
-                
+                            if(Memory.sector.owner != 'hostile'){
+                                if(Memory.sector[exit].scout && Memory.sector[exit].scout.length > 0){
+                                    for(let k in Memory.sector[exit].scout){
+                                        let creep = Game.getObjectById(Memory.sector[exit].scout[k]);
+                                        if(creep && creep != null){
+                    
+                                        }
+                                        else Memory.sector[exit].scout.splice(k,1);
                                     }
-                                    else Memory.sector[exit].scout.splice(k,1);
                                 }
+                                else this.assigner.assignScout(exit);
                             }
-                            else this.assigner.assignScout(exit);
 
                         }
                         else{
