@@ -19,7 +19,7 @@ exports.gameController = class{
         }
         //Iterate over sectors
         for(let i in this.sector){
-            if(sector.owner == 'me'){
+            if(this.sector.owner == 'me'){
                 for(let j in this.sector.exits){
                     if(Game.rooms[this.sector.exits[j]]){
 
