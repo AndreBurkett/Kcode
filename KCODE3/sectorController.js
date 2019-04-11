@@ -15,6 +15,9 @@ exports.sectorController = class{
         if(!Memory.sector[this.room.name]){
             Memory.sector[this.room.name] = {};
         }
+        if(!Memory.sector[this.room.name].owner){
+            Memory.sector[this.room.name].owner = this.owner;
+        }
         //Sector Scout Memory
         if(!Memory.sector[this.room.name].scout) Memory.sector[this.room.name].scout = [];
 
