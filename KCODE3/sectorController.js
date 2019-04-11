@@ -21,7 +21,10 @@ exports.sectorController = class{
                 Memory.source[this.source[i].id].space = this.getfreeSpace(this.source[i].pos);
             }
             //if(!Memory.source[this.source[i].id].pos){
-            Memory.source[this.source[i].id].pos = JSON.stringify(this.source[i].pos);
+            Memory.source[this.source[i].id].pos = {};
+            Memory.source[this.source[i].id].pos[x] = this.source[i].pos.x;
+            Memory.source[this.source[i].id].pos[y] = this.source[i].pos.y;
+            Memory.source[this.source[i].id].pos[roomName] = this.source[i].pos.roomName;
             //}
             if(!Memory.source[this.source[i].id].miner){
                 Memory.source[this.source[i].id].miner = [];
