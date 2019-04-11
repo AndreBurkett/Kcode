@@ -16,7 +16,7 @@ exports.sectorController = class{
             Memory.sector[this.room.name] = {};
         }
         Memory.sector[this.room.name].owner = this.owner;
-        
+
         //Sector Scout Memory
         if(!Memory.sector[this.room.name].scout) Memory.sector[this.room.name].scout = [];
 
@@ -52,25 +52,27 @@ exports.sectorController = class{
             Memory.source[this.source[i].id].owner = this.owner;
         }
         //Create Controller Memory
-        if(!Memory.controller[this.room.controller.id]){
-            Memory.controller[this.room.controller.id] = {};
-            Memory.controller[this.room.controller.id].space = this.getfreeSpace(this.room.controller);
-        }
-        if(!Memory.controller[this.room.controller.id].pos){
-            Memory.controller[this.room.controller.id].pos = {};
-            Memory.controller[this.room.controller.id].pos.x = this.room.controller.pos.x;
-            Memory.controller[this.room.controller.id].pos.y = this.room.controller.pos.y;
-            Memory.controller[this.room.controller.id].pos.roomName = this.room.controller.pos.roomName;
-        }
-        if(!Memory.controller[this.room.controller.id].upgrader){
-            Memory.controller[this.room.controller.id].upgrader = [];
-        }
-        if(!Memory.controller[this.room.controller.id].transporter){
-            Memory.controller[this.room.controller.id].transporter = [];
-        }
-        if(this.spawns.length >0 && !Memory.controller[this.room.controller.id].spawnPath){
-            for(let i in this.spawns){
-                Memory.controller[this.room.controller.id].spawnPath = this.getPath(this.room.controller.pos, this.spawns[i].pos);
+        if(this.room.controller){
+            if(!Memory.controller[this.room.controller.id]){
+                Memory.controller[this.room.controller.id] = {};
+                Memory.controller[this.room.controller.id].space = this.getfreeSpace(this.room.controller);
+            }
+            if(!Memory.controller[this.room.controller.id].pos){
+                Memory.controller[this.room.controller.id].pos = {};
+                Memory.controller[this.room.controller.id].pos.x = this.room.controller.pos.x;
+                Memory.controller[this.room.controller.id].pos.y = this.room.controller.pos.y;
+                Memory.controller[this.room.controller.id].pos.roomName = this.room.controller.pos.roomName;
+            }
+            if(!Memory.controller[this.room.controller.id].upgrader){
+                Memory.controller[this.room.controller.id].upgrader = [];
+            }
+            if(!Memory.controller[this.room.controller.id].transporter){
+                Memory.controller[this.room.controller.id].transporter = [];
+            }
+            if(this.spawns.length >0 && !Memory.controller[this.room.controller.id].spawnPath){
+                for(let i in this.spawns){
+                    Memory.controller[this.room.controller.id].spawnPath = this.getPath(this.room.controller.pos, this.spawns[i].pos);
+                }
             }
         }
 
