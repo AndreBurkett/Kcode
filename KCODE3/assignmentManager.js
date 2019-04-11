@@ -40,7 +40,7 @@ exports.assignmentManager = class{
         this.spawnManager.miner++;
     }
     assignScout(assignment){
-        console.log('asc', assignment);
+        console.log('asc', this.scout.length);
         if(this.scout.length > 0){
             for(let i in this.scout){
                 if(Memory.sector[assignment]){
