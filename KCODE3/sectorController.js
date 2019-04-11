@@ -20,12 +20,12 @@ exports.sectorController = class{
                 Memory.source[this.source[i].id] = {};
                 Memory.source[this.source[i].id].space = this.getfreeSpace(this.source[i].pos);
             }
-            //if(!Memory.source[this.source[i].id].pos){
-            Memory.source[this.source[i].id].pos = {};
-            Memory.source[this.source[i].id].pos.x = this.source[i].pos.x;
-            Memory.source[this.source[i].id].pos.y = this.source[i].pos.y;
-            Memory.source[this.source[i].id].pos.roomName = this.source[i].pos.roomName;
-            //}
+            if(!Memory.source[this.source[i].id].pos){
+                Memory.source[this.source[i].id].pos = {};
+                Memory.source[this.source[i].id].pos.x = this.source[i].pos.x;
+                Memory.source[this.source[i].id].pos.y = this.source[i].pos.y;
+                Memory.source[this.source[i].id].pos.roomName = this.source[i].pos.roomName;
+            }
             if(!Memory.source[this.source[i].id].miner){
                 Memory.source[this.source[i].id].miner = [];
             }
@@ -44,6 +44,12 @@ exports.sectorController = class{
         if(!Memory.controller[this.room.controller.id]){
             Memory.controller[this.room.controller.id] = {};
             Memory.controller[this.room.controller.id].space = this.getfreeSpace(this.room.controller);
+        }
+        if(!Memory.controller[this.room.controller.id].pos){
+            Memory.controller[this.room.controller.id].pos = {};
+            Memory.controller[this.room.controller.id].pos.x = this.room.controller.pos.x;
+            Memory.controller[this.room.controller.id].pos.y = this.room.controller.pos.y;
+            Memory.controller[this.room.controller.id].pos.roomName = this.room.controller.pos.roomName;
         }
         if(!Memory.controller[this.room.controller.id].upgrader){
             Memory.controller[this.room.controller.id].upgrader = [];
