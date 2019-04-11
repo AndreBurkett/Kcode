@@ -22,7 +22,6 @@ exports.gameController = class{
             if(this.sector[i].owner == 'me'){
                 for(let j in this.sector[i].exits){
                     let exit = this.sector[i].exits[j];
-                    console.log(exit);
                     if(Game.rooms[exit]){
                         
                     }
