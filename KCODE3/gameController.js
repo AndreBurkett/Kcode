@@ -18,7 +18,7 @@ exports.gameController = class{
             this.sector.push(new s.sectorController(Game.rooms[i]));
         }
         //Iterate over sectors
-        for(let i of this.sector){
+        for(let i of Object.keys(this.sector)){
             console.log(i);
             if(this.sector[i].owner == 'me'){
                 for(let j in this.sector.exits){
