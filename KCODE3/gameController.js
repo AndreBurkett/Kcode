@@ -69,7 +69,7 @@ exports.gameController = class{
                         }
                         if(minDistance <= 2){
                             if(Memory.sector[exit]){
-                                if(Memory.sector.owner != 'hostile'){
+                                if(Memory.sector[exit].owner != 'hostile'){
                                     if(Memory.sector[exit].scout && Memory.sector[exit].scout.length > 0){
                                         for(let k in Memory.sector[exit].scout){
                                             let creep = Game.getObjectById(Memory.sector[exit].scout[k]);
