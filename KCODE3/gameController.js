@@ -18,14 +18,14 @@ exports.gameController = class{
             this.sector.push(new s.sectorController(Game.rooms[i]));
         }
         //Iterate over sectors
-        for(let i of Object.keys(this.sector)){
-            console.log(i);
+        for(let i in this.sector){
             if(this.sector[i].owner == 'me'){
-                for(let j in this.sector.exits){
+                for(let j in this.sector[i].exits){
                     if(Game.rooms[this.sector[i].exits[j]]){
                         //console.log(Game.rooms[this.sector[i].exits[j]]);
                     }
                     else{
+                        console.log(i);
                         //Assign Scout
                         if(Memory.sector){
 
