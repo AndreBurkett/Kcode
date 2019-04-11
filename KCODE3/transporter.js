@@ -101,9 +101,7 @@ exports.transporter = class{
     sendUpgraderRequest(name){
         let id = Game.rooms[name].controller.id;
         if(id){
-            console.log(id);
-            console.log(Memory.controller['id']);
-            Memory.controller['id'].upgraderRequest++;
+            Memory.controller[id].upgraderRequest = 1;
         }
     }
 }
