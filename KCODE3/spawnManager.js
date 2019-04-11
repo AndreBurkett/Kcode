@@ -4,6 +4,7 @@ exports.spawnManager = class{
     constructor(){
         this.builder = 0;
         this.miner = 0;
+        this.scout = 0;
         this.transporter = 0;
         this.upgrader = 0;
 
@@ -18,6 +19,7 @@ exports.spawnManager = class{
         else if(this.transporter > 0) this.spawnTransporter();
         else if(this.builder > 0) this.spawnBuilder();
         else if(this.upgrader > 0) this.spawnUpgrader();
+        else if(this.scout > 0) this.spawnScout();
     }
 
     spawnBuilder(){
@@ -31,6 +33,13 @@ exports.spawnManager = class{
         this.body = [MOVE,CARRY,WORK,WORK];
         if(this.spawner.spawnCreep(this.body, nameBuilder.getName('m'), {memory: {role: 'miner'}}) == 0){
             nameBuilder.commitName('m');
+        }
+    }
+
+    spawnScout(){
+        this.body = [MOVE];
+        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('s'), {memory: {role: 'scout'}}) == 0){
+            nameBuilder.commitName('s');
         }
     }
 
