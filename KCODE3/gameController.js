@@ -196,7 +196,7 @@ exports.gameController = class{
                 //Create Controller Link
                 else if(controller.level >= 5){
                     let lpos = new RoomPosition(Memory.controller[i].spawnPath.path[1].x, Memory.controller[i].spawnPath.path[1].y, Memory.controller[i].spawnPath.path[1].roomName);
-                    let link = lpos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_LINK});
+                    let link = lpos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_LINK})[0];
                     if(link == false){
                         this.assignControllerTransporter(i, controller);
                         let site = lpos.lookFor(LOOK_CONSTRUCTION_SITES, {filter: (s) => s.structureType == STRUCTURE_LINK});
