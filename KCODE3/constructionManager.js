@@ -1,7 +1,7 @@
 exports.constructionManager = class{
     constructor(assigner){
         this.assigner = assigner;
-        this.types = ['container', 'extension', 'road', 'tower'];
+        this.types = ['container', 'extension', 'link', 'storage', 'road', 'tower'];
         //Allocate Memory
         if(!Memory.construction) Memory.construction = {};
         for(let i of this.types){
