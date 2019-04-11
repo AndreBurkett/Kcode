@@ -66,6 +66,9 @@ exports.gameController = class{
                     case 'miner':
                         this.assigner.miner.push(Game.creeps[name]);
                         break;
+                    case 'scout':
+                        this.assigner.scout.push(Game.creeps[name]);
+                        break;
                     case 'upgrader':
                         this.assigner.upgrader.push(Game.creeps[name]);
                         break;
