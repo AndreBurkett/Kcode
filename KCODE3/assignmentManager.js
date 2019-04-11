@@ -6,6 +6,7 @@ exports.assignmentManager = class{
         this.spawnManager = new sm.spawnManager()
         this.builder = [];
         this.miner = [];
+        this.scout = [];
         this.upgrader = [];
         this.transporter = [];
     }
@@ -38,7 +39,18 @@ exports.assignmentManager = class{
         }
         this.spawnManager.miner++;
     }
-    
+    assignScout(assignment){
+        if(this.scout.length > 0){
+            for(let i in this.scout){
+                if(Memory.sector[assignment]){
+                    Memory.sector[assignment].scout.push(this.scout[i].id);
+                    this.scout[i].memory.assignment = assignment;
+                    this.scout.slice(i,1);
+                }
+            }
+        }
+        else this.spawnManager.scout++;
+    }
     assignTransporter(assignment){
         if(this.transporter.length > 0){
             for(let i in this.transporter){
