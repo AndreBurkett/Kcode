@@ -41,6 +41,7 @@ exports.sectorController = class{
                     Memory.source[this.source[i].id].spawnPath = this.getPath(this.source[i].pos, this.spawns[0].pos);
                 }
                 else{
+                    console.log(Game.spawns);
                     let spawn = this.source[i].pos.findClosestByPath(Game.spawns);
                     console.log(spawn);
                     Memory.source[this.source[i].id].spawnPath = this.getPath(this.source[i].pos, spawn.pos);
