@@ -1,5 +1,6 @@
 var builder = require('role.builder');
 var miner = require('role.miner');
+var s = require('scout');
 var t = require('transporter');
 var upgrader = require('role.upgrader');
 
@@ -11,6 +12,9 @@ exports.creepManager = class{
                 break;
             case 'miner':
                 miner.run(creep);
+                break;
+            case 'scout':
+                let run = new t.scout(creep);
                 break;
             case 'transporter':
                 let run = new t.transporter(creep);
