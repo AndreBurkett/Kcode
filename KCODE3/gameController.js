@@ -61,24 +61,31 @@ exports.gameController = class{
                     }
                     else{
                         //Assign Scout
-                        if(Memory.sector[exit]){
-                            if(Memory.sector.owner != 'hostile'){
-                                if(Memory.sector[exit].scout && Memory.sector[exit].scout.length > 0){
-                                    for(let k in Memory.sector[exit].scout){
-                                        let creep = Game.getObjectById(Memory.sector[exit].scout[k]);
-                                        if(creep && creep != null){
-                    
-                                        }
-                                        else Memory.sector[exit].scout.splice(k,1);
-                                    }
-                                }
-                                else this.assigner.assignScout(exit);
-                            }
-
+                        let minDistance = 99;
+                        for(let k in Game.spawns){
+                            let d = Game.map.getRoomLinearDistance(Game.spawns[k].room.name, exit);
+                            if(d < minDistance) minDistance = d;
                         }
-                        else{
-                            Memory.sector[exit] = {};
-                            Memory.sector[exit].scout = [];
+                        if(minDistance <= 2){
+                            if(Memory.sector[exit]){
+                                if(Memory.sector.owner != 'hostile'){
+                                    if(Memory.sector[exit].scout && Memory.sector[exit].scout.length > 0){
+                                        for(let k in Memory.sector[exit].scout){
+                                            let creep = Game.getObjectById(Memory.sector[exit].scout[k]);
+                                            if(creep && creep != null){
+                        
+                                            }
+                                            else Memory.sector[exit].scout.splice(k,1);
+                                        }
+                                    }
+                                    else this.assigner.assignScout(exit);
+                                }
+    
+                            }
+                            else{
+                                Memory.sector[exit] = {};
+                                Memory.sector[exit].scout = [];
+                            }
                         }
                     }
                 }
