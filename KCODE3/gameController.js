@@ -133,7 +133,7 @@ exports.gameController = class{
                     this.assigner.assignTransporter(i);
                 }
                 //Create Source Containers
-                if(Memory.source[i].spawnPath){
+                if(Memory.source[i].spawnPath && Game.rooms[Memory.source[i].spawnPath.path[0].roomName]){
                     let pos = new RoomPosition(Memory.source[i].spawnPath.path[0].x, Memory.source[i].spawnPath.path[0].y, Memory.source[i].spawnPath.path[0].roomName);
                     let container = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER});
                     if(container == false){
