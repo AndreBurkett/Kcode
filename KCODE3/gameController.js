@@ -19,6 +19,7 @@ exports.gameController = class{
         }
         //Iterate over sectors
         for(let i in this.sector){
+            console.log(i);
             if(this.sector[i].owner == 'me'){
                 for(let j in this.sector.exits){
                     if(Game.rooms[this.sector[i].exits[j]]){
@@ -26,7 +27,6 @@ exports.gameController = class{
                     }
                     else{
                         //Assign Scout
-                        console.log(i);
                         if(Memory.sector){
 
                         }
