@@ -36,7 +36,7 @@ exports.sectorController = class{
             if(!Memory.source[this.source[i].id].transporter){
                 Memory.source[this.source[i].id].transporter = [];
             }
-            if(this.spawns.length >0 && !Memory.source[this.source[i].id].spawnPath){
+            if(!Memory.source[this.source[i].id].spawnPath){
                 if(this.spawns && this.spawns.length > 0){
                     Memory.source[this.source[i].id].spawnPath = this.getPath(this.source[i].pos, this.spawns[0].pos);
                 }
