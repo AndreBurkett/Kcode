@@ -10,6 +10,8 @@ exports.sectorController = class{
         //Create Bunker Controller
         if(this.spawns[0]) this.bunker = new bc.bunkerController(this.spawns[0]);
 
+        //Get Exits
+        console.log(Game.map.describeExits(this.room.name));
         //Create Sector Memory
         if(!Memory.sector[this.room.name]){
             Memory.sector[this.room.name] = {};
