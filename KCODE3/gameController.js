@@ -22,7 +22,7 @@ exports.gameController = class{
             if(this.sector.owner == 'me'){
                 for(let j in this.sector.exits){
                     if(Game.rooms[this.sector.exits[j]]){
-
+                        console.log(Game.rooms[this.sector.exits[j]]);
                     }
                     else{
                         //Assign Scout
