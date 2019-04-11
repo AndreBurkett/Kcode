@@ -119,33 +119,37 @@ exports.gameController = class{
             else if(controller && controller.my){
                 this.assigner.assignUpgrader(i);
             }
-            //Assign Transporters
-            if(Memory.controller[i].transporter && Memory.controller[i].transporter.length > 0 && controller && controller.my){
-                for(let j in Memory.controller[i].transporter){
-                    let creep = Game.getObjectById(Memory.controller[i].transporter[j]);
-                    if(creep && creep != null){
-
-                    }
-                    else{
-                        Memory.controller[i].transporter.splice(j,1);
-                    }
-                }
-            }
-            else if(controller && controller.my){
-                this.assigner.assignTransporter(i);
-            }
-            //Create Controller Container
+            //Check if Spawn exist in room
             if(Memory.controller[i].spawnPath){
-                let pos = new RoomPosition(Memory.controller[i].spawnPath.path[0].x, Memory.controller[i].spawnPath.path[0].y, Memory.controller[i].spawnPath.path[0].roomName);
-                let container = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER});
-                if(container == false){
-                    let site = pos.lookFor(LOOK_CONSTRUCTION_SITES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER});
-                    if(site == false){
-                        Game.rooms[pos.roomName].createConstructionSite(pos, STRUCTURE_CONTAINER);
+                //Create Controller Container
+                if(controller.level < 5){
+                    let pos = new RoomPosition(Memory.controller[i].spawnPath.path[0].x, Memory.controller[i].spawnPath.path[0].y, Memory.controller[i].spawnPath.path[0].roomName);
+                    let container = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER});
+                    if(container == false){
+                        let site = pos.lookFor(LOOK_CONSTRUCTION_SITES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER});
+                        if(site == false){
+                            Game.rooms[pos.roomName].createConstructionSite(pos, STRUCTURE_CONTAINER);
+                        }
+                    }
+                    //Assign Transporters
+                    if(Memory.controller[i].transporter && Memory.controller[i].transporter.length > 0 && controller && controller.my){
+                        for(let j in Memory.controller[i].transporter){
+                            let creep = Game.getObjectById(Memory.controller[i].transporter[j]);
+                            if(creep && creep != null){
+        
+                            }
+                            else{
+                                Memory.controller[i].transporter.splice(j,1);
+                            }
+                        }
+                    }
+                    else if(controller && controller.my){
+                        this.assigner.assignTransporter(i);
                     }
                 }
-                if(controller.level >= 5){
-                    let lpos = new RoomPosition(Memory.controller[i].spawnPath.path[2].x, Memory.controller[i].spawnPath.path[2].y, Memory.controller[i].spawnPath.path[2].roomName);
+                //Create Controller Link
+                else if(controller.level >= 5){
+                    let lpos = new RoomPosition(Memory.controller[i].spawnPath.path[1].x, Memory.controller[i].spawnPath.path[1].y, Memory.controller[i].spawnPath.path[1].roomName);
                     let link = lpos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_LINK});
                     if(link == false){
                         let site = lpos.lookFor(LOOK_CONSTRUCTION_SITES, {filter: (s) => s.structureType == STRUCTURE_LINK});
