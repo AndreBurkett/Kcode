@@ -14,8 +14,10 @@ exports.sectorController = class{
         //Create Sector Memory
         if(!Memory.sector[this.room.name]){
             Memory.sector[this.room.name] = {};
-            Memory.sector[this.room.name].scout = [];
         }
+        //Sector Scout Memory
+        if(!Memory.sector[this.room.name].scout) Memory.sector[this.room.name].scout = [];
+        
         //Create Source Memory
         for(let i in this.source){
             if(!Memory.source[this.source[i].id]){
