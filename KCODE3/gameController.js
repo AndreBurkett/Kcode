@@ -37,7 +37,7 @@ exports.gameController = class{
                                     else Memory.sector[exit].scout.splice(k,1);
                                 }
                             }
-                            else this.assigner.assignScout();
+                            else this.assigner.assignScout(exit);
 
                         }
                         else{
