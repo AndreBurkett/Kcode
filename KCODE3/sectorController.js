@@ -17,7 +17,7 @@ exports.sectorController = class{
         }
         //Sector Scout Memory
         if(!Memory.sector[this.room.name].scout) Memory.sector[this.room.name].scout = [];
-        
+
         //Create Source Memory
         for(let i in this.source){
             if(!Memory.source[this.source[i].id]){
@@ -37,8 +37,12 @@ exports.sectorController = class{
                 Memory.source[this.source[i].id].transporter = [];
             }
             if(this.spawns.length >0 && !Memory.source[this.source[i].id].spawnPath){
-                for(let j in this.spawns){
-                    Memory.source[this.source[i].id].spawnPath = this.getPath(this.source[i].pos, this.spawns[j].pos);
+                if(this.spawns && this.spawns.length > 0){
+                    Memory.source[this.source[i].id].spawnPath = this.getPath(this.source[i].pos, this.spawns[0].pos);
+                }
+                else{
+                    let spawn = this.source[i].pos.findClosestByPath(Game.spawns);
+                    Memory.source[this.source[i].id].spawnPath = this.getPath(this.source[i].pos, spawn.pos);
                 }
             }
             //update owner
