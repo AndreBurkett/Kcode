@@ -177,22 +177,6 @@ exports.gameController = class{
                             Game.rooms[pos.roomName].createConstructionSite(pos, STRUCTURE_CONTAINER);
                         }
                     }
-                    /*
-                    //Assign Transporters
-                    if(Memory.controller[i].transporter && Memory.controller[i].transporter.length > 0 && controller && controller.my){
-                        for(let j in Memory.controller[i].transporter){
-                            let creep = Game.getObjectById(Memory.controller[i].transporter[j]);
-                            if(creep && creep != null){
-        
-                            }
-                            else{
-                                Memory.controller[i].transporter.splice(j,1);
-                            }
-                        }
-                    }
-                    else if(controller && controller.my){
-                        this.assigner.assignTransporter(i);
-                    }*/
                 }
                 //Create Controller Link
                 else if(controller.level >= 5){
