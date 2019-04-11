@@ -25,10 +25,13 @@ exports.gameController = class{
                         //console.log(Game.rooms[this.sector[i].exits[j]]);
                     }
                     else{
-                        console.log(j);
+                        console.log(this.sector[i].exits[j]);
                         //Assign Scout
-                        if(Memory.sector[j]){
+                        if(Memory.sector[this.sector[i].exits[j]]){
 
+                        }
+                        else{
+                            Memory.sector[this.sector[i].exits[j]] = {};
                         }
                     }
                 }
