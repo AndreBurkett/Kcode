@@ -35,6 +35,14 @@ exports.constructionManager = class{
                         Memory.construction.link[i].builder = [];
                     }
                     break;
+                case STRUCTURE_STORAGE:
+                    if(!Memory.construction.storage[i]){
+                        Memory.construction.storage[i] = {};
+                    }
+                    if(!Memory.construction.storage[i].builder){
+                        Memory.construction.storage[i].builder = [];
+                    }
+                    break;
                 case STRUCTURE_TOWER:
                     if(!Memory.construction.tower[i]){
                         Memory.construction.tower[i] = {};
