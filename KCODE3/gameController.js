@@ -204,6 +204,7 @@ exports.gameController = class{
                             Game.rooms[lpos.roomName].createConstructionSite(lpos, STRUCTURE_LINK);
                         }
                     }
+                    else Memory.controller[i].link = link.id;
                 }
             }
 
