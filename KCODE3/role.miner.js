@@ -39,7 +39,7 @@ var miner = {
                 if(creep.harvest(target) == ERR_NOT_IN_RANGE) creep.moveTo(target);
             }
             else{
-                target = new RoomPosition(Memory.source[source].x, Memory.source[source].y, Memory.source[source].roomName);
+                target = new RoomPosition(Memory.source[source].pos.x, Memory.source[source].pos.y, Memory.source[source].pos.roomName);
                 creep.moveTo(target);
             }
         }
