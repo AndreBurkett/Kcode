@@ -23,12 +23,24 @@ exports.gameController = class{
                 for(let j in this.sector[i].exits){
                     let exit = this.sector[i].exits[j];
                     if(Game.rooms[exit]){
-                        //console.log(Game.rooms[this.sector[i].exits[j]]);
+                        
                     }
                     else{
                         //Assign Scout
-                        if(Memory.sector[exit] && !Memory.sector.scout){
-                            console.log('assign scout');
+                        if(Memory.sector[exit]){
+                            if(Memory.sector[exit].scout && Memory.sector[exit].scout.length > 0){
+                                for(let k in Memory.sector[exit].scout){
+                                    let creep = Game.getObjectById(Memory.sector[exit].scout[k]);
+                                    if(creep && creep != null){
+                
+                                    }
+                                    else{
+                                        //delete Memory.controller[i].scout[j];
+                                        Memory.sector[exit].scout.splice(k,1);
+                                    }
+                                }
+                            }
+                            else this.assigner.assignScout();
 
                         }
                         else{
