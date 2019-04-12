@@ -6,7 +6,7 @@ exports.scout = class{
             let pos = new RoomPosition(25,25,this.assignment);
             let path = this.findPath(pos);
             //this.creep.move(this.creep.pos.getDirectionTo(path.path[0]));
-            console.log(this.creep.moveByPath(path.path));
+            console.log(this.creep.name, this.creep.moveByPath(path.path));
         }
     }
     findPath(pos){
