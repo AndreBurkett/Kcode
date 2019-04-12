@@ -20,12 +20,13 @@ exports.miner = class miner extends role.role{
                     if(this.creep.harvest(this.source) == ERR_NOT_IN_RANGE) this.safeMove(this.source.pos);
                 }
                 else{
-                    pos = new RoomPosition(Memory.source[this.assignment].pos.x, Memory.source[this.assignment].pos.y, Memory.source[this.assignment].pos.roomName);
+                    let pos = new RoomPosition(Memory.source[this.assignment].pos.x, Memory.source[this.assignment].pos.y, Memory.source[this.assignment].pos.roomName);
                     this.safeMove(pos);
                 }
             }
         }
     }
+    
     transport(){
         let target = this.creep.pos.findClosestByRange(FIND_STRUCTURES, {
             filter: (s) => (s.structureType == STRUCTURE_TOWER && s.energy < s.energyCapacity) || ((s.structureType == STRUCTURE_EXTENSION || s.structureType == STRUCTURE_SPAWN) && s.energy < s.energyCapacity)
