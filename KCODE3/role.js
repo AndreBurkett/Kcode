@@ -6,12 +6,15 @@ exports.role = class{
 
     safeMove(pos){
         if(this.creep.memory.path){
+            let pos1 = this.getPos(this.creep.memory.path[0])
+            if(this.creep.pos == pos1) this.creep.memory.path.slice(0,1);
+            /*
             let len = this.creep.memory.path.length - 1;
-            let pos = new RoomPosition(this.creep.memory.path[len].x, this.creep.memory.path[len].y, this.creep.memory.path[len].roomName);
-            if(pos == this.creep.pos){
+            let pos2 = this.getPos(this.creep.memory.path[len]);
+            if(pos2 == this.creep.pos){
                 delete this.creep.memory.path;
                 this.safePath(pos);
-            }
+            }*/
         }
         else this.safePath(pos);
         let mpos = new RoomPosition(this.creep.memory.path[0].x, this.creep.memory.path[0].y, this.creep.memory.path[0].roomName);
@@ -37,5 +40,8 @@ exports.role = class{
             }
         });
         this.creep.memory.path = p.path;
+    }
+    getPos(mem){
+        return new RoomPosition(mem.x, mem.y, mem.roomName);
     }
 }
