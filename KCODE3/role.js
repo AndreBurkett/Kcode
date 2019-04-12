@@ -17,7 +17,7 @@ exports.role = class{
         console.log(this.creep.move(this.creep.pos.getDirectionTo(this.creep.memory.path[0])));
         switch(this.creep.move(this.creep.pos.getDirectionTo(this.creep.memory.path[0]))){
             case OK:
-                this.creep.memory.slice(0,1);
+                this.creep.memory.path.slice(0,1);
                 break;
             case ERR_NOT_IN_RANGE:
                 this.safePath(pos);
