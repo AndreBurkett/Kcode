@@ -9,7 +9,7 @@ exports.scout = class{
         }
     }
     findPath(pos){
-        let path = PathFinder.search(this.creep.pos, pos, {
+        let path = PathFinder.search(this.creep.pos, {pos:pos, range:10}, {
             roomCallback: function(roomName) {
                 if(Memory.sector[roomName] && Memory.sector[roomName].owner == 'hostile'){
                     let costs;
