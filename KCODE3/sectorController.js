@@ -4,7 +4,7 @@ exports.sectorController = class{
         this.getRoomsInRange();
     }
     getRoomsInRange(){
-        for(let i of Memory.sector){
+        for(let i of Object.keys(Memory.sector)){
             console.log(i);
         }
     }
