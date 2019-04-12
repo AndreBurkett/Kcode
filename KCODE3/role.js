@@ -14,7 +14,7 @@ exports.role = class{
             }
         }
         else this.safePath(pos);
-        this.creep.moveByPath(this.creep.memory.path);
+        console.log(this.creep.name, this.creep.moveByPath(this.creep.memory.path));
     }
 
     safePath(pos){
