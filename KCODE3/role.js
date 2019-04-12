@@ -32,9 +32,10 @@ exports.role = class{
                         return costs;
                     }
                 }
-                else{
-                    console.log(roomName);
-                }
+                else Memory.sector[roomName] = {};
+                let costs = new PathFinder.CostMatrix();
+                Memory.sector.CostMatrix = costs;
+                return costs;
             }
         });
         console.log(p.incomplete);
