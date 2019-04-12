@@ -15,7 +15,8 @@ exports.spawnManager = class{
 
     spawn(){
         //console.log(this.builder, this.miner, this.transporter, this.upgrader);
-        if(this.miner > 0) this.spawnMiner(1);
+        if(this.transporter > 5) this.spawnTransporter();
+        else if(this.miner > 0) this.spawnMiner(1);
         else if(this.transporter > 0) this.spawnTransporter();
         else if(this.builder > 0) this.spawnBuilder();
         else if(this.upgrader > 0) this.spawnUpgrader();
