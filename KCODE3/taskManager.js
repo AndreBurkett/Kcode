@@ -1,5 +1,5 @@
 var builder = require('role.builder');
-var m = require('./role/miner.js');
+var m = require('miner.js');
 var s = require('./role/scout.js');
 var t = require('transporter');
 var upgrader = require('role.upgrader');
