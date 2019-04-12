@@ -8,8 +8,8 @@ exports.role = class{
         if(this.creep.memory.path){
             let len = this.creep.memory.path.length - 1;
             let pos = new RoomPosition(this.creep.memory.path[len].x, this.creep.memory.path[len].y, this.creep.memory.path[len].roomName);
-            if(pos == creep.pos){
-                delete creep.memory.path;
+            if(pos == this.creep.pos){
+                delete this.creep.memory.path;
                 this.safePath(pos);
             }
         }
