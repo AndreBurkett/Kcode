@@ -9,8 +9,8 @@ exports.scout = class{
             }
             else{
                 let path = this.findPath(pos);
-                //this.creep.move(this.creep.pos.getDirectionTo(path.path[0]));
-                console.log(this.creep.name, this.creep.moveByPath(path.path));
+                this.creep.move(this.creep.pos.getDirectionTo(path.path[0]));
+                //console.log(this.creep.name, this.creep.moveByPath(path.path));
             }
         }
     }
