@@ -15,6 +15,9 @@ exports.role = class{
         }
         else this.safePath(pos);
         console.log(this.creep.name, this.creep.moveByPath(this.creep.memory.path));
+        if(this.creep.moveByPath(this.creep.memory.path) == ERR_NOT_FOUND){
+            this.safePath(pos);
+        }
     }
 
     safePath(pos){
