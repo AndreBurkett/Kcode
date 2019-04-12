@@ -5,7 +5,7 @@ exports.role = class{
     }
 
     safeMove(pos){
-        if(this.creep.memory.path){
+        if(this.creep.memory.path && this.creep.memory.path.length > 0){
             let pos1 = this.getPos(this.creep.memory.path[0])
             if(this.creep.pos.isEqualTo(pos1)){
                 this.creep.memory.path.splice(0,1);

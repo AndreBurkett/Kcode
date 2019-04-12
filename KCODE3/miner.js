@@ -4,7 +4,6 @@ exports.miner = class miner extends role.role{
     constructor(creep) {
         super(creep);
         
-        this.assignment = this.creep.memory.assignment;
         if(this.assignment){
             this.source = Game.getObjectById(this.assignment);
             if(this.creep.carry.energy == this.creep.carryCapacity){
@@ -26,7 +25,7 @@ exports.miner = class miner extends role.role{
             }
         }
     }
-    
+
     transport(){
         let target = this.creep.pos.findClosestByRange(FIND_STRUCTURES, {
             filter: (s) => (s.structureType == STRUCTURE_TOWER && s.energy < s.energyCapacity) || ((s.structureType == STRUCTURE_EXTENSION || s.structureType == STRUCTURE_SPAWN) && s.energy < s.energyCapacity)
