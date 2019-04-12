@@ -6,8 +6,8 @@ exports.role = class{
 
     safeMove(pos){
         if(this.creep.memory.path){
-            console.log('path exists');
             let pos1 = this.getPos(this.creep.memory.path[0])
+            console.log(this.creep.pos, pos1);
             if(this.creep.pos == pos1){
                 console.log('stuck');
                 this.creep.memory.path.slice(0,1);
