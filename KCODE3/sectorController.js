@@ -8,6 +8,7 @@ exports.sectorController = class{
         this.source = this.room.find(FIND_SOURCES);
         this.spawns = this.room.find(FIND_MY_SPAWNS);
         this.owner = this.getOwner();
+        this.roomCostMatrix = this.getCostMatrix();
         //Create Bunker Controller
         if(this.spawns[0]) this.bunker = new bc.bunkerController(this.spawns[0]);
 
@@ -15,8 +16,10 @@ exports.sectorController = class{
         if(!Memory.sector[this.room.name]){
             Memory.sector[this.room.name] = {};
         }
+        //Set Owner in Memory
         Memory.sector[this.room.name].owner = this.owner;
-
+        //Set Cost Matrix in Memory
+        Memory.sector[this.room.name].CostMatrix = this.roomCostMatrix;
         //Sector Scout Memory
         if(!Memory.sector[this.room.name].scout) Memory.sector[this.room.name].scout = [];
 
@@ -105,11 +108,11 @@ exports.sectorController = class{
         return owner;
     }
     getPath(pos1, pos2){
-        let path = PathFinder.search(pos1, pos2, {swampCost: 1, ignoreRoads: true, roomCallback: this.roomCostMatrix()});
+        let path = PathFinder.search(pos1, pos2, {swampCost: 1, ignoreRoads: true, roomCallback: this.roomCostMatrix});
         return path;
     }
 
-    roomCostMatrix(){
+    getCostMatrix(){
         if(!this.costs){
             var costs = new PathFinder.CostMatrix;
             let structure = this.room.find(FIND_STRUCTURES);
