@@ -8,7 +8,7 @@ exports.role = class{
         if(this.creep.memory.path){
             let pos1 = this.getPos(this.creep.memory.path[0])
             if(this.creep.pos.isEqualTo(pos1)){
-                console.log(this.creep.memory.path.splice(0,1));
+                this.creep.memory.path.splice(0,1);
                 this.creep.memory.path.slice(0,1);
             
             }
@@ -20,10 +20,8 @@ exports.role = class{
                 this.safePath(pos);
             }*/
         }
-        //else this.safePath(pos);
+        else this.safePath(pos);
         let mpos = new RoomPosition(this.creep.memory.path[0].x, this.creep.memory.path[0].y, this.creep.memory.path[0].roomName);
-        //console.log(this.creep.pos.getDirectionTo(this.creep.memory.path[0]));
-        //console.log(this.creep.move(this.creep.pos.getDirectionTo(this.creep.memory.path[0])));
         switch(this.creep.move(this.creep.pos.getDirectionTo(mpos))){
             case OK:
                 this.creep.memory.path.splice(0,1);
