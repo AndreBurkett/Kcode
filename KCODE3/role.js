@@ -9,11 +9,6 @@ exports.role = class{
             let len = this.creep.memory.path.length - 1;
             let pos1 = this.getPos(this.creep.memory.path[len]);
             if(!pos.isEqualTo(pos1)) this.safePath(pos);
-            /*
-            let pos1 = this.getPos(this.creep.memory.path[0])
-            if(this.creep.pos.isEqualTo(pos1)){
-                this.creep.memory.path.splice(0,1);            
-            }*/
         }
         else this.safePath(pos);
         let mpos = new RoomPosition(this.creep.memory.path[0].x, this.creep.memory.path[0].y, this.creep.memory.path[0].roomName);
@@ -43,7 +38,6 @@ exports.role = class{
                 return costs;
             }
         });
-        console.log(p.incomplete);
         this.creep.memory.path = p.path;
     }
     getPos(mem){
