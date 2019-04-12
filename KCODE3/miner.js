@@ -6,6 +6,7 @@ exports.miner = class miner extends role.role{
         
         this.assignment = this.creep.memory.assignment;
         if(this.assignment){
+            this.source = Game.getObjectById(this.assignment);
             if(this.creep.carry.energy == this.creep.carryCapacity){
                 if(Memory.source[this.assignment].transporter.length == 0){
                     this.transport();
@@ -15,13 +16,12 @@ exports.miner = class miner extends role.role{
                 }
             }
             else{
-                let target = Game.getObjectById(this.assignment);
-                if(target){
-                    if(this.creep.harvest(target) == ERR_NOT_IN_RANGE) this.safeMove(target.pos);
+                if(this.source){
+                    if(this.creep.harvest(this.source) == ERR_NOT_IN_RANGE) this.safeMove(this.source.pos);
                 }
                 else{
-                    target = new RoomPosition(Memory.source[this.assignment].pos.x, Memory.source[this.assignment].pos.y, Memory.source[this.assignment].pos.roomName);
-                    this.safeMove(target);
+                    pos = new RoomPosition(Memory.source[this.assignment].pos.x, Memory.source[this.assignment].pos.y, Memory.source[this.assignment].pos.roomName);
+                    this.safeMove(pos);
                 }
             }
         }
@@ -45,8 +45,7 @@ exports.miner = class miner extends role.role{
             if(this.creep.transfer(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) this.safeMove(container.pos);
         }
         else{
-            let target = Game.getObjectById(this.assignment);
-            if(this.creep.harvest(target) == ERR_NOT_IN_RANGE) this.safeMove(target.pos);
+            if(this.creep.harvest(this.source) == ERR_NOT_IN_RANGE) this.safeMove(this.source.pos);
         }
     }
 }
