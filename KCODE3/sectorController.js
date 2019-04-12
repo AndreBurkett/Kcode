@@ -1,4 +1,4 @@
-exports.sector = class{
+exports.sectorController = class{
     constructor(name){
         this.name = name;
     }
