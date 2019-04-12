@@ -21,7 +21,7 @@ exports.miner = class miner extends role.role{
                 }
                 else{
                     target = new RoomPosition(Memory.source[this.source].pos.x, Memory.source[this.source].pos.y, Memory.source[this.source].pos.roomName);
-                    this.safeMove(target.pos);
+                    this.safeMove(target);
                 }
             }
         }
