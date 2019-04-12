@@ -41,6 +41,7 @@ exports.role = class{
                 }
             }
         });
+        console.log(p.incomplete);
         this.creep.memory.path = p.path;
     }
     getPos(mem){
