@@ -19,7 +19,7 @@ exports.scout = class{
         let path = PathFinder.search(this.creep.pos, {pos:pos, range:10}, {
             roomCallback: function(roomName) {
                 if(Memory.sector[roomName].CostMatrix){
-                    costs = PathFinder.CostMatrix.deserialize(Memory.sector[roomName].CostMatrix);
+                    let costs = PathFinder.CostMatrix.deserialize(Memory.sector[roomName].CostMatrix);
                     return costs;
                 }
             }
