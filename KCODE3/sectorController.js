@@ -138,6 +138,7 @@ exports.sectorController = class{
 
     gui(){
         let gui = new RoomVisual(this.room.name);
-        gui.text('Upgraders: ' + 0, 1,40, {align:'left'});
+        gui.text('Upgraders:', 1,40, {align:'left'});
+        gui.text(0 + '/1', 6,40, {align:'left'});
     }
 }
