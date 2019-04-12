@@ -8,7 +8,7 @@ exports.role = class{
         if(this.creep.memory.path){
             let pos1 = this.getPos(this.creep.memory.path[0])
             if(this.creep.pos.isEqualTo(pos1)){
-                console.log(this.creep.memory.path.slice(0,1));
+                console.log(this.creep.memory.path.splice(0,1));
                 this.creep.memory.path.slice(0,1);
             
             }
