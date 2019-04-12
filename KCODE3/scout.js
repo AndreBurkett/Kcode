@@ -4,6 +4,9 @@ exports.scout = class{
         this.assignment = creep.memory.assignment;
         if(this.assignment){
             let pos = new RoomPosition(25,25,this.assignment);
+            if(this.creep.room.name == this.assignment){
+                this.creep.moveTo(pos);
+            }
             let path = this.findPath(pos);
             //this.creep.move(this.creep.pos.getDirectionTo(path.path[0]));
             console.log(this.creep.name, this.creep.moveByPath(path.path));
