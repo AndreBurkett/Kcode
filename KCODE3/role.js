@@ -14,6 +14,7 @@ exports.role = class{
             }
         }
         else this.safePath(pos);
+        console.log(this.creep.pos.getDirectionTo(this.creep.memory.path[0]));
         console.log(this.creep.move(this.creep.pos.getDirectionTo(this.creep.memory.path[0])));
         switch(this.creep.move(this.creep.pos.getDirectionTo(this.creep.memory.path[0]))){
             case OK:
