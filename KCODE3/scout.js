@@ -19,8 +19,8 @@ exports.scout = class{
                             costs.set(x, y, 255);
                         }
                     }
+                    return costs;
                 }
-                return costs;
             }
         });
         return path;
