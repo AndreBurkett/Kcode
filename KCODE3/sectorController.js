@@ -19,7 +19,7 @@ exports.sectorController = class{
         //Set Owner in Memory
         Memory.sector[this.room.name].owner = this.owner;
         //Set Cost Matrix in Memory
-        Memory.sector[this.room.name].CostMatrix = this.roomCostMatrix;
+        Memory.sector[this.room.name].CostMatrix = this.roomCostMatrix.serialize();
         //Sector Scout Memory
         if(!Memory.sector[this.room.name].scout) Memory.sector[this.room.name].scout = [];
 
@@ -113,16 +113,22 @@ exports.sectorController = class{
     }
 
     getCostMatrix(){
-        if(!this.costs){
-            var costs = new PathFinder.CostMatrix;
+        var costs = new PathFinder.CostMatrix;
+        if(this.owner != 'hostile'){
             let structure = this.room.find(FIND_STRUCTURES);
             for(let i in structure){
                 if (!_.contains([STRUCTURE_CONTAINER, STRUCTURE_ROAD, STRUCTURE_RAMPART], structure[i].structureType)) {
                     costs.set(structure[i].pos.x, structure[i].pos.y, 255);
                 }
             }
-            this.costs = costs;
         }
-        return this.costs;
+        else{
+            for(let x = 0; x<50; x++){
+                for(let y = 0; y<50; y++){
+                    costs.set(x, y, 255);
+                }
+            }
+        }
+        return costs;
     }
 }
