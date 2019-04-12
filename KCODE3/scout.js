@@ -11,7 +11,6 @@ exports.scout = class{
     findPath(pos){
         let path = PathFinder.search(this.creep.pos, pos, {
             roomCallback: function(roomName) {
-                console.log(roomName);
                 if(Memory.sector[roomName] && Memory.sector[roomName].owner == 'hostile'){
                     let costs = new PathFinder.CostMatrix;
                     for(let x = 0; x<50; x++){
