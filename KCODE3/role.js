@@ -14,9 +14,13 @@ exports.role = class{
             }
         }
         else this.safePath(pos);
-        console.log(this.creep.name, this.creep.moveByPath(this.creep.memory.path));
-        if(this.creep.moveByPath(this.creep.memory.path) == ERR_NOT_FOUND){
-            this.safePath(pos);
+        switch(this.creep.move(this.creep.pos.getDirectionTo(this.creep.memory.path[0]))){
+            case OK:
+                this.creep.memory.slice(0,1);
+                break;
+            case ERR_NOT_IN_RANGE:
+                this.safePath(pos);
+                break;
         }
     }
 
