@@ -1,32 +1,34 @@
-var builder = {
-    run: function (creep) {
-        var target;
-        //delete creep.memory.assignment;
+var role = require('role');
 
-        if(creep.carry.energy == creep.carryCapacity || (creep.carry.energy > 0 && creep.memory.task == 'build')){
-            creep.memory.task = 'build';
-            target = Game.constructionSites[creep.memory.assignment];
+exports.builder = class builder extends role.role{
+    constructor(creep) {
+        super(creep);
+        var target;
+        //delete this.assignment;
+
+        if(this.creep.carry.energy == this.creep.carryCapacity || (this.creep.carry.energy > 0 && this.creep.memory.task == 'build')){
+            this.creep.memory.task = 'build';
+            target = Game.constructionSites[this.assignment];
             if(target){
-                if(creep.build(target) == ERR_NOT_IN_RANGE) creep.moveTo(target);
+                if(this.creep.build(target) == ERR_NOT_IN_RANGE) this.safeMove(target.pos);
             }
             else{
-                delete creep.memory.assignment;
-                target = creep.pos.findClosestByRange(FIND_STRUCTURES, {filter: (s) => s.hits < s.hitsMax});
+                delete this.creep.memory.assignment;
+                target = this.creep.pos.findClosestByRange(FIND_STRUCTURES, {filter: (s) => s.hits < s.hitsMax});
                 if(target){
-                    if(creep.repair(target) == ERR_NOT_IN_RANGE) creep.moveTo(target);
+                    if(this.creep.repair(target) == ERR_NOT_IN_RANGE) this.creep.moveTo(target);
                 }
             }
         }
-        else if(creep.room.find(FIND_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER && s.store[RESOURCE_ENERGY] > 0}).length > 0){
-            creep.memory.task = 'pickup';
-            target = creep.pos.findClosestByRange(FIND_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER && s.store[RESOURCE_ENERGY] > creep.carryCapacity});
-            if(creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) creep.moveTo(target);
+        else if(this.creep.room.find(FIND_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER && s.store[RESOURCE_ENERGY] > 0}).length > 0){
+            this.creep.memory.task = 'pickup';
+            target = this.creep.pos.findClosestByRange(FIND_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER && s.store[RESOURCE_ENERGY] > this.creep.carryCapacity});
+            if(this.creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) this.creep.moveTo(target);
         }
         else{
-            creep.memory.task = 'pickup';
-            target = creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES, {filter: (r) => r.resourceType == RESOURCE_ENERGY});
-            if (creep.pickup(target) == ERR_NOT_IN_RANGE) creep.moveTo(target);
+            this.creep.memory.task = 'pickup';
+            target = this.creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES, {filter: (r) => r.resourceType == RESOURCE_ENERGY});
+            if (this.creep.pickup(target) == ERR_NOT_IN_RANGE) this.creep.moveTo(target);
         }
     }
-};
-module.exports = builder;
+}
