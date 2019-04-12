@@ -49,4 +49,4 @@ exports.miner = class miner extends role.role{
             if(this.creep.harvest(target) == ERR_NOT_IN_RANGE) this.creep.moveTo(target);
         }
     }
-};
+}
