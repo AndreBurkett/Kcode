@@ -11,11 +11,13 @@ exports.scout = class scout extends role.role{
                 this.creep.moveTo(pos);
             }
             else{
-                let path = this.findPath(pos);
-                this.creep.moveByPath(path.path);
+                //let path = this.findPath(pos);
+                //this.creep.moveByPath(path.path);
+                this.safeMove(pos);
             }
         }
     }
+    /*
     findPath(pos){
         let path = PathFinder.search(this.creep.pos, {pos:pos, range:1}, {
             roomCallback: function(roomName) {
@@ -27,4 +29,5 @@ exports.scout = class scout extends role.role{
         });
         return path;
     }
+    */
 }
