@@ -1,6 +1,6 @@
 var role = require('role');
 
-exports.scout = class scout extends role{
+exports.scout = class scout extends role.role{
     constructor(creep){
         this.creep = creep;
         this.assignment = creep.memory.assignment;
