@@ -7,7 +7,11 @@ exports.role = class{
     safeMove(pos){
         if(this.creep.memory.path){
             let pos1 = this.getPos(this.creep.memory.path[0])
-            if(this.creep.pos == pos1) this.creep.memory.path.slice(0,1);
+            if(this.creep.pos == pos1){
+                console.log('stuck');
+                this.creep.memory.path.slice(0,1);
+            
+            }
             /*
             let len = this.creep.memory.path.length - 1;
             let pos2 = this.getPos(this.creep.memory.path[len]);
