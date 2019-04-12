@@ -34,7 +34,7 @@ exports.scout = class{
                     }
                     return costs;
                 }
-                return;
+                //return;
             }
         });
         return path;
