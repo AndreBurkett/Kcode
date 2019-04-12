@@ -1,6 +1,6 @@
 bc = require('bunkerController');
 
-exports.sectorController = class{
+exports.sector = class{
     constructor(sector){
         this.room = sector;
         this.exits = Game.map.describeExits(this.room.name);

@@ -1,5 +1,5 @@
 tm = require('taskManager');
-s = require('sectorController');
+s = require('sector');
 am = require('assignmentManager');
 cm = require('constructionManager');
 
@@ -15,7 +15,7 @@ exports.gameController = class{
         //Create Sector Controllers
         this.sector = [];
         for(let i in Game.rooms){
-            this.sector.push(new s.sectorController(Game.rooms[i]));
+            this.sector.push(new s.sector(Game.rooms[i]));
         }
         //Iterate over creeps
         for(let name in Memory.creeps){
