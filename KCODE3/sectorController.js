@@ -81,7 +81,7 @@ exports.sectorController = class{
                 }
             }
         }
-
+        this.gui();
     }
 
     getfreeSpace(pos){
@@ -134,5 +134,10 @@ exports.sectorController = class{
             }
         }
         return costs;
+    }
+
+    gui(){
+        let gui = new RoomVisual(this.room.name);
+        gui.text('Upgraders:' + 0, 1,40);
     }
 }
