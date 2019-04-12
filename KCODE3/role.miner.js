@@ -4,10 +4,10 @@ exports.miner = class miner extends role.role{
     constructor(creep) {
         super(creep);
         
-        let source = this.creep.memory.assignment;
-        if(source){
+        this.source = this.creep.memory.assignment;
+        if(this.source){
             if(this.creep.carry.energy == this.creep.carryCapacity){
-                if(Memory.source[source].transporter.length == 0){
+                if(Memory.source[this.source].transporter.length == 0){
                     this.transport();
                 }
                 else{
@@ -15,12 +15,12 @@ exports.miner = class miner extends role.role{
                 }
             }
             else{
-                let target = Game.getObjectById(source);
+                let target = Game.getObjectById(this.source);
                 if(target){
                     if(this.creep.harvest(target) == ERR_NOT_IN_RANGE) this.creep.moveTo(target);
                 }
                 else{
-                    target = new RoomPosition(Memory.source[source].pos.x, Memory.source[source].pos.y, Memory.source[source].pos.roomName);
+                    target = new RoomPosition(Memory.source[this.source].pos.x, Memory.source[this.source].pos.y, Memory.source[this.source].pos.roomName);
                     this.creep.moveTo(target);
                 }
             }
@@ -39,13 +39,13 @@ exports.miner = class miner extends role.role{
     }
 
     dump(){
-        let pos = new RoomPosition(Memory.source[source].spawnPath.path[0].x, Memory.source[source].spawnPath.path[0].y, Memory.source[source].spawnPath.path[0].roomName);
+        let pos = new RoomPosition(Memory.source[this.source].spawnPath.path[0].x, Memory.source[this.source].spawnPath.path[0].y, Memory.source[this.source].spawnPath.path[0].roomName);
         let container = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER})[0];
         if(container){
             if(this.creep.transfer(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) this.creep.moveTo(container);
         }
         else{
-            let target = Game.getObjectById(source);
+            let target = Game.getObjectById(this.source);
             if(this.creep.harvest(target) == ERR_NOT_IN_RANGE) this.creep.moveTo(target);
         }
     }
