@@ -5,7 +5,7 @@ exports.scout = class{
         if(this.assignment){
             let pos = new RoomPosition(25,25,this.assignment);
             let path = this.findPath(pos);
-            console.log(path);
+            console.log(JSON.stringify(path));
             console.log(this.creep.moveByPath(path));
         }
     }
