@@ -1,4 +1,5 @@
 tm = require('taskManager');
+sc =require('sectorController');
 s = require('sector');
 am = require('assignmentManager');
 cm = require('constructionManager');
@@ -12,7 +13,9 @@ exports.gameController = class{
         if(!Memory.spawn) Memory.spawn = {};
         if(!Memory.controller) Memory.controller = {};
         
-        //Create Sector Controllers
+        //Create Sector Controller
+        this.sectorController = new sc.sectorController('W24S7');
+        //Create Sectors
         this.sector = [];
         for(let i in Game.rooms){
             this.sector.push(new s.sector(Game.rooms[i]));
