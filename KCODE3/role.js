@@ -6,10 +6,11 @@ exports.role = class{
 
     safeMove(pos){
         if(this.creep.memory.path && this.creep.memory.path.length > 0){
+            /*
             let pos1 = this.getPos(this.creep.memory.path[0])
             if(this.creep.pos.isEqualTo(pos1)){
                 this.creep.memory.path.splice(0,1);            
-            }
+            }*/
         }
         else this.safePath(pos);
         let mpos = new RoomPosition(this.creep.memory.path[0].x, this.creep.memory.path[0].y, this.creep.memory.path[0].roomName);
