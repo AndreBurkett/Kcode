@@ -116,10 +116,14 @@ exports.sectorController = class{
         var costs = new PathFinder.CostMatrix;
         if(this.owner != 'hostile'){
             let structure = this.room.find(FIND_STRUCTURES);
+            let creeps = this.room.find(FIND_CREEPS);
             for(let i in structure){
                 if (!_.contains([STRUCTURE_CONTAINER, STRUCTURE_ROAD, STRUCTURE_RAMPART], structure[i].structureType)) {
                     costs.set(structure[i].pos.x, structure[i].pos.y, 255);
                 }
+            }
+            for(let i in creeps){
+                costs.set(creeps[i].pos.x, creeps[i].pos.y, 255);
             }
         }
         else{
