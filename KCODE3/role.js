@@ -33,9 +33,11 @@ exports.role = class{
     safePath(pos){
         let p = PathFinder.search(this.creep.pos, {pos:pos, range:1}, {
             roomCallback: function(roomName) {
-                if(Memory.sector[roomName].CostMatrix){
-                    let costs = PathFinder.CostMatrix.deserialize(Memory.sector[roomName].CostMatrix);
-                    return costs;
+                if(Memory.sector[roomName]){
+                    if(Memory.sector[roomName].CostMatrix){
+                        let costs = PathFinder.CostMatrix.deserialize(Memory.sector[roomName].CostMatrix);
+                        return costs;
+                    }
                 }
             }
         });
