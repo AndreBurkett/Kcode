@@ -1,4 +1,6 @@
-exports.scout = class{
+require('role');
+
+exports.scout = class scout extends role{
     constructor(creep){
         this.creep = creep;
         this.assignment = creep.memory.assignment;
@@ -14,7 +16,7 @@ exports.scout = class{
         }
     }
     findPath(pos){
-        let path = PathFinder.search(this.creep.pos, {pos:pos, range:10}, {
+        let path = PathFinder.search(this.creep.pos, {pos:pos, range:1}, {
             roomCallback: function(roomName) {
                 if(Memory.sector[roomName].CostMatrix){
                     let costs = PathFinder.CostMatrix.deserialize(Memory.sector[roomName].CostMatrix);
