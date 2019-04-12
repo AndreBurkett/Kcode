@@ -15,9 +15,9 @@ exports.role = class{
         }
         else this.safePath(pos);
         let mpos = new RoomPosition(this.creep.memory.path[0].x, this.creep.memory.path[0].y, this.creep.memory.path[0].roomName);
-        console.log(this.creep.pos.getDirectionTo(this.creep.memory.path[0]));
-        console.log(this.creep.move(this.creep.pos.getDirectionTo(this.creep.memory.path[0])));
-        switch(this.creep.move(this.creep.pos.getDirectionTo(this.creep.memory.path[0]))){
+        //console.log(this.creep.pos.getDirectionTo(this.creep.memory.path[0]));
+        //console.log(this.creep.move(this.creep.pos.getDirectionTo(this.creep.memory.path[0])));
+        switch(this.creep.move(this.creep.pos.getDirectionTo(mpos))){
             case OK:
                 this.creep.memory.path.slice(0,1);
                 break;
