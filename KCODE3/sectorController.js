@@ -12,11 +12,8 @@ exports.sectorController = class{
         this.rooms = this.getRoomsInRange();
         this.sectorList = [];
         //Create Sectors
-        console.log(this.rooms);
         for(let i of this.rooms){
-            console.log(i);
-            console.log(Game.rooms[this.rooms[i]]);
-            this.sectorList.push(new s.sector(Game.rooms[this.rooms[i]], this.name));
+            if(Game.rooms[i]) this.sectorList.push(new s.sector(Game.rooms[i], this.name));
         }
 
         //Iterate over sectors
