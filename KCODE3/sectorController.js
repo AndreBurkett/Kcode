@@ -70,12 +70,14 @@ exports.sectorController = class{
                         this.assigner.builder.push(Game.creeps[name]);
                         break;
                         case 'miner':
+                        this.miners++;
                         this.assigner.miner.push(Game.creeps[name]);
                         break;
                         case 'scout':
                         this.assigner.scout.push(Game.creeps[name]);
                         break;
                         case 'upgrader':
+                        this.upgraders++;
                         this.assigner.upgrader.push(Game.creeps[name]);
                         break;
                         case 'transporter':
