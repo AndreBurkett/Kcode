@@ -141,8 +141,8 @@ exports.sector = class{
     gui(){
         let gui = new RoomVisual(this.room.name);
         if(this.owner == 'me'){
-            gui.text('Miners:', 1,40, {align:'left'});
-            gui.text(this.sectorController.miners + '/1', 6,40, {align:'left'});
+            gui.text('Miners:', 1,39, {align:'left'});
+            gui.text(this.sectorController.miners + '/1', 6,39, {align:'left'});
             gui.text('Upgraders:', 1,40, {align:'left'});
             gui.text(this.sectorController.upgraders + '/1', 6,40, {align:'left'});
         }
