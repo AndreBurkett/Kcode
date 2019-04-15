@@ -13,6 +13,37 @@ exports.sectorController = class{
 
         this.rooms = this.getRoomsInRange();
         this.sectorList = [];
+        
+        
+        //Iterate over creeps
+        for(let name in Memory.creeps){
+            if(Memory.creeps[name].scName && Memory.creeps[name].scName == this.name){
+                //Assign Creeps
+                if(!Game.creeps[name].memory.assignment){
+                    switch(Game.creeps[name].memory.role){
+                        case 'builder':
+                        this.assigner.builder.push(Game.creeps[name]);
+                        break;
+                        case 'miner':
+                        this.miners++;
+                        this.assigner.miner.push(Game.creeps[name]);
+                        break;
+                        case 'scout':
+                        this.assigner.scout.push(Game.creeps[name]);
+                        break;
+                        case 'upgrader':
+                        this.upgraders++;
+                        this.assigner.upgrader.push(Game.creeps[name]);
+                        break;
+                        case 'transporter':
+                        this.assigner.transporter.push(Game.creeps[name]);
+                        break;
+                    }
+                }
+            }
+            let run = new tm.creepManager(Game.creeps[name]);
+        }
+        
         //Create Sectors
         for(let i of this.rooms){
             if(Game.rooms[i]) this.sectorList.push(new s.sector(Game.rooms[i], this));
@@ -57,36 +88,6 @@ exports.sectorController = class{
                     }
                 }
             }
-        }
-
-
-        //Iterate over creeps
-        for(let name in Memory.creeps){
-            if(Memory.creeps[name].scName && Memory.creeps[name].scName == this.name){
-                //Assign Creeps
-                if(!Game.creeps[name].memory.assignment){
-                    switch(Game.creeps[name].memory.role){
-                        case 'builder':
-                        this.assigner.builder.push(Game.creeps[name]);
-                        break;
-                        case 'miner':
-                        this.miners++;
-                        this.assigner.miner.push(Game.creeps[name]);
-                        break;
-                        case 'scout':
-                        this.assigner.scout.push(Game.creeps[name]);
-                        break;
-                        case 'upgrader':
-                        this.upgraders++;
-                        this.assigner.upgrader.push(Game.creeps[name]);
-                        break;
-                        case 'transporter':
-                        this.assigner.transporter.push(Game.creeps[name]);
-                        break;
-                    }
-                }
-            }
-            let run = new tm.creepManager(Game.creeps[name]);
         }
         //Create Construction Manager
         this.constructor = new cm.constructionManager(this.assigner);
