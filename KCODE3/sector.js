@@ -53,7 +53,7 @@ exports.sector = class{
             }
             //update owner
             Memory.source[this.source[i].id].owner = this.owner;
-            Memory.source[this.source[i].id].controller = this.sectorController;
+            Memory.source[this.source[i].id].controller = this.sectorController.name;
         }
         //Create Controller Memory
         if(this.room.controller){
@@ -61,7 +61,7 @@ exports.sector = class{
                 Memory.controller[this.room.controller.id] = {};
                 Memory.controller[this.room.controller.id].space = this.getfreeSpace(this.room.controller);
             }
-            Memory.controller[this.room.controller.id].controller = this.sectorController;
+            Memory.controller[this.room.controller.id].controller = this.sectorController.name;
             if(!Memory.controller[this.room.controller.id].pos){
                 Memory.controller[this.room.controller.id].pos = {};
                 Memory.controller[this.room.controller.id].pos.x = this.room.controller.pos.x;
@@ -141,8 +141,10 @@ exports.sector = class{
     gui(){
         let gui = new RoomVisual(this.room.name);
         if(this.owner == 'me'){
+            gui.text('Miners:', 1,40, {align:'left'});
+            gui.text(this.sectorController.miners + '/1', 6,40, {align:'left'});
             gui.text('Upgraders:', 1,40, {align:'left'});
-            gui.text(0 + '/1', 6,40, {align:'left'});
+            gui.text(this.sectorController.upgraders + '/1', 6,40, {align:'left'});
         }
     }
 }

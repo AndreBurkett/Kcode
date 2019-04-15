@@ -6,7 +6,9 @@ tm = require('taskManager');
 exports.sectorController = class{
     constructor(name){
         this.name = name;
-        this.assigner = new am.assignmentManager(name);
+        this.miners = 0;
+        this.upgraders = 0;
+        this.assigner = new am.assignmentManager(this);
 
 
         this.rooms = this.getRoomsInRange();
