@@ -9,6 +9,16 @@ exports.transporter = class transporter extends role.role{
             if(Memory.source[this.assignment]) this.sourceTransport();
             else if(Memory.controller[this.assignment]) this.controllerTransport();    
         }
+        else{
+            if(Memory.source[this.assignment]){
+                let pos = this.getPos(Memory.source[this.assignment].pos)
+                this.safeMove(pos);
+            }
+            else if(Memory.controller[this.assignment]){
+                let pos = this.getPos(Memory.controller[this.assignment].pos);
+                this.safeMove(pos);
+            }
+        }
     }
 
     sourceTransport(){
