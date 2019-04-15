@@ -38,7 +38,7 @@ exports.spawnManager = class{
         }
         else{
             let energy = Math.min(this.cap, 500);
-            let parts = Math.floor(this.energy/100);
+            let parts = Math.floor(energy/100);
             for(let i = 0; i<parts; i++){
                 this.body.push(WORK);
             }
