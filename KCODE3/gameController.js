@@ -1,12 +1,11 @@
 tm = require('taskManager');
 sc =require('sectorController');
-s = require('sector');
 am = require('assignmentManager');
 cm = require('constructionManager');
 
 exports.gameController = class{
     constructor(){
-        this.assigner = new am.assignmentManager();
+        this.sectorController = [];
         //Create Memory
         if(!Memory.sector) Memory.sector = {};
         if(!Memory.source) Memory.source = {};
@@ -14,12 +13,8 @@ exports.gameController = class{
         if(!Memory.controller) Memory.controller = {};
         
         //Create Sector Controller
-        this.sectorController = new sc.sectorController('W24S7');
-        //Create Sectors
-        this.sector = [];
-        for(let i in Game.rooms){
-            this.sector.push(new s.sector(Game.rooms[i]));
-        }
+        this.sectorController.push(new sc.sectorController('W24S7'));
+        
         //Iterate over creeps
         for(let name in Memory.creeps){
             //Clear Memory
@@ -53,48 +48,6 @@ exports.gameController = class{
         }
         //Create Construction Manager
         this.constructor = new cm.constructionManager(this.assigner);
-        
-        //Iterate over sectors
-        for(let i in this.sector){
-            if(this.sector[i].owner != 'hostile'){
-                for(let j in this.sector[i].exits){
-                    let exit = this.sector[i].exits[j];
-                    if(Game.rooms[exit]){
-                        
-                    }
-                    else{
-                        //Assign Scout
-                        let minDistance = 99;
-                        for(let k in Game.spawns){
-                            let d = Game.map.getRoomLinearDistance(Game.spawns[k].room.name, exit);
-                            //console.log(exit, d);
-                            if(d < minDistance) minDistance = d;
-                        }
-                        if(minDistance <= 2){
-                            if(Memory.sector[exit]){
-                                if(Memory.sector[exit].owner != 'hostile'){
-                                    if(Memory.sector[exit].scout && Memory.sector[exit].scout.length > 0){
-                                        for(let k in Memory.sector[exit].scout){
-                                            let creep = Game.getObjectById(Memory.sector[exit].scout[k]);
-                                            if(creep && creep != null){
-                        
-                                            }
-                                            else Memory.sector[exit].scout.splice(k,1);
-                                        }
-                                    }
-                                    else this.assigner.assignScout(exit);
-                                }
-    
-                            }
-                            else{
-                                Memory.sector[exit] = {};
-                                Memory.sector[exit].scout = [];
-                            }
-                        }
-                    }
-                }
-            }
-        }
 
         //Iterate over sources
         for(let i of Object.keys(Memory.source)){

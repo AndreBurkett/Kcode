@@ -1,7 +1,8 @@
 nameBuilder = require('nameBuilder');
 
 exports.spawnManager = class{
-    constructor(){
+    constructor(scName){
+        this.scName = scName;
         this.builder = 0;
         this.miner = 0;
         this.scout = 0;
@@ -25,21 +26,21 @@ exports.spawnManager = class{
 
     spawnBuilder(){
         this.body = [MOVE,MOVE,CARRY,CARRY,WORK];
-        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('b'), {memory: {role: 'builder'}}) == 0){
+        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('b'), {memory: {role: 'builder', sc:this.scName}}) == 0){
             nameBuilder.commitName('b');
         }
     }
     
     spawnMiner(workParts){
         this.body = [MOVE,CARRY,WORK,WORK];
-        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('m'), {memory: {role: 'miner'}}) == 0){
+        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('m'), {memory: {role: 'miner', sc:this.scName}}) == 0){
             nameBuilder.commitName('m');
         }
     }
 
     spawnScout(){
         this.body = [MOVE];
-        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('s'), {memory: {role: 'scout'}}) == 0){
+        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('s'), {memory: {role: 'scout', sc:this.scName}}) == 0){
             nameBuilder.commitName('s');
         }
     }
@@ -51,7 +52,7 @@ exports.spawnManager = class{
         for(let i=0;i<parts; i++){
             this.body.push(CARRY,CARRY,MOVE);
         }
-        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('t'), {memory: {role: 'transporter'}}) == 0){
+        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('t'), {memory: {role: 'transporter', sc:this.scName}}) == 0){
             nameBuilder.commitName('t');
         }
     }
@@ -65,7 +66,7 @@ exports.spawnManager = class{
             this.body.push(WORK);
         }
         this.body.push(CARRY,MOVE)
-        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('u'), {memory: {role: 'upgrader'}}) == 0){
+        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('u'), {memory: {role: 'upgrader', sc:this.scName}}) == 0){
             nameBuilder.commitName('u');
         }
     }

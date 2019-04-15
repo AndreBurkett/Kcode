@@ -1,8 +1,9 @@
 bc = require('bunkerController');
 
 exports.sector = class{
-    constructor(sector){
+    constructor(sector, sectorController){
         this.room = sector;
+        this.sectorController = sectorController;
         this.exits = Game.map.describeExits(this.room.name);
         this.terrain = Game.map.getRoomTerrain(this.room.name)
         this.source = this.room.find(FIND_SOURCES);
@@ -47,12 +48,12 @@ exports.sector = class{
                 }
                 else{
                     let spawn = Game.spawns['Spawn1'];
-                    console.log(spawn);
                     Memory.source[this.source[i].id].spawnPath = this.getPath(this.source[i].pos, spawn.pos);
                 }
             }
             //update owner
             Memory.source[this.source[i].id].owner = this.owner;
+            Memory.source[this.source[i].id].controller = this.sectorController;
         }
         //Create Controller Memory
         if(this.room.controller){
@@ -60,6 +61,7 @@ exports.sector = class{
                 Memory.controller[this.room.controller.id] = {};
                 Memory.controller[this.room.controller.id].space = this.getfreeSpace(this.room.controller);
             }
+            Memory.controller[this.room.controller.id].controller = this.sectorController;
             if(!Memory.controller[this.room.controller.id].pos){
                 Memory.controller[this.room.controller.id].pos = {};
                 Memory.controller[this.room.controller.id].pos.x = this.room.controller.pos.x;
