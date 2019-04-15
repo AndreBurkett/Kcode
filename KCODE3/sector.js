@@ -145,8 +145,10 @@ exports.sector = class{
             gui.text(this.sectorController.builders + '/1', 6,38, {align:'left'});
             gui.text('Miners:', 1,39, {align:'left'});
             gui.text(this.sectorController.miners + '/1', 6,39, {align:'left'});
-            gui.text('Upgraders:', 1,40, {align:'left'});
-            gui.text(this.sectorController.upgraders + '/1', 6,40, {align:'left'});
+            gui.text('Transporters:', 1,40, {align:'left'});
+            gui.text(this.sectorController.transporters + '/1', 6,40, {align:'left'});
+            gui.text('Upgraders:', 1,41, {align:'left'});
+            gui.text(this.sectorController.upgraders + '/1', 6,41, {align:'left'});
         }
     }
 }
