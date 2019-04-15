@@ -2,8 +2,8 @@ nameBuilder = require('nameBuilder');
 sm = require('spawnManager');
 
 exports.assignmentManager = class{
-    constructor(name){
-        this.spawnManager = new sm.spawnManager(name)
+    constructor(sc){
+        this.spawnManager = new sm.spawnManager(sc)
         this.builder = [];
         this.miner = [];
         this.scout = [];

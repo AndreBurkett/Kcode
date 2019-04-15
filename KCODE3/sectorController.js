@@ -10,7 +10,7 @@ exports.sectorController = class{
         this.miners = _.filter(Game.creeps, (c) => c.memory.sc == this.name && c.memory.role == 'miner').length;
         this.transporters = _.filter(Game.creeps, (c) => c.memory.sc == this.name && c.memory.role == 'transporter').length;
         this.upgraders = _.filter(Game.creeps, (c) => c.memory.sc == this.name && c.memory.role == 'upgrader').length;
-        this.assigner = new am.assignmentManager(name);
+        this.assigner = new am.assignmentManager(this);
 
 
         this.rooms = this.getRoomsInRange();

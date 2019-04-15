@@ -1,8 +1,8 @@
 nameBuilder = require('nameBuilder');
 
 exports.spawnManager = class{
-    constructor(scName){
-        this.scName = scName;
+    constructor(sc){
+        this.sc = sc;
         this.builder = 0;
         this.miner = 0;
         this.scout = 0;
@@ -12,6 +12,7 @@ exports.spawnManager = class{
         this.body = [];
         this.spawner = Game.spawns['Spawn1'];
         this.energy = this.spawner.room.energyAvailable;
+        this.cap = this.spawner.room.energyCapacityAvailable;
     }
 
     spawn(){
@@ -26,21 +27,31 @@ exports.spawnManager = class{
 
     spawnBuilder(){
         this.body = [MOVE,MOVE,CARRY,CARRY,WORK];
-        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('b'), {memory: {role: 'builder', sc:this.scName}}) == 0){
+        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('b'), {memory: {role: 'builder', sc:this.sc.name}}) == 0){
             nameBuilder.commitName('b');
         }
     }
     
     spawnMiner(workParts){
-        this.body = [MOVE,CARRY,WORK,WORK];
-        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('m'), {memory: {role: 'miner', sc:this.scName}}) == 0){
+        if(this.sc.miners == 0){
+            this.body = [MOVE,CARRY,WORK,WORK];
+        }
+        else{
+            let energy = Math.min(this.cap, 500);
+            let parts = Math.floor(this.energy/100);
+            for(let i = 0; i<parts; i++){
+                this.body.push(WORK);
+            }
+            this.body.push(MOVE,CARRY)
+        }
+        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('m'), {memory: {role: 'miner', sc:this.sc.name}}) == 0){
             nameBuilder.commitName('m');
         }
     }
 
     spawnScout(){
         this.body = [MOVE];
-        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('s'), {memory: {role: 'scout', sc:this.scName}}) == 0){
+        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('s'), {memory: {role: 'scout', sc:this.sc.name}}) == 0){
             nameBuilder.commitName('s');
         }
     }
@@ -52,7 +63,7 @@ exports.spawnManager = class{
         for(let i=0;i<parts; i++){
             this.body.push(CARRY,CARRY,MOVE);
         }
-        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('t'), {memory: {role: 'transporter', sc:this.scName}}) == 0){
+        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('t'), {memory: {role: 'transporter', sc:this.sc.name}}) == 0){
             nameBuilder.commitName('t');
         }
     }
@@ -66,7 +77,7 @@ exports.spawnManager = class{
             this.body.push(WORK);
         }
         this.body.push(CARRY,MOVE)
-        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('u'), {memory: {role: 'upgrader', sc:this.scName}}) == 0){
+        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('u'), {memory: {role: 'upgrader', sc:this.sc.name}}) == 0){
             nameBuilder.commitName('u');
         }
     }
