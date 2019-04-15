@@ -14,7 +14,7 @@ exports.role = class{
         if(this.creep.memory && this.creep.memory.path && this.creep.memory.path[0]){
 
         }
-        else console.log(this.creep.name);
+        else console.log(this.creep.name, this.creep.memory.path.length);
         let mpos = new RoomPosition(this.creep.memory.path[0].x, this.creep.memory.path[0].y, this.creep.memory.path[0].roomName);
         switch(this.creep.move(this.creep.pos.getDirectionTo(mpos))){
             case OK:
