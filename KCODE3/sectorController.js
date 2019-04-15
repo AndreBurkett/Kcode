@@ -231,4 +231,19 @@ exports.sectorController = class{
         }
         return rooms;
     }
+
+    gui(){
+        let gui = new RoomVisual(this.name);
+        let room = Game.rooms[this.name];
+        gui.text('Energy:', 1,37, {align:'left'});
+        gui.text(room.energyAvailable + '/' + room.energyCapacityAvailable, 6,37, {align:'left'});
+        gui.text('Builders:', 1,38, {align:'left'});
+        gui.text(this.builders + '/1', 6,38, {align:'left'});
+        gui.text('Miners:', 1,39, {align:'left'});
+        gui.text(this.miners + '/1', 6,39, {align:'left'});
+        gui.text('Transporters:', 1,40, {align:'left'});
+        gui.text(this.transporters + '/1', 6,40, {align:'left'});
+        gui.text('Upgraders:', 1,41, {align:'left'});
+        gui.text(this.upgraders + '/1', 6,41, {align:'left'});
+    }
 }
