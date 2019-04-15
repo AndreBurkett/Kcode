@@ -6,10 +6,10 @@ tm = require('taskManager');
 exports.sectorController = class{
     constructor(name){
         this.name = name;
-        this.builders = 0;
-        this.miners = _.filter(Game.creeps, (c) => c.memory.sc == this.name && c.memory.role == 'miner');
-        this.transporters = 0;
-        this.upgraders = 0;
+        this.builders = _.filter(Game.creeps, (c) => c.memory.sc == this.name && c.memory.role == 'builder').length;
+        this.miners = _.filter(Game.creeps, (c) => c.memory.sc == this.name && c.memory.role == 'miner').length;
+        this.transporters = _.filter(Game.creeps, (c) => c.memory.sc == this.name && c.memory.role == 'transporter').length;
+        this.upgraders = _.filter(Game.creeps, (c) => c.memory.sc == this.name && c.memory.role == 'upgrader').length;
         this.assigner = new am.assignmentManager(name);
 
 
