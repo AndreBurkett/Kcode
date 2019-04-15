@@ -247,7 +247,7 @@ exports.sectorController = class{
         gui.text(this.miners + '/1', 6,39, {align:'left'});
         
         gui.text('Scouts:', 1,40, {align:'left'});
-        gui.text(this.scouts + '/1', 6,40, {align:'left'});
+        gui.text(this.scouts + '/' + this.assigner.spawnManager.scout, 6,40, {align:'left'});
 
         gui.text('Transporters:', 1,41, {align:'left'});
         gui.text(this.transporters + '/1', 6,41, {align:'left'});
