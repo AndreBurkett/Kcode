@@ -8,6 +8,7 @@ exports.sectorController = class{
         this.name = name;
         this.builders = _.filter(Game.creeps, (c) => c.memory.sc == this.name && c.memory.role == 'builder').length;
         this.miners = _.filter(Game.creeps, (c) => c.memory.sc == this.name && c.memory.role == 'miner').length;
+        this.scouts = _.filter(Game.creeps, (c) => c.memory.sc == this.name && c.memory.role == 'scout').length;
         this.transporters = _.filter(Game.creeps, (c) => c.memory.sc == this.name && c.memory.role == 'transporter').length;
         this.upgraders = _.filter(Game.creeps, (c) => c.memory.sc == this.name && c.memory.role == 'upgrader').length;
         this.assigner = new am.assignmentManager(this);
@@ -244,9 +245,13 @@ exports.sectorController = class{
         gui.text(this.builders + '/1', 6,38, {align:'left'});
         gui.text('Miners:', 1,39, {align:'left'});
         gui.text(this.miners + '/1', 6,39, {align:'left'});
-        gui.text('Transporters:', 1,40, {align:'left'});
-        gui.text(this.transporters + '/1', 6,40, {align:'left'});
-        gui.text('Upgraders:', 1,41, {align:'left'});
-        gui.text(this.upgraders + '/1', 6,41, {align:'left'});
+        
+        gui.text('Scouts:', 1,40, {align:'left'});
+        gui.text(this.scouts + '/1', 6,40, {align:'left'});
+
+        gui.text('Transporters:', 1,41, {align:'left'});
+        gui.text(this.transporters + '/1', 6,41, {align:'left'});
+        gui.text('Upgraders:', 1,42, {align:'left'});
+        gui.text(this.upgraders + '/1', 6,42, {align:'left'});
     }
 }
