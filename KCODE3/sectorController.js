@@ -6,7 +6,9 @@ tm = require('taskManager');
 exports.sectorController = class{
     constructor(name){
         this.name = name;
+        this.builders = 0;
         this.miners = 0;
+        this.transporters = 0;
         this.upgraders = 0;
         this.assigner = new am.assignmentManager(name);
 
@@ -22,6 +24,7 @@ exports.sectorController = class{
                 if(!Game.creeps[name].memory.assignment){
                     switch(Game.creeps[name].memory.role){
                         case 'builder':
+                        this.builders++
                         this.assigner.builder.push(Game.creeps[name]);
                         break;
                         case 'miner':
@@ -36,6 +39,7 @@ exports.sectorController = class{
                         this.assigner.upgrader.push(Game.creeps[name]);
                         break;
                         case 'transporter':
+                        this.transporters++;
                         this.assigner.transporter.push(Game.creeps[name]);
                         break;
                     }
