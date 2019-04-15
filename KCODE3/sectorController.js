@@ -201,6 +201,9 @@ exports.sectorController = class{
         
         //Spawn Creeps
         this.assigner.spawnManager.spawn();
+
+        //Create GUI
+        this.gui();
     }
 
     assignControllerTransporter(id, controller){
