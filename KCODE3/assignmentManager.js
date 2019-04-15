@@ -42,6 +42,9 @@ exports.assignmentManager = class{
     assignScout(assignment){
         if(this.scout.length > 0){
             if(Memory.sector[assignment]){
+                if(!Memory.sector[assignment].scout){
+                    Memory.sector[assignment].scout = [];
+                }
                 Memory.sector[assignment].scout.push(this.scout[0].id);
                 this.scout[0].memory.assignment = assignment;
                 this.scout.slice(0,1);
