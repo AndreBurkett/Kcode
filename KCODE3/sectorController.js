@@ -8,14 +8,14 @@ exports.sectorController = class{
         this.name = name;
         this.miners = 0;
         this.upgraders = 0;
-        this.assigner = new am.assignmentManager(this);
+        this.assigner = new am.assignmentManager(name);
 
 
         this.rooms = this.getRoomsInRange();
         this.sectorList = [];
         //Create Sectors
         for(let i of this.rooms){
-            if(Game.rooms[i]) this.sectorList.push(new s.sector(Game.rooms[i], this.name));
+            if(Game.rooms[i]) this.sectorList.push(new s.sector(Game.rooms[i], this));
         }
 
         //Iterate over sectors
