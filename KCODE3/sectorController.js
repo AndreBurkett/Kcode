@@ -17,7 +17,7 @@ exports.sectorController = class{
         
         //Iterate over creeps
         for(let name in Memory.creeps){
-            if(Memory.creeps[name].scName && Memory.creeps[name].scName == this.name){
+            if(Memory.creeps[name].sc && Memory.creeps[name].sc == this.name){
                 //Assign Creeps
                 if(!Game.creeps[name].memory.assignment){
                     switch(Game.creeps[name].memory.role){
@@ -43,7 +43,7 @@ exports.sectorController = class{
             }
             let run = new tm.creepManager(Game.creeps[name]);
         }
-        
+
         //Create Sectors
         for(let i of this.rooms){
             if(Game.rooms[i]) this.sectorList.push(new s.sector(Game.rooms[i], this));
