@@ -17,10 +17,10 @@ exports.spawnManager = class{
 
     spawn(){
         console.log(this.builder, this.miner, this.transporter, this.upgrader, this.scout);
+        if(this.sc.miners > 0 && this.sc.transporters > 0 && this.upgrader > 0) this.spawnUpgrader;
         if(this.transporter > this.miner) this.spawnTransporter();
-        else if(this.miner > 0) this.spawnMiner(1);
+        else if(this.miner > 0) this.spawnMiner();
         else if(this.transporter > 0) this.spawnTransporter();
-        else if(this.upgrader > 0) this.spawnUpgrader();
         else if(this.builder > 0) this.spawnBuilder();
         else if(this.scout > 0) this.spawnScout();
     }
@@ -32,7 +32,7 @@ exports.spawnManager = class{
         }
     }
     
-    spawnMiner(workParts){
+    spawnMiner(){
         if(this.sc.miners == 0){
             this.body = [MOVE,CARRY,WORK,WORK];
         }
