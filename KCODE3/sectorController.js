@@ -7,7 +7,7 @@ exports.sectorController = class{
     constructor(name){
         this.name = name;
         this.builders = 0;
-        this.miners = 0;
+        this.miners = _.filter(Game.creeps, (c) => c.memory.sc == this.name && c.memory.role == 'miner');
         this.transporters = 0;
         this.upgraders = 0;
         this.assigner = new am.assignmentManager(name);
@@ -24,22 +24,18 @@ exports.sectorController = class{
                 if(!Game.creeps[name].memory.assignment){
                     switch(Game.creeps[name].memory.role){
                         case 'builder':
-                        this.builders++
                         this.assigner.builder.push(Game.creeps[name]);
                         break;
                         case 'miner':
-                        this.miners++;
                         this.assigner.miner.push(Game.creeps[name]);
                         break;
                         case 'scout':
                         this.assigner.scout.push(Game.creeps[name]);
                         break;
                         case 'upgrader':
-                        this.upgraders++;
                         this.assigner.upgrader.push(Game.creeps[name]);
                         break;
                         case 'transporter':
-                        this.transporters++;
                         this.assigner.transporter.push(Game.creeps[name]);
                         break;
                     }

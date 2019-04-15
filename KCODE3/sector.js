@@ -4,7 +4,7 @@ exports.sector = class{
     constructor(sector, sectorController){
         this.room = sector;
         this.sectorController = sectorController;
-        console.log(this.sectorController.miners);
+        //console.log(this.sectorController.miners);
         this.exits = Game.map.describeExits(this.room.name);
         this.terrain = Game.map.getRoomTerrain(this.room.name)
         this.source = this.room.find(FIND_SOURCES);
