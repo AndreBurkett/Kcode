@@ -98,7 +98,7 @@ exports.sectorController = class{
 
         //Iterate over sources
         for(let i of Object.keys(Memory.source)){
-            if(Memory.source.controller == this.name){
+            if(Memory.source[i].controller == this.name){
                 if(Memory.source[i].owner != 'hostile'){
                     //Assign Miners
                     let workParts = 0
