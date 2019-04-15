@@ -60,7 +60,7 @@ exports.sectorController = class{
 
         //Iterate over creeps
         for(let name in Memory.creeps){
-            if(Memory.creeps[name].memory.scName && Memory.creeps[name].memory.scName == this.name){
+            if(Memory.creeps[name].scName && Memory.creeps[name].scName == this.name){
                 //Assign Creeps
                 if(!Game.creeps[name].memory.assignment){
                     switch(Game.creeps[name].memory.role){
