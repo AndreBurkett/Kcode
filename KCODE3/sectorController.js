@@ -224,7 +224,7 @@ exports.sectorController = class{
         for(let name of Object.keys(Memory.sector)){
             let d = Game.map.getRoomLinearDistance(this.name, name);
             if(d <= 2){
-                rooms.push(d);
+                rooms.push(name);
             }
         }
         return rooms;
