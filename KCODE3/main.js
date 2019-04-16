@@ -14,7 +14,7 @@ module.exports.loop = function(){
           gcl: {},
           rooms: {},
           cpu: {},
-          creeps,
+          creeps: {},
         };
       
         Memory.stats.time = Game.time;
