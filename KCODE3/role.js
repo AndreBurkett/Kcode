@@ -11,7 +11,7 @@ exports.role = class{
             if(!pos.isEqualTo(pos1)) this.safePath(pos);
         }
         else{
-            console.log(this.creep.name, pos);
+            console.log(this.safePath(pos));
             this.safePath(pos);
         }
         if(this.creep.memory && this.creep.memory.path && this.creep.memory.path[0]){
@@ -46,6 +46,7 @@ exports.role = class{
             }
         });
         this.creep.memory.path = p.path;
+        return p.path;
     }
     getPos(mem){
         return new RoomPosition(mem.x, mem.y, mem.roomName);
