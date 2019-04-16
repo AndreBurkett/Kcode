@@ -15,18 +15,17 @@ exports.role = class{
             this.safePath(pos);
         }
         if(this.creep.memory && this.creep.memory.path && this.creep.memory.path[0]){
-
+            let mpos = new RoomPosition(this.creep.memory.path[0].x, this.creep.memory.path[0].y, this.creep.memory.path[0].roomName);
+            switch(this.creep.move(this.creep.pos.getDirectionTo(mpos))){
+                case OK:
+                    this.creep.memory.path.splice(0,1);
+                    break;
+                case ERR_NOT_IN_RANGE:
+                    this.safePath(pos);
+                    break;
+            }
         }
-        else console.log(this.creep.name, this.creep.memory.path.length, pos);
-        let mpos = new RoomPosition(this.creep.memory.path[0].x, this.creep.memory.path[0].y, this.creep.memory.path[0].roomName);
-        switch(this.creep.move(this.creep.pos.getDirectionTo(mpos))){
-            case OK:
-                this.creep.memory.path.splice(0,1);
-                break;
-            case ERR_NOT_IN_RANGE:
-                this.safePath(pos);
-                break;
-        }
+        else this.creep.moveTo(pos);
     }
 
     safePath(pos){
@@ -46,7 +45,6 @@ exports.role = class{
             }
         });
         this.creep.memory.path = p.path;
-        return p.path.length;
     }
     getPos(mem){
         return new RoomPosition(mem.x, mem.y, mem.roomName);
