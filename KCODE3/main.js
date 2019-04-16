@@ -47,6 +47,7 @@ module.exports.loop = function(){
         Memory.stats.cpu.move          = Memory.moveCpu;
 
         //Screeps stats
-        Memory.stats.creeps.count      = Game.creeps.length;
+        console.log(Game.creeps.length);
+        Memory.stats.creeps.count      = Game.creeps;
       }
 }
