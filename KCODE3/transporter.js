@@ -43,7 +43,7 @@ exports.transporter = class transporter extends role.role{
             }
                 
             if (this.creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                this.safeMove(target.pos);
+                this.creep.moveTo(target.pos);
             }
         }
         else{
