@@ -12,7 +12,6 @@ exports.transporter = class transporter extends role.role{
         else if(this.creep.memory.task != 'deposit'){
             if(Memory.source[this.assignment]){
                 let pos = this.getPos(Memory.source[this.assignment].pos)
-                console.log(this.creep.name, pos);
                 this.safeMove(pos);
             }
             else if(Memory.controller[this.assignment]){
