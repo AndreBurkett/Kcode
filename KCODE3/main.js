@@ -2,7 +2,9 @@ game = require('gameController');
 stats = require('stats');
 
 module.exports.loop = function(){
+    Memory.moveCpu = 0;
     controller = new game.gameController();
+    
     exportStats();
 
 
@@ -41,5 +43,6 @@ module.exports.loop = function(){
         Memory.stats.cpu.bucket        = Game.cpu.bucket;
         Memory.stats.cpu.limit         = Game.cpu.limit;
         Memory.stats.cpu.used          = Game.cpu.getUsed();
+        Memory.stats.cpu.move          = Memory.moveCpu;
       }
 }

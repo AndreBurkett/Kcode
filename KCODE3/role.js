@@ -5,6 +5,7 @@ exports.role = class{
     }
 
     safeMove(pos){
+        let cpu = Game.cpu.getUsed();
         if(this.creep.memory.path && this.creep.memory.path.length > 0){
             let len = this.creep.memory.path.length - 1;
             let pos1 = this.getPos(this.creep.memory.path[len]);
@@ -25,6 +26,7 @@ exports.role = class{
             }
         }
         else this.creep.moveTo(pos);
+        Memory.stats.cpu.move += Game.cpu.getUsed() - cpu;
     }
 
     safePath(pos){
