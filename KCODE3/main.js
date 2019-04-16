@@ -14,6 +14,7 @@ module.exports.loop = function(){
           gcl: {},
           rooms: {},
           cpu: {},
+          creeps,
         };
       
         Memory.stats.time = Game.time;
@@ -46,6 +47,6 @@ module.exports.loop = function(){
         Memory.stats.cpu.move          = Memory.moveCpu;
 
         //Screeps stats
-        Memory.stats.screeps           = Game.creeps.length;
+        Memory.stats.creeps.count      = Game.creeps.length;
       }
 }
