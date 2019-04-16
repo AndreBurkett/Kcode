@@ -46,6 +46,6 @@ module.exports.loop = function(){
         Memory.stats.cpu.move          = Memory.moveCpu;
 
         //Screeps stats
-        Memory.stats.screeps           = Game.screeps.length;
+        Memory.stats.screeps           = Game.creeps.length;
       }
 }
