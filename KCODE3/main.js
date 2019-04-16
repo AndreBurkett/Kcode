@@ -44,5 +44,8 @@ module.exports.loop = function(){
         Memory.stats.cpu.limit         = Game.cpu.limit;
         Memory.stats.cpu.used          = Game.cpu.getUsed();
         Memory.stats.cpu.move          = Memory.moveCpu;
+
+        //Screeps stats
+        Memory.stats.screeps           = Game.screeps.length;
       }
 }
