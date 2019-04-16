@@ -23,6 +23,7 @@ exports.transporter = class transporter extends role.role{
 
     sourceTransport(){
         if(this.creep.carry.energy == this.creep.carryCapacity || (this.creep.carry.energy > 0 && this.creep.memory.task == 'deposit')){
+            console.log(this.creep.name);
             this.creep.memory.task = 'deposit';
             let target = this.creep.pos.findClosestByRange(FIND_STRUCTURES, {
                 filter: (s) => (s.structureType == STRUCTURE_TOWER && s.energy < s.energyCapacity) || ((s.structureType == STRUCTURE_EXTENSION || s.structureType == STRUCTURE_SPAWN) && s.energy < s.energyCapacity)
