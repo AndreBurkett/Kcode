@@ -52,7 +52,7 @@ exports.transporter = class transporter extends role.role{
             if(source && Memory.source[source].spawnPath){
                 let pos = new RoomPosition(Memory.source[source].spawnPath.path[0].x, Memory.source[source].spawnPath.path[0].y, Memory.source[source].spawnPath.path[0].roomName);
                 let container = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER})[0];
-                if(container && container.store[RESOURCE_ENERGY] >= this.creep.carryCapacity){
+                if(container && container.store[RESOURCE_ENERGY] && container.store[RESOURCE_ENERGY] >= this.creep.carryCapacity){
                     if(this.creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
                         this.safeMove(container.pos);
                     }
