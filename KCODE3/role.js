@@ -41,7 +41,7 @@ exports.role = class{
                 }
                 else Memory.sector[roomName] = {};
                 let costs = new PathFinder.CostMatrix();
-                Memory.sector.CostMatrix = costs;
+                Memory.sector[roomName].CostMatrix = costs;
                 return costs;
             }
         });
