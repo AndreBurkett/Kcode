@@ -26,7 +26,7 @@ exports.role = class{
             }
         }
         else this.creep.moveTo(pos);
-        Memory.stats.cpu.move += Game.cpu.getUsed() - cpu;
+        Memory.moveCpu += Game.cpu.getUsed() - cpu;
     }
 
     safePath(pos){
