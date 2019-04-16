@@ -11,8 +11,8 @@ exports.transporter = class transporter extends role.role{
         }
         else{
             if(Memory.source[this.assignment]){
-                console.log(this.creep.name);
                 let pos = this.getPos(Memory.source[this.assignment].pos)
+                console.log(this.creep.name, pos);
                 this.safeMove(pos);
             }
             else if(Memory.controller[this.assignment]){
