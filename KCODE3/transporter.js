@@ -25,26 +25,27 @@ exports.transporter = class transporter extends role.role{
         if(this.creep.carry.energy == this.creep.carryCapacity || (this.creep.carry.energy > 0 && this.creep.memory.task == 'deposit')){
             this.creep.memory.task = 'deposit';
             let target = this.creep.pos.findClosestByRange(FIND_STRUCTURES, {
-                filter: (s) => (s.structureType == STRUCTURE_TOWER && s.energy < s.energyCapacity) || ((s.structureType == STRUCTURE_EXTENSION || s.structureType == STRUCTURE_SPAWN) && s.energy < s.energyCapacity)});
-                if(!target) target = this.creep.pos.findClosestByRange(FIND_STRUCTURES, {filter: (s) => (s.structureType == STRUCTURE_LINK && s.energy < s.energyCapacity)});
-                if(!target) target = this.creep.pos.findClosestByRange(FIND_STRUCTURES, {filter: (s) => (s.structureType == STRUCTURE_STORAGE && s.store[RESOURCE_ENERGY] < s.storeCapacity)});
-                if(!target){
-                    let l = Memory.source[this.assignment].spawnPath.path.length - 1;
-                    let path = Memory.source[this.assignment].spawnPath.path[l];
-                    if(this.creep.room.name == path.roomName){
-                        this.sendUpgraderRequest(this.creep.room.name);
-                    }
-                    else{
-                        let pos = new RoomPosition(path.x, path.y, path.roomName);
-                        this.safeMove(pos);
-                        return;
-                    }
+                filter: (s) => (s.structureType == STRUCTURE_TOWER && s.energy < s.energyCapacity) || ((s.structureType == STRUCTURE_EXTENSION || s.structureType == STRUCTURE_SPAWN) && s.energy < s.energyCapacity)
+            });
+            if(!target) target = this.creep.pos.findClosestByRange(FIND_STRUCTURES, {filter: (s) => (s.structureType == STRUCTURE_LINK && s.energy < s.energyCapacity)});
+            if(!target) target = this.creep.pos.findClosestByRange(FIND_STRUCTURES, {filter: (s) => (s.structureType == STRUCTURE_STORAGE && s.store[RESOURCE_ENERGY] < s.storeCapacity)});
+            if(!target){
+                let l = Memory.source[this.assignment].spawnPath.path.length - 1;
+                let path = Memory.source[this.assignment].spawnPath.path[l];
+                if(this.creep.room.name == path.roomName){
+                    this.sendUpgraderRequest(this.creep.room.name);
                 }
-                    
-                if (this.creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    this.safeMove(target.pos);
+                else{
+                    let pos = new RoomPosition(path.x, path.y, path.roomName);
+                    this.safeMove(pos);
+                    return;
                 }
             }
+                
+            if (this.creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                this.safeMove(target.pos);
+            }
+        }
         else{
             this.creep.memory.task = 'withdraw';
             let source = this.creep.memory.assignment;
