@@ -46,7 +46,7 @@ exports.role = class{
             }
         });
         this.creep.memory.path = p.path;
-        return p.incomplete;
+        return p.path.length;
     }
     getPos(mem){
         return new RoomPosition(mem.x, mem.y, mem.roomName);
