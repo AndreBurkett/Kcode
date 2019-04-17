@@ -1,9 +1,15 @@
 game = require('gameController');
 stats = require('stats');
+const profiler = require('screeps-profiler');
+
+profiler.enable();
 
 module.exports.loop = function(){
     Memory.moveCpu = 0;
-    controller = new game.gameController();
+    profiler.wrap(function() {
+        // Main.js logic should go here.
+        controller = new game.gameController();
+      });
     
     exportStats();
 
