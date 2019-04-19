@@ -222,16 +222,16 @@ exports.sector = class{
         gui.text('Energy:', 1,37, {align:'left'});
         gui.text(room.energyAvailable + '/' + room.energyCapacityAvailable, 6,37, {align:'left'});
         gui.text('Builders:', 1,38, {align:'left'});
-        gui.text(this.role.builders + '/1', 6,38, {align:'left'});
+        gui.text(this.role.builder + '/1', 6,38, {align:'left'});
         gui.text('Miners:', 1,39, {align:'left'});
-        gui.text(this.role.miners + '/1', 6,39, {align:'left'});
+        gui.text(this.role.miner + '/1', 6,39, {align:'left'});
         
         gui.text('Scouts:', 1,40, {align:'left'});
-        gui.text(this.role.scouts + '/' + this.assigner.spawnManager.scout, 6,40, {align:'left'});
+        gui.text(this.role.scout + '/' + this.assigner.spawnManager.scout, 6,40, {align:'left'});
 
         gui.text('Transporters:', 1,41, {align:'left'});
-        gui.text(this.role.transporters + '/1', 6,41, {align:'left'});
+        gui.text(this.role.transporter + '/1', 6,41, {align:'left'});
         gui.text('Upgraders:', 1,42, {align:'left'});
-        gui.text(this.role.upgraders + '/1', 6,42, {align:'left'});
+        gui.text(this.role.upgrader + '/1', 6,42, {align:'left'});
     }
 }
