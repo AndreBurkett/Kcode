@@ -11,7 +11,6 @@ exports.subSector = class{
         this.owner = this.getOwner();
         this.roomCostMatrix = this.getCostMatrix();
         
-        
         //Create Sector Memory
         if(!Memory.sector[this.sector.name].subSector[this.room.name]){
             Memory.sector[this.sector.name].subSector[this.room.name] = {};

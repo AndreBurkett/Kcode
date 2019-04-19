@@ -15,12 +15,12 @@ exports.spawnManager = class{
 
     spawn(){
         console.log(this.role.builder, this.role.miner, this.role.transporter, this.role.upgrader, this.role.scout);
-        if(this.sector.role.miners > 0 && this.sector.role.transporters > 0 && this.role.upgrader > 0) this.spawnUpgrader();
-        else if(this.sector.role.keepers == 0 && this.role.keeper > 0) this.spawnKeeper();
+        if(this.sector.role.miner > 0 && this.sector.role.transporter > 0 && this.role.upgrader > 0) this.spawnUpgrader();
+        else if(this.sector.role.keeper == 0 && this.role.keeper > 0) this.spawnKeeper();
         else if(this.role.transporter > this.role.miner) this.spawnTransporter();
-        else if(this.role.miner > 0 && this.sector.role.miners < 8) this.spawnMiner();
-        else if(this.role.transporter > 0 && this.sector.role.transporters < 8) this.spawnTransporter();
-        else if(this.role.builder > 0 && this.sector.role.builders < 5) this.spawnBuilder();
+        else if(this.role.miner > 0 && this.sector.role.miner < 8) this.spawnMiner();
+        else if(this.role.transporter > 0 && this.sector.role.transporter < 8) this.spawnTransporter();
+        else if(this.role.builder > 0 && this.sector.role.builder < 5) this.spawnBuilder();
         else if(this.role.scout > 0) this.spawnScout();
     }
 
