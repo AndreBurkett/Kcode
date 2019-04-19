@@ -27,14 +27,14 @@ exports.spawnManager = class{
 
     spawnBuilder(){
         this.body = [MOVE,MOVE,CARRY,CARRY,WORK];
-        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('b'), {memory: {role: 'builder', sector:this.sector.name}}) == 0){
+        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('b'), {memory: {role: 'builder', sector: this.sector.name}}) == 0){
             nameBuilder.commitName('b');
         }
     }
 
     spawnKeeper(){
         this.body = [MOVE,CARRY,CARRY,CARRY,CARRY,CARRY];
-        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('k'), {memory: {role: 'role.keeper', sector:this.sector.name}}) == 0){
+        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('k'), {memory: {role: 'keeper', sector: this.sector.name}}) == 0){
             nameBuilder.commitName('k');
         }
     }
@@ -51,14 +51,14 @@ exports.spawnManager = class{
             }
             this.body.push(MOVE,CARRY)
         }
-        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('m'), {memory: {role: 'miner', sector:this.sector.name}}) == 0){
+        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('m'), {memory: {role: 'miner', sector: this.sector.name}}) == 0){
             nameBuilder.commitName('m');
         }
     }
 
     spawnScout(){
         this.body = [MOVE];
-        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('s'), {memory: {role: 'scout', sector:this.sector.name}}) == 0){
+        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('s'), {memory: {role: 'scout', sector: this.sector.name}}) == 0){
             nameBuilder.commitName('s');
         }
     }
@@ -70,7 +70,7 @@ exports.spawnManager = class{
         for(let i=0;i<parts; i++){
             this.body.push(CARRY,CARRY,MOVE);
         }
-        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('t'), {memory: {role: 'transporter', sector:this.sector.name}}) == 0){
+        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('t'), {memory: {role: 'transporter', sector: this.sector.name}}) == 0){
             nameBuilder.commitName('t');
         }
     }
