@@ -9,8 +9,8 @@ var upgrader = {
         else if(creep.room.find(FIND_STRUCTURES, {filter: (s) => (s.structureType == STRUCTURE_CONTAINER && s.store[RESOURCE_ENERGY] > 0) || (s.structureType == STRUCTURE_LINK && s.energy > 0)}).length > 0){
             creep.memory.task = 'pickup';
             target = creep.pos.findClosestByRange(FIND_STRUCTURES, 
-                {filter: (s) => (s.structureType == STRUCTURE_CONTAINER && s.store[RESOURCE_ENERGY] >= creep.carryCapacity) || (s.structureType == STRUCTURE_LINK && s.energy >= creep.carryCapacity)
-                });
+                {filter: (s) => s.structureType == STRUCTURE_CONTAINER || s.structureType == STRUCTURE_LINK
+            });
             if(creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) creep.moveTo(target);
         }
         else{
