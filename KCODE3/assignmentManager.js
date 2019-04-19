@@ -11,7 +11,7 @@ exports.assignmentManager = class{
     }
 
     assignRole(assignment, memory, role){
-        console.log(this.role);
+        console.log('r', object.keys(this.role));
         console.log(this.role[role]);
         if(this.role[role].length > 0){
             console.log(role);
