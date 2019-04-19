@@ -16,6 +16,6 @@ exports.assignmentManager = class{
             this.role[role][0].memory.assignment = assignment;
             this.role[role].splice(0,1);
         }
-        else this.spawnManager[role]++;
+        else this.spawnManager.role[role]++;
     }
 }
