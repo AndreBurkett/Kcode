@@ -42,10 +42,8 @@ exports.sector = class{
         
         //Create subSectors
         this.subSectorList = [];
-        console.log(this.rooms);
         for(let i of this.rooms){
-            console.log(i);
-            if(Game.rooms[i]) this.sectorList.push(new s.subSector(Game.rooms[i], this));
+            if(Game.rooms[i]) this.subSectorList.push(new s.subSector(Game.rooms[i], this));
         }
 
         /*
@@ -210,7 +208,6 @@ exports.sector = class{
 
     getRoomsInRange(){
         let rooms = [];
-        console.log(Object.keys(Memory.sector));
         for(let name of Object.keys(Memory.sector)){
             let d = Game.map.getRoomLinearDistance(this.name, name);
             if(d <= 2){
