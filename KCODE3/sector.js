@@ -163,7 +163,7 @@ exports.sector = class{
             }
             else if(controller && controller.my){
                 console.log(i);
-                this.assigner.assignRole(i, Memory.sector[this.name].controller[i], 'upgrader');
+                this.assigner.assignRole(i, Memory.sector[this.name].controller, 'upgrader');
             }
             //Energy Transfer
             let lpos = new RoomPosition(Memory.sector[this.name].controller[i].spawnPath.path[1].x, Memory.sector[this.name].controller[i].spawnPath.path[1].y, Memory.sector[this.name].controller[i].spawnPath.path[1].roomName);
