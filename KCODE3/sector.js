@@ -152,51 +152,49 @@ exports.sector = class{
         }
         //Iterate over controllers
         for(let i of Object.keys(Memory.sector[this.name].controller)){
-            if(Memory.sector[this.name].controller[i].controller == this.name){
-                let controller = Game.getObjectById(i);
-                console.log(i, controller);
-                //Assign Upgraders
-                if(Memory.sector[this.name].controller[i].upgrader && Memory.sector[this.name].controller[i].upgrader.length > 0){
-                    for(let j in Memory.sector[this.name].controller[i].upgrader){
-                        let creep = Game.getObjectById(Memory.sector[this.name].controller[i].upgrader[j]);
-                        if(!creep) Memory.sector[this.name].controller[i].upgrader.splice(j,1);
+            let controller = Game.getObjectById(i);
+            console.log(i, controller);
+            //Assign Upgraders
+            if(Memory.sector[this.name].controller[i].upgrader && Memory.sector[this.name].controller[i].upgrader.length > 0){
+                for(let j in Memory.sector[this.name].controller[i].upgrader){
+                    let creep = Game.getObjectById(Memory.sector[this.name].controller[i].upgrader[j]);
+                    if(!creep) Memory.sector[this.name].controller[i].upgrader.splice(j,1);
+                }
+            }
+            else if(controller && controller.my){
+                this.assigner.assignUpgrader(i);
+            }
+            //Energy Transfer
+            let lpos = new RoomPosition(Memory.sector[this.name].controller[i].spawnPath.path[1].x, Memory.sector[this.name].controller[i].spawnPath.path[1].y, Memory.sector[this.name].controller[i].spawnPath.path[1].roomName);
+            let link = lpos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_LINK})[0];
+            if(link){
+                Memory.sector[this.name].controller[i].link = link.id;
+            }
+            else{
+                if(this.primaryController.level >= 5){
+                    //Create Controller Link
+                    let site = lpos.lookFor(LOOK_CONSTRUCTION_SITES, {filter: (s) => s.structureType == STRUCTURE_LINK});
+                    if(!site) Game.rooms[lpos.roomName].createConstructionSite(lpos, STRUCTURE_LINK);
+                }
+                else{
+                    //Create Controller Container
+                    let pos = new RoomPosition(Memory.sector[this.name].controller[i].spawnPath.path[0].x, Memory.sector[this.name].controller[i].spawnPath.path[0].y, Memory.sector[this.name].controller[i].spawnPath.path[0].roomName);
+                    let container = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER});
+                    if(container == false){
+                        let site = pos.lookFor(LOOK_CONSTRUCTION_SITES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER});
+                        if(site == false){
+                            Game.rooms[pos.roomName].createConstructionSite(pos, STRUCTURE_CONTAINER);
+                        }
+                    }
+                }
+                if(Memory.sector[this.name].controller[i].transporter && Memory.sector[this.name].controller[i].transporter.length > 0){
+                    for(let j in Memory.sector[this.name].controller[i].transporter){
+                        let creep = Game.getObjectById(Memory.sector[this.name].controller[i].transporter[j]);
+                        if(!creep) Memory.sector[this.name].controller[i].transporter.splice(j,1);
                     }
                 }
                 else if(controller && controller.my){
-                    this.assigner.assignUpgrader(i);
-                }
-                //Energy Transfer
-                let lpos = new RoomPosition(Memory.sector[this.name].controller[i].spawnPath.path[1].x, Memory.sector[this.name].controller[i].spawnPath.path[1].y, Memory.sector[this.name].controller[i].spawnPath.path[1].roomName);
-                let link = lpos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_LINK})[0];
-                if(link){
-                    Memory.sector[this.name].controller[i].link = link.id;
-                }
-                else{
-                    if(this.primaryController.level >= 5){
-                        //Create Controller Link
-                        let site = lpos.lookFor(LOOK_CONSTRUCTION_SITES, {filter: (s) => s.structureType == STRUCTURE_LINK});
-                        if(!site) Game.rooms[lpos.roomName].createConstructionSite(lpos, STRUCTURE_LINK);
-                    }
-                    else{
-                        //Create Controller Container
-                        let pos = new RoomPosition(Memory.sector[this.name].controller[i].spawnPath.path[0].x, Memory.sector[this.name].controller[i].spawnPath.path[0].y, Memory.sector[this.name].controller[i].spawnPath.path[0].roomName);
-                        let container = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER});
-                        if(container == false){
-                            let site = pos.lookFor(LOOK_CONSTRUCTION_SITES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER});
-                            if(site == false){
-                                Game.rooms[pos.roomName].createConstructionSite(pos, STRUCTURE_CONTAINER);
-                            }
-                        }
-                    }
-                    if(Memory.sector[this.name].controller[i].transporter && Memory.sector[this.name].controller[i].transporter.length > 0){
-                        for(let j in Memory.sector[this.name].controller[i].transporter){
-                            let creep = Game.getObjectById(Memory.sector[this.name].controller[i].transporter[j]);
-                            if(!creep) Memory.sector[this.name].controller[i].transporter.splice(j,1);
-                        }
-                    }
-                    else if(controller && controller.my){
-                        this.assigner.assignTransporter(i);
-                    }
+                    this.assigner.assignTransporter(i);
                 }
             }
         }
