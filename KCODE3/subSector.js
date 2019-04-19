@@ -10,9 +10,7 @@ exports.subSector = class{
         this.spawns = this.room.find(FIND_MY_SPAWNS);
         this.owner = this.getOwner();
         this.roomCostMatrix = this.getCostMatrix();
-        //Create Bunker Controller
-        if(this.room.name == this.sector.name) this.bunker = new bc.bunkerController(this.sector);
-
+        
         //Create Sector Memory
         if(!Memory.sector[this.sector.name].subSector[this.room.name]){
             Memory.sector[this.sector.name].subSector[this.room.name] = {};
@@ -23,7 +21,7 @@ exports.subSector = class{
         Memory.sector[this.sector.name].subSector[this.room.name].CostMatrix = this.roomCostMatrix.serialize();
         //Sector Scout Memory
         if(!Memory.sector[this.sector.name].subSector[this.room.name].scout) Memory.sector[this.sector.name].subSector[this.room.name].scout = [];
-
+        
         //Create Source Memory
         for(let i in this.source){
             if(!Memory.sector[this.sector.name].source[this.source[i].id]){
@@ -81,12 +79,14 @@ exports.subSector = class{
                 }
             }
         }        
+        //Create Bunker Controller
+        if(this.room.name == this.sector.name) this.bunker = new bc.bunkerController(this.sector);
     }
-
+    
     getfreeSpace(pos){
         let space = 0;
-            for(let i=-1;i<=1;i++){
-                for(let j=-1;j<=1;j++){
+        for(let i=-1;i<=1;i++){
+            for(let j=-1;j<=1;j++){
                     if(this.terrain.get(pos.x + i, pos.y + j) != 1){
                         space++;
                     }
