@@ -210,6 +210,7 @@ exports.sector = class{
 
     getRoomsInRange(){
         let rooms = [];
+        console.log(Object.keys(Memory.sector[this.name]));
         for(let name of Object.keys(Memory.sector[this.name])){
             let d = Game.map.getRoomLinearDistance(this.name, name);
             if(d <= 2){
