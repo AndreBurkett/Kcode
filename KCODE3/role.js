@@ -34,6 +34,7 @@ exports.role = class{
         let p = PathFinder.search(this.creep.pos, {pos:pos, range:1}, {
             maxOps: 2000,
             roomCallback: function(roomName) {
+                console.log(this.creep);
                 if(Memory.sector[this.creep.memory.sector].subSector[roomName]){
                     if(Memory.sector[this.creep.memory.sector].subSector[roomName].CostMatrix){
                         let costs = PathFinder.CostMatrix.deserialize(Memory.sector[this.creep.memory.sector].subSector[roomName].CostMatrix);
