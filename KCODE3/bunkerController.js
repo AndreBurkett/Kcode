@@ -1,9 +1,10 @@
 exports.bunkerController = class{
-    constructor(spawn){
-        this.level = spawn.room.controller.level;
-        this.x = spawn.pos.x;
-        this.y = spawn.pos.y + 2;
-        this.room = spawn.room;
+    constructor(sector){
+        this.sector = sector;
+        this.level = sector.primaryController.level;
+        this.x = sector.spawn[0].pos.x;
+        this.y = sector.spawn[0].pos.y + 2;
+        this.room = sector.spawn[0].room;
         this.createSites();
         this.link();
     }
@@ -89,7 +90,7 @@ exports.bunkerController = class{
         let id = this.room.controller.id
         let pos = new RoomPosition(this.x, this.y + 2, this.room.name);
         let link1 = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_LINK})[0];
-        let link2 = Game.getObjectById(Memory.controller[id].link);
+        let link2 = Game.getObjectById(Memory.sector[this.sector.name].controller[id].link);
         if(link1 && link2){
             link1.transferEnergy(link2);
         }

@@ -11,7 +11,7 @@ exports.subSector = class{
         this.owner = this.getOwner();
         this.roomCostMatrix = this.getCostMatrix();
         //Create Bunker Controller
-        if(this.room.name == this.sector.name) this.bunker = new bc.bunkerController(this.spawns[0]);
+        if(this.room.name == this.sector.name) this.bunker = new bc.bunkerController(this.sector);
 
         //Create Sector Memory
         if(!Memory.sector[this.sector.name].subSector[this.room.name]){
