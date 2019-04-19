@@ -154,6 +154,7 @@ exports.sector = class{
         for(let i of Object.keys(Memory.sector[this.name].controller)){
             if(Memory.sector[this.name].controller[i].controller == this.name){
                 let controller = Game.getObjectById(i);
+                console.log(i, controller);
                 //Assign Upgraders
                 if(Memory.sector[this.name].controller[i].upgrader && Memory.sector[this.name].controller[i].upgrader.length > 0){
                     for(let j in Memory.sector[this.name].controller[i].upgrader){
