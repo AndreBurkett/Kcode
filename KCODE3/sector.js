@@ -6,6 +6,7 @@ exports.sector = class{
     constructor(name){
         this.name = name;
         //Create Memory
+        if(!Memory.sector[name]) Memory.sector[name] = {};
         if(!Memory.sector[name].construction) Memory.sector[name].construction = {};
         if(!Memory.sector[name].controller) Memory.sector[name].controller = {};
         if(!Memory.sector[name].source) Memory.sector[name].source = {};
