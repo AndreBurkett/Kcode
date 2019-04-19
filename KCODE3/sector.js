@@ -153,7 +153,6 @@ exports.sector = class{
         //Iterate over controllers
         for(let i of Object.keys(Memory.sector[this.name].controller)){
             let controller = Game.getObjectById(i);
-            console.log(i, controller);
             //Assign Upgraders
             if(Memory.sector[this.name].controller[i].upgrader && Memory.sector[this.name].controller[i].upgrader.length > 0){
                 for(let j in Memory.sector[this.name].controller[i].upgrader){
@@ -162,7 +161,7 @@ exports.sector = class{
                 }
             }
             else if(controller && controller.my){
-                this.assigner.assignUpgrader(i);
+                this.assigner.assignRole(i, Memory.sector[this.name].controller[i], 'upgrader');
             }
             //Energy Transfer
             let lpos = new RoomPosition(Memory.sector[this.name].controller[i].spawnPath.path[1].x, Memory.sector[this.name].controller[i].spawnPath.path[1].y, Memory.sector[this.name].controller[i].spawnPath.path[1].roomName);
