@@ -18,7 +18,7 @@ exports.sector = class{
         this.role = {};
         this.roleNames = ['builder', 'keeper', 'miner', 'scout', 'upgrader', 'transporter'];
         for(let i of this.roleNames){
-            this.role[i] = _.filter(Game.creeps, (c) => c.memory.sc == this.name && c.memory.role == i).length;
+            this.role[i] = _.filter(Game.creeps, (c) => c.memory.sector == this.name && c.memory.role == i).length;
         }
         this.primaryController = Game.rooms[name].controller;
         this.primaryStorage = Game.rooms[name].find(FIND_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_STORAGE})[0];
@@ -113,7 +113,7 @@ exports.sector = class{
         }
 
         //Check for Keeper
-        console.log(this.role.keeper);
+        console.log('k', this.role.keeper);
         if(this.role.keeper == 0 && this.primaryStorage){
             if(!Memory.sector[name].storage[this.primaryStorage.id]) Memory.sector[name].storage[this.primaryStorage.id] = {};
             Memory.sector[this.name].storage[this.primaryStorage.id].keeper = [];
