@@ -15,7 +15,6 @@ exports.spawnManager = class{
 
     spawn(){
         //console.log(this.role.builder, this.role.miner, this.role.transporter, this.role.upgrader, this.role.scout);
-        console.log(this.role.keeper);
         if(this.sector.role.miner > 0 && this.sector.role.transporter > 0 && this.role.upgrader > 0) this.spawnUpgrader();
         else if(this.sector.role.keeper == 0 && this.role.keeper > 0) this.spawnKeeper();
         else if(this.role.transporter > this.role.miner) this.spawnTransporter();
