@@ -5,7 +5,7 @@ exports.assignmentManager = class{
     constructor(sector){
         this.spawnManager = new sm.spawnManager(sector)
         this.role = {};
-        for(let i of this.sector.roleNames){
+        for(let i of sector.roleNames){
             this.role[i] = [];
         }
     }
