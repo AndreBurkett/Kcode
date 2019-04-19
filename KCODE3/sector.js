@@ -115,7 +115,7 @@ exports.sector = class{
 
         //Check for Keeper
         if(this.role.keeper == 0 && this.primaryStorage){
-            Memory.sector[this.name].storage[this.primaryStorage.id].keeper = [];
+            Memory.sector[this.name].storage.keeper = [];
             this.assigner.assignRole(this.primaryStorage.id, Memory.sector[this.name].storage, 'keeper');
         }
 

@@ -5,7 +5,10 @@ exports.keeper = class keeper extends role.role{
         super(creep);
         
         if(this.assignment){
-            
+            let storage = Game.getObjectById(this.assignment);
+            if(storage){
+                
+            }
         }
     }
 }
