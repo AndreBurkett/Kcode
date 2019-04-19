@@ -128,7 +128,7 @@ exports.sector = class{
                         if(!creep) Memory.sector[this.name].source[i].miner.splice(j,1);
                     }
                 }
-                else this.assigner.assignMiner(i, Memory.sector[this.name].source, 'miner');
+                else this.assigner.assignRole(i, Memory.sector[this.name].source, 'miner');
                 //Assign Transporters
                 if(Memory.sector[this.name].source[i].transporter && Memory.sector[this.name].source[i].transporter.length > 0){
                     for(let j in Memory.sector[this.name].source[i].transporter){
