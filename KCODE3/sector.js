@@ -32,7 +32,7 @@ exports.sector = class{
         //Iterate over creeps
         for(let name in Memory.creeps){
             let creep = Game.creeps[name];
-            if(Memory.creeps[name].sc && Memory.creeps[name].sc == this.name){
+            if(Memory.creeps[name].sector && Memory.creeps[name].sector == this.name){
                 //Assign Creeps
                 if(!creep.memory.assignment){
                     this.assigner.role[creep.memory.role].push(creep)
