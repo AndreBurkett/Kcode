@@ -227,7 +227,7 @@ exports.sector = class{
         gui.text(this.role.miner + '/1', 6,39, {align:'left'});
         
         gui.text('Scouts:', 1,40, {align:'left'});
-        gui.text(this.role.scout + '/' + this.assigner.spawnManager.scout, 6,40, {align:'left'});
+        gui.text(this.role.scout + '/' + this.assigner.spawnManager.role.scout, 6,40, {align:'left'});
 
         gui.text('Transporters:', 1,41, {align:'left'});
         gui.text(this.role.transporter + '/1', 6,41, {align:'left'});
