@@ -12,6 +12,7 @@ exports.sector = class{
         if(!Memory.sector[name].source) Memory.sector[name].source = {};
         if(!Memory.sector[name].spawn) Memory.sector[name].spawn = {};
         if(!Memory.sector[name].storage) Memory.sector[name].storage = {};
+        if(!Memory.sector[name].subSector) Memory.sector[name].subSector = {};
 
         //Create Roles
         this.role = {};
