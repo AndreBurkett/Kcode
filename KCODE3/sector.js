@@ -91,7 +91,7 @@ exports.sector = class{
             }
         }
         //Iterate over sites in memory
-        for(let i of Ojbect.keys(Memory.sector[this.name].construction)){
+        for(let i of Object.keys(Memory.sector[this.name].construction)){
             if(Game.constructionSites[i]){
                 if(Memory.sector[this.name].construction[i].builder.length > 0){
                     for(let j of Memory.sector[this.name].construction[i].builder){
