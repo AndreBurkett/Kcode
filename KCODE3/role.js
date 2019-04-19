@@ -6,6 +6,7 @@ exports.role = class{
 
     safeMove(pos){
         let cpu = Game.cpu.getUsed();
+        console.log(pos);
         if(this.creep.memory.path && this.creep.memory.path.length > 0){
             let len = this.creep.memory.path.length - 1;
             let pos1 = this.getPos(this.creep.memory.path[len]);
