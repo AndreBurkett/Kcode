@@ -136,7 +136,7 @@ exports.sector = class{
                         if(!creep) Memory.sector[this.name].source[i].transporter.splice(j,1);
                     }
                 }
-                else this.assigner.assignTransporter(i);
+                else this.assigner.assignRole(i, Memory.sector[this.name].source, 'transporter');
                 //Create Source Containers
                 if(Memory.sector[this.name].source[i].spawnPath && Game.rooms[Memory.sector[this.name].source[i].spawnPath.path[0].roomName]){
                     let pos = new RoomPosition(Memory.sector[this.name].source[i].spawnPath.path[0].x, Memory.sector[this.name].source[i].spawnPath.path[0].y, Memory.sector[this.name].source[i].spawnPath.path[0].roomName);
