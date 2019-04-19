@@ -16,7 +16,7 @@ exports.role = class{
         }
         else this.safePath(pos);
         if(this.creep.memory && this.creep.memory.path && this.creep.memory.path[0]){
-            let mpos = new RoomPosition(this.creep.memory.path[0].x, this.creep.memory.path[0].y, this.creep.memory.path[0].roomName);
+            let mpos = this.getPos(this.creep.memory.path[0]);
             switch(this.creep.move(this.creep.pos.getDirectionTo(mpos))){
                 case OK:
                     this.creep.memory.path.splice(0,1);
@@ -34,15 +34,15 @@ exports.role = class{
         let p = PathFinder.search(this.creep.pos, {pos:pos, range:1}, {
             maxOps: 2000,
             roomCallback: function(roomName) {
-                if(Memory.sector[roomName]){
-                    if(Memory.sector[roomName].CostMatrix){
-                        let costs = PathFinder.CostMatrix.deserialize(Memory.sector[roomName].CostMatrix);
+                if(Memory.sector[this.creep.memory.sector].subSector[roomName]){
+                    if(Memory.sector[this.creep.memory.sector].subSector[roomName].CostMatrix){
+                        let costs = PathFinder.CostMatrix.deserialize(Memory.sector[this.creep.memory.sector].subSector[roomName].CostMatrix);
                         return costs;
                     }
                 }
-                else Memory.sector[roomName] = {};
+                else Memory.sector[this.creep.memory.sector].subSector[roomName] = {};
                 let costs = new PathFinder.CostMatrix();
-                Memory.sector[roomName].CostMatrix = costs;
+                Memory.sector[this.creep.memory.sector].subSector[roomName].CostMatrix = costs;
                 return costs;
             }
         });

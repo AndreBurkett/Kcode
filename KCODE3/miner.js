@@ -7,7 +7,7 @@ exports.miner = class miner extends role.role{
         if(this.assignment){
             this.source = Game.getObjectById(this.assignment);
             if(this.creep.carry.energy == this.creep.carryCapacity){
-                if(Memory.source[this.assignment].transporter.length == 0){
+                if(Memory.sector[this.creep.memory.sector].source[this.assignment].transporter.length == 0){
                     this.transport();
                 }
                 else{
@@ -19,7 +19,7 @@ exports.miner = class miner extends role.role{
                     if(this.creep.harvest(this.source) == ERR_NOT_IN_RANGE) this.safeMove(this.source.pos);
                 }
                 else{
-                    let pos = new RoomPosition(Memory.source[this.assignment].pos.x, Memory.source[this.assignment].pos.y, Memory.source[this.assignment].pos.roomName);
+                    let pos = this.getPos(Memory.sector[this.creep.memory.sector].source[this.assignment].pos);
                     this.safeMove(pos);
                 }
             }
@@ -39,7 +39,7 @@ exports.miner = class miner extends role.role{
     }
 
     dump(){
-        let pos = new RoomPosition(Memory.source[this.assignment].spawnPath.path[0].x, Memory.source[this.assignment].spawnPath.path[0].y, Memory.source[this.assignment].spawnPath.path[0].roomName);
+        let pos = new RoomPosition(Memory.sector[this.creep.memory.sector].source[this.assignment].spawnPath.path[0].x, Memory.sector[this.creep.memory.sector].source[this.assignment].spawnPath.path[0].y, Memory.sector[this.creep.memory.sector].source[this.assignment].spawnPath.path[0].roomName);
         let container = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER})[0];
         if(container){
             if(this.creep.transfer(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) this.safeMove(container.pos);

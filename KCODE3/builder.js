@@ -4,7 +4,6 @@ exports.builder = class builder extends role.role{
     constructor(creep) {
         super(creep);
         var target;
-        //delete this.assignment;
 
         if(this.creep.carry.energy == this.creep.carryCapacity || (this.creep.carry.energy > 0 && this.creep.memory.task == 'build')){
             this.creep.memory.task = 'build';

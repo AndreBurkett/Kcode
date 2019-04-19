@@ -1,13 +1,10 @@
-sc =require('sectorController');
+sc =require('sector');
 
 exports.gameController = class{
     constructor(){
-        this.sectorController = [];
+        this.sector = [];
         //Create Memory
         if(!Memory.sector) Memory.sector = {};
-        if(!Memory.source) Memory.source = {};
-        if(!Memory.spawn) Memory.spawn = {};
-        if(!Memory.controller) Memory.controller = {};
         
         //Iterate over creeps
         for(let name in Memory.creeps){
@@ -27,6 +24,6 @@ exports.gameController = class{
         }
         
         //Create Sector Controller
-        this.sectorController.push(new sc.sectorController('W24S7'));
+        this.sector.push(new sc.sector('W24S7'));
     }
 }

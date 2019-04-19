@@ -1,39 +1,45 @@
 nameBuilder = require('nameBuilder');
 
 exports.spawnManager = class{
-    constructor(sc){
-        this.sc = sc;
-        this.builder = 0;
-        this.miner = 0;
-        this.scout = 0;
-        this.transporter = 0;
-        this.upgrader = 0;
-
+    constructor(sector){
+        this.sector = sector;
+        this.role = {};
+        for(let i of this.sector.roleNames){
+            this.role[i] = 0;
+        }
         this.body = [];
-        this.spawner = Game.spawns['Spawn1'];
-        this.energy = this.spawner.room.energyAvailable;
-        this.cap = this.spawner.room.energyCapacityAvailable;
+        this.spawner = this.sector.spawn[0];
+        this.energy = this.sector.room.energyAvailable;
+        this.cap = this.sector.room.energyCapacityAvailable;
     }
 
     spawn(){
-        //console.log(this.builder, this.miner, this.transporter, this.upgrader, this.scout);
-        if(this.sc.miners > 0 && this.sc.transporters > 0 && this.upgrader > 0) this.spawnUpgrader();
-        else if(this.transporter > this.miner) this.spawnTransporter();
-        else if(this.miner > 0 && this.sc.miners < 8) this.spawnMiner();
-        else if(this.transporter > 0 && this.sc.transporters < 8) this.spawnTransporter();
-        else if(this.builder > 0 && this.sc.builders < 5) this.spawnBuilder();
-        else if(this.scout > 0) this.spawnScout();
+        //console.log(this.role.builder, this.role.miner, this.role.transporter, this.role.upgrader, this.role.scout);
+        if(this.sector.role.miners > 0 && this.sector.role.transporters > 0 && this.role.upgrader > 0) this.spawnUpgrader();
+        else if(this.sector.role.keepers == 0 && this.role.keeper > 0) this.spawnKeeper();
+        else if(this.role.transporter > this.role.miner) this.spawnTransporter();
+        else if(this.role.miner > 0 && this.sector.role.miners < 8) this.spawnMiner();
+        else if(this.role.transporter > 0 && this.sector.role.transporters < 8) this.spawnTransporter();
+        else if(this.role.builder > 0 && this.sector.role.builders < 5) this.spawnBuilder();
+        else if(this.role.scout > 0) this.spawnScout();
     }
 
     spawnBuilder(){
         this.body = [MOVE,MOVE,CARRY,CARRY,WORK];
-        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('b'), {memory: {role: 'builder', sc:this.sc.name}}) == 0){
+        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('b'), {memory: {role: 'builder', sector:this.sector.name}}) == 0){
             nameBuilder.commitName('b');
+        }
+    }
+
+    spawnKeeper(){
+        this.body = [MOVE,CARRY,CARRY,CARRY,CARRY,CARRY];
+        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('k'), {memory: {role: 'role.keeper', sector:this.sector.name}}) == 0){
+            nameBuilder.commitName('k');
         }
     }
     
     spawnMiner(){
-        if(this.sc.miners == 0){
+        if(this.sector.miners == 0){
             this.body = [MOVE,CARRY,WORK,WORK];
         }
         else{
@@ -44,14 +50,14 @@ exports.spawnManager = class{
             }
             this.body.push(MOVE,CARRY)
         }
-        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('m'), {memory: {role: 'miner', sc:this.sc.name}}) == 0){
+        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('m'), {memory: {role: 'miner', sector:this.sector.name}}) == 0){
             nameBuilder.commitName('m');
         }
     }
 
     spawnScout(){
         this.body = [MOVE];
-        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('s'), {memory: {role: 'scout', sc:this.sc.name}}) == 0){
+        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('s'), {memory: {role: 'scout', sector:this.sector.name}}) == 0){
             nameBuilder.commitName('s');
         }
     }
@@ -63,7 +69,7 @@ exports.spawnManager = class{
         for(let i=0;i<parts; i++){
             this.body.push(CARRY,CARRY,MOVE);
         }
-        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('t'), {memory: {role: 'transporter', sc:this.sc.name}}) == 0){
+        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('t'), {memory: {role: 'transporter', sector:this.sector.name}}) == 0){
             nameBuilder.commitName('t');
         }
     }
@@ -77,7 +83,7 @@ exports.spawnManager = class{
             this.body.push(WORK);
         }
         this.body.push(CARRY,MOVE)
-        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('u'), {memory: {role: 'upgrader', sc:this.sc.name}}) == 0){
+        if(this.spawner.spawnCreep(this.body, nameBuilder.getName('u'), {memory: {role: 'upgrader', sector:this.sector.name}}) == 0){
             nameBuilder.commitName('u');
         }
     }
