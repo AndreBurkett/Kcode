@@ -42,7 +42,9 @@ exports.sector = class{
         
         //Create subSectors
         this.subSectorList = [];
+        console.log(this.rooms);
         for(let i of this.rooms){
+            console.log(i);
             if(Game.rooms[i]) this.sectorList.push(new s.subSector(Game.rooms[i], this));
         }
 
