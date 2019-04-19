@@ -162,6 +162,7 @@ exports.sector = class{
                 }
             }
             else if(controller && controller.my){
+                console.log(i);
                 this.assigner.assignRole(i, Memory.sector[this.name].controller[i], 'upgrader');
             }
             //Energy Transfer
