@@ -14,7 +14,7 @@ exports.keeper = class keeper extends role.role{
                     if(this.creep.transfer(link, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) this.safeMove(link.pos);
                 }
                 else{
-                    if(this.creep.withdraw(storage) == ERR_NOT_IN_RANGE) this.safeMove(storage.pos);
+                    if(this.creep.withdraw(storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) this.safeMove(storage.pos);
                 }
             }
         }
