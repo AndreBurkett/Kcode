@@ -1,4 +1,5 @@
 var b = require('builder');
+var k = require('keeper');
 var m = require('miner');
 var s = require('scout');
 var t = require('transporter');
@@ -10,6 +11,9 @@ exports.creepManager = class{
         switch(creep.memory.role){
             case 'builder':
                 run = new b.builder(creep);
+                break;
+            case 'keeper':
+                run = new k.keeper(creep);
                 break;
             case 'miner':
                 run = new m.miner(creep);
