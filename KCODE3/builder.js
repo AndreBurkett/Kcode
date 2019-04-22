@@ -24,12 +24,12 @@ exports.builder = class builder extends role.role{
             this.creep.memory.task = 'pickup';
             target = this.creep.pos.findClosestByRange(FIND_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER && s.store[RESOURCE_ENERGY] > this.creep.carryCapacity});
             if(target){
-                if(this.creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) this.safeMove(target);
+                if(this.creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) this.safeMove(target.pos);
             }
             else{
                 target = this.creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES, {filter: (r) => r.resourceType == RESOURCE_ENERGY});
                 console.log('t', target);
-                if(target) if(this.creep.pickup(target) == ERR_NOT_IN_RANGE) this.safeMove(target);
+                if(target) if(this.creep.pickup(target) == ERR_NOT_IN_RANGE) this.safeMove(target.pos);
             }
 
         }
