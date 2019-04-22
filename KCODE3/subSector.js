@@ -129,6 +129,9 @@ exports.subSector = class{
                 if (!_.contains([STRUCTURE_CONTAINER, STRUCTURE_ROAD, STRUCTURE_RAMPART], structure[i].structureType)) {
                     costs.set(structure[i].pos.x, structure[i].pos.y, 255);
                 }
+                else if(_.contains[STRUCTURE_ROAD], structure[i].structureType){
+                    costs.set(structure[i].pos.x, structure[i].pos.y, 1);
+                }
             }
             for(let i in creeps){
                 costs.set(creeps[i].pos.x, creeps[i].pos.y, 255);
