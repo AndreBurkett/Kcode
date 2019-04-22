@@ -114,7 +114,7 @@ exports.sector = class{
 
         //Check for Keeper
         for(let i of Object.keys(Memory.sector[this.name].storage)){
-            if(Game.getObjectById(i)){
+            if(Memory.sector[this.name].storage[i].keeper && Memory.sector[this.name].storage[i].keeper.length >0){
                 for(let j of Memory.sector[this.name].storage[i].keeper){
                     let creep = Game.getObjectById(j);
                     if(!creep) Memory.sector[this.name].storage[i].keeper.splice(j,1);
