@@ -106,7 +106,8 @@ exports.sector = class{
             else{
                 for(let j of Memory.sector[this.name].construction[i].builder){
                     let creep = Game.getObjectById(j);
-                    if(!creep) delete creep.memory.assignment;
+                    if(!creep) Memory.sector[this.name].construction[i].builder.splice(j,1);
+                    else delete creep.memory.assignment;
                 }
                 delete Memory.sector[this.name].construction[i];
             }
@@ -115,8 +116,9 @@ exports.sector = class{
         //Check for Keeper
         for(let i of Object.keys(Memory.sector[this.name].storage)){
             if(Game.getObjectById(i)){
-                for(let j of Memory.sector[this.name].storage){
+                for(let j of Memory.sector[this.name].storage.builder){
                     let creep = Game.getObjectById(j);
+                    if(!creep) Memory.sector[this.name].storage.keeper.splice(j,1);
                 }
             }
         }
