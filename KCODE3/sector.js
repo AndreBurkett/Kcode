@@ -21,7 +21,6 @@ exports.sector = class{
             this.role[i] = _.filter(Game.creeps, (c) => c.memory.sector == this.name && c.memory.role == i).length;
         }
         this.primaryController = Game.rooms[name].controller;
-        this.primaryStorage = Game.rooms[name].find(FIND_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_STORAGE})[0];
         this.room = Game.rooms[name];
         this.rooms = this.getRoomsInRange();
         this.spawn = this.room.find(FIND_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_SPAWN});
@@ -121,16 +120,7 @@ exports.sector = class{
                     if(!creep) Memory.sector[this.name].storage.keeper.splice(j,1);
                 }
             }
-        }
-        if(this.primaryStorage){
-            if(!Memory.sector[name].storage[this.primaryStorage.id]) Memory.sector[name].storage[this.primaryStorage.id] = {};
-            if(!Memory.sector[name].storage[this.primaryStorage.id].keeper) Memory.sector[name].storage[this.primaryStorage.id].keeper = [];
-            if(this.role.keeper > 0){
-                for(let i in this.role.keeper){
-                    if(!creep) Memory.sector[this.name].storage[this.primaryStorage.id].keeper.splice(i,1);
-                }
-            }
-            else this.assigner.assignRole(this.primaryStorage.id, Memory.sector[this.name].storage, 'keeper');
+            else this.assigner.assignRole(i, Memory.sector[name].storage, 'keeper');
         }
 
         //Iterate over sources

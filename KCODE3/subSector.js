@@ -5,6 +5,7 @@ exports.subSector = class{
         this.room = subSector;
         this.sector = sector;
         this.exits = Game.map.describeExits(this.room.name);
+        this.storage = this.room.find(FIND_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_STORAGE})[0];
         this.terrain = Game.map.getRoomTerrain(this.room.name)
         this.source = this.room.find(FIND_SOURCES);
         this.spawns = this.room.find(FIND_MY_SPAWNS);
@@ -22,6 +23,14 @@ exports.subSector = class{
         //Sector Scout Memory
         if(!Memory.sector[this.sector.name].subSector[this.room.name].scout) Memory.sector[this.sector.name].subSector[this.room.name].scout = [];
         
+        //Create Storage Memory
+        if(!Memory.sector[this.sector.name].storage[this.storage]){
+            Memory.sector[this.sector.name].storage[this.storage] = {};
+        }
+        if(!Memory.sector[this.sector.name].storage[this.storage].keeper){
+            Memory.sector[this.sector.name].storage[this.storage].keeper = [];
+        }
+
         //Create Source Memory
         for(let i in this.source){
             if(!Memory.sector[this.sector.name].source[this.source[i].id]){
