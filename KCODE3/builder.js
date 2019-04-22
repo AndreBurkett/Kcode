@@ -8,6 +8,7 @@ exports.builder = class builder extends role.role{
         if(this.creep.carry.energy == this.creep.carryCapacity || (this.creep.carry.energy > 0 && this.creep.memory.task == 'build')){
             this.creep.memory.task = 'build';
             target = Game.constructionSites[this.assignment];
+            console.log(target);
             if(target){
                 if(this.creep.build(target) == ERR_NOT_IN_RANGE) this.safeMove(target.pos);
             }

@@ -106,18 +106,24 @@ exports.sector = class{
             else{
                 for(let j of Memory.sector[this.name].construction[i].builder){
                     let creep = Game.getObjectById(j);
-                    if(creep) delete creep.memory.assignment;
+                    if(!creep) delete creep.memory.assignment;
                 }
                 delete Memory.sector[this.name].construction[i];
             }
         }
 
         //Check for Keeper
+        for(let i of Object.keys(Memory.sector[this.name].storage)){
+            if(Game.getObjectById(i)){
+                for(let j of Memory.sector[this.name].storage){
+                    let creep = Game.getObjectById(j);
+                }
+            }
+        }
         if(this.primaryStorage){
             if(!Memory.sector[name].storage[this.primaryStorage.id]) Memory.sector[name].storage[this.primaryStorage.id] = {};
             if(this.role.keeper > 0){
                 for(let i in this.role.keeper){
-                    let creep = Game.getObjectById(this.role.keeper[i]);
                     if(!creep) Memory.sector[this.name].storage[this.primaryStorage.id].keeper.splice(i,1);
                 }
             }
