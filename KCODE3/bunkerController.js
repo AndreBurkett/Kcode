@@ -7,6 +7,7 @@ exports.bunkerController = class{
         this.room = sector.spawn[0].room;
         this.createSites();
         this.link();
+        this.createRoads(3);
     }
 
     build(site){
