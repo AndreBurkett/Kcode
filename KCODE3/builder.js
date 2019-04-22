@@ -21,7 +21,8 @@ exports.builder = class builder extends role.role{
         }
         else{
             this.creep.memory.task = 'pickup';
-            target = this.creep.pos.findClosestByRange(FIND_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER && s.store[RESOURCE_ENERGY] > this.creep.carryCapacity});
+            target = this.creep.pos.findClosestByRange(FIND_STRUCTURES, {
+                filter: (s) => s.structureType == (STRUCTURE_CONTAINER || STRUCTURE_STORAGE) && s.store[RESOURCE_ENERGY] > this.creep.carryCapacity});
             if(target){
                 if(this.creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) this.safeMove(target.pos);
             }
