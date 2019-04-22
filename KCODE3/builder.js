@@ -28,6 +28,7 @@ exports.builder = class builder extends role.role{
             }
             else{
                 target = this.creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES, {filter: (r) => r.resourceType == RESOURCE_ENERGY});
+                console.log('t', target);
                 if(target) if(this.creep.pickup(target) == ERR_NOT_IN_RANGE) this.safeMove(target);
             }
 
