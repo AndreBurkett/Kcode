@@ -20,15 +20,17 @@ exports.builder = class builder extends role.role{
                 }
             }
         }
-        else if(this.creep.room.find(FIND_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER && s.store[RESOURCE_ENERGY] > 0}).length > 0){
-            this.creep.memory.task = 'pickup';
-            target = this.creep.pos.findClosestByRange(FIND_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER && s.store[RESOURCE_ENERGY] > this.creep.carryCapacity});
-            if(this.creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) this.safeMove(target);
-        }
         else{
             this.creep.memory.task = 'pickup';
-            target = this.creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES, {filter: (r) => r.resourceType == RESOURCE_ENERGY});
-            if (this.creep.pickup(target) == ERR_NOT_IN_RANGE) this.safeMove(target);
+            target = this.creep.pos.findClosestByRange(FIND_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER && s.store[RESOURCE_ENERGY] > this.creep.carryCapacity});
+            if(target){
+                if(this.creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) this.safeMove(target);
+            }
+            else{
+                target = this.creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES, {filter: (r) => r.resourceType == RESOURCE_ENERGY});
+                if(target) if(this.creep.pickup(target) == ERR_NOT_IN_RANGE) this.safeMove(target);
+            }
+
         }
     }
 }
