@@ -19,7 +19,7 @@ exports.bunkerController = class{
             this.room.createConstructionSite(pos, site.s);
             return true;
         }
-        return false;
+        return true;
     }
 
     createRoads(max){
