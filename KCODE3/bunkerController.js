@@ -14,8 +14,8 @@ exports.bunkerController = class{
         let pos = new RoomPosition(this.x + site.x, this.y + site.y, this.room.name);
         let constructionExists = pos.lookFor(LOOK_CONSTRUCTION_SITES, {filter: (s) => s.structureType == site.s})[0];
         if(constructionExists == false){
-            console.log(pos, constructionExists);
             let siteExists = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == site.s});
+            console.log(pos, siteExists);
             if(siteExists) return false;
             this.room.createConstructionSite(pos, site.s);
             return true;
