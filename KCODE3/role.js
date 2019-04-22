@@ -34,6 +34,8 @@ exports.role = class{
     safePath(pos){
         let p = PathFinder.search(this.creep.pos, {pos:pos, range:1}, {
             maxOps: 2000,
+            plainCost: 2,
+            swampCost: 10,
             roomCallback: function(roomName) {
                 if(Memory.sector[this.creep.memory.sector].subSector[roomName]){
                     if(Memory.sector[this.creep.memory.sector].subSector[roomName].CostMatrix){
