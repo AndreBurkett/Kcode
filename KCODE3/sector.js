@@ -115,9 +115,9 @@ exports.sector = class{
         //Check for Keeper
         for(let i of Object.keys(Memory.sector[this.name].storage)){
             if(Game.getObjectById(i)){
-                for(let j of Memory.sector[this.name].storage.keeper){
+                for(let j of Memory.sector[this.name].storage[i].keeper){
                     let creep = Game.getObjectById(j);
-                    if(!creep) Memory.sector[this.name].storage.keeper.splice(j,1);
+                    if(!creep) Memory.sector[this.name].storage[i].keeper.splice(j,1);
                 }
             }
             else this.assigner.assignRole(i, Memory.sector[name].storage, 'keeper');
