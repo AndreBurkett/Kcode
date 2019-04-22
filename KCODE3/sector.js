@@ -124,6 +124,7 @@ exports.sector = class{
         }
         if(this.primaryStorage){
             if(!Memory.sector[name].storage[this.primaryStorage.id]) Memory.sector[name].storage[this.primaryStorage.id] = {};
+            if(!Memory.sector[name].storage[this.primaryStorage.id].keeper) Memory.sector[name].storage[this.primaryStorage.id].keeper = [];
             if(this.role.keeper > 0){
                 for(let i in this.role.keeper){
                     if(!creep) Memory.sector[this.name].storage[this.primaryStorage.id].keeper.splice(i,1);
