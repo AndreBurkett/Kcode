@@ -112,7 +112,7 @@ exports.sector = class{
             }
         }
 
-        //Check for Keeper
+        //Iterate over Storages
         for(let i of Object.keys(Memory.sector[this.name].storage)){
             if(Memory.sector[this.name].storage[i].keeper && Memory.sector[this.name].storage[i].keeper.length >0){
                 for(let j in Memory.sector[this.name].storage[i].keeper){

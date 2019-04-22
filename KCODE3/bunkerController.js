@@ -14,6 +14,32 @@ exports.bunkerController = class{
         let siteExists = pos.lookFor(LOOK_CONSTRUCTION_SITES, {filter: (s) => s.structureType == site.s});
         if(siteExists == false){
             this.room.createConstructionSite(pos, site.s);
+            return true;
+        }
+        return false;
+    }
+
+    createRoads(max){
+        let numSites = 0
+        let siteList = [
+            {x:-3,y:0,s:STRUCTURE_ROAD},
+            {x:-2,y:-1,s:STRUCTURE_ROAD},
+            {x:-1,y:-2,s:STRUCTURE_ROAD},
+            {x:0,y:-3,s:STRUCTURE_ROAD},
+            {x:1,y:-2,s:STRUCTURE_ROAD},
+            {x:2,y:-1,s:STRUCTURE_ROAD},
+            {x:3,y:0,s:STRUCTURE_ROAD},
+            {x:2,y:1,s:STRUCTURE_ROAD},
+            {x:1,y:2,s:STRUCTURE_ROAD},
+            {x:0,y:3,s:STRUCTURE_ROAD},
+            {x:-1,y:2,s:STRUCTURE_ROAD},
+            {x:-2,y:1,s:STRUCTURE_ROAD},
+            {x:0,y:1,s:STRUCTURE_ROAD},
+        
+        ];
+        for(let i in siteList){
+            if(this.build(siteList[i])) numSites++;
+            if(numSites >= max) return;
         }
     }
 
