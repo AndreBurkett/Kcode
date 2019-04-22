@@ -120,7 +120,7 @@ exports.sector = class{
                     if(!creep) Memory.sector[this.name].storage[i].keeper.splice(j,1);
                 }
             }
-            else this.assigner.assignRole(i, Memory.sector[name].storage, 'keeper');
+            else this.assigner.assignRole(i, Memory.sector[name].storage[i], 'keeper');
         }
 
         //Iterate over sources
