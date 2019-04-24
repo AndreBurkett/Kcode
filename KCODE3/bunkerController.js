@@ -147,10 +147,7 @@ exports.bunkerController = class{
             {x:3,y:4, s:STRUCTURE_EXTENSION},
             {x:3,y:5, s:STRUCTURE_EXTENSION},
             {x:2,y:5, s:STRUCTURE_EXTENSION},
-
-
-            
-            ]
+            ];
         return sites;
     }
     link(){

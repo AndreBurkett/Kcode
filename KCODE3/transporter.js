@@ -27,8 +27,9 @@ exports.transporter = class transporter extends role.role{
             let target = this.creep.pos.findClosestByRange(FIND_STRUCTURES, {
                 filter: (s) => (s.structureType == STRUCTURE_TOWER && s.energy < s.energyCapacity) || ((s.structureType == STRUCTURE_EXTENSION || s.structureType == STRUCTURE_SPAWN) && s.energy < s.energyCapacity)
             });
-            if(!target) target = this.creep.pos.findClosestByRange(FIND_STRUCTURES, {filter: (s) => (s.structureType == STRUCTURE_LINK && s.energy < s.energyCapacity)});
+            if(!target) target = this.creep.pos.findClosestByRange(FIND_STRUCTURES, {filter: (s) => (s.structureType == STRUCTURE_LINK && s.energy < s.energyCapacity -100)});
             if(!target) target = this.creep.pos.findClosestByRange(FIND_STRUCTURES, {filter: (s) => (s.structureType == STRUCTURE_STORAGE && s.store[RESOURCE_ENERGY] < s.storeCapacity)});
+            console.log(target);
             if(!target){
                 let l = Memory.sector[this.creep.memory.sector].source[this.assignment].spawnPath.path.length - 1;
                 let pos = this.getPos(Memory.sector[this.creep.memory.sector].source[this.assignment].spawnPath.path[l]);
