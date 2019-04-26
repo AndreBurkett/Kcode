@@ -77,6 +77,7 @@ exports.spawnManager = class{
     }
     
     spawnUpgrader(){
+        console.log('Spawn Upgrader');
         if(this.energy < 300) this.energy = 300;
         this.energy -= 200;
         let cost = 100;
