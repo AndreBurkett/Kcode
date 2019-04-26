@@ -39,6 +39,7 @@ exports.spawnManager = class{
     }
     
     spawnMiner(){
+        console.log('Spawn Miner');
         if(this.sector.miners == 0){
             this.body = [MOVE,CARRY,WORK,WORK];
         }
@@ -63,6 +64,7 @@ exports.spawnManager = class{
     }
 
     spawnTransporter(){
+        console.log('Spawn Transporter');
         if(this.energy < 300) this.energy = 300;
         let cost = 150;
         let parts = Math.floor(this.energy/cost);
