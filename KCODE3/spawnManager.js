@@ -40,7 +40,7 @@ exports.spawnManager = class{
     }
     
     spawnMiner(){
-        console.log('Spawn Miner');
+        console.log('Spawn Miner', this.sector.miner);
         if(this.sector.miner == 0){
             this.body = [MOVE,CARRY,WORK,WORK];
         }
