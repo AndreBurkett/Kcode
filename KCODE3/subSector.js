@@ -141,7 +141,7 @@ exports.subSector = class{
             let structure = this.room.find(FIND_STRUCTURES);
             let creeps = this.room.find(FIND_CREEPS);
             for(let i in structure){
-                if (!_.contains([STRUCTURE_CONTAINER, STRUCTURE_ROAD, STRUCTURE_RAMPART], structure[i].structureType)) {
+                if (!_.contains([STRUCTURE_CONTAINER, STRUCTURE_ROAD, STRUCTURE_RAMPART, STRUCTURE_LINK], structure[i].structureType)) {
                     costs.set(structure[i].pos.x, structure[i].pos.y, 255);
                 }
                 else if(_.contains[STRUCTURE_ROAD], structure[i].structureType){
