@@ -40,8 +40,8 @@ exports.spawnManager = class{
     }
     
     spawnMiner(){
-        console.log('Spawn Miner', this.sector.miner);
-        if(this.sector.miner == 0){
+        console.log('Spawn Miner', this.sector.role.miner);
+        if(this.sector.role.miner == 0){
             this.body = [MOVE,CARRY,WORK,WORK];
         }
         else{
