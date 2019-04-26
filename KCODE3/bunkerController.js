@@ -160,7 +160,7 @@ exports.bunkerController = class{
         let pos = new RoomPosition(this.x, this.y + 2, this.room.name);
         let link1 = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_LINK})[0];
         let link2 = Game.getObjectById(Memory.sector[this.sector.name].controller[id].link);
-        if(link1 && link2){
+        if(link1 && link2 && (link2.energyCapacity - link2.energy) > 1){
             link1.transferEnergy(link2);
         }
 
