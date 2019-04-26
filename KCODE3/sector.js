@@ -222,6 +222,7 @@ exports.sector = class{
 
     build(site, type){
         let pos = new RoomPosition(site.x, site.y, site.roomName);
+        console.log(pos);
         let constructionExists = pos.lookFor(LOOK_CONSTRUCTION_SITES, {filter: (s) => s.structureType == type})[0];
         if(constructionExists) return true
         else{
