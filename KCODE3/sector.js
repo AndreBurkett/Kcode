@@ -222,7 +222,6 @@ exports.sector = class{
 
     build(site, type){
         let pos = new RoomPosition(site.x, site.y, site.roomName);
-        console.log(pos);
         let constructionExists = pos.lookFor(LOOK_CONSTRUCTION_SITES, {filter: (s) => s.structureType == type})[0];
         if(constructionExists) return true
         else{
@@ -236,7 +235,7 @@ exports.sector = class{
     createRoad(mem){
         let numSites = 0;
         let max = 1;
-        for(let i=2; i<=mem.length; i++){
+        for(let i=2; i<=mem.length -1; i++){
             if(this.build(mem[i], STRUCTURE_ROAD)) numSites++;
             if(numSites >= max) return;
         }
