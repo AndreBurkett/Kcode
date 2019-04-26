@@ -145,7 +145,7 @@ exports.subSector = class{
                     costs.set(structure[i].pos.x, structure[i].pos.y, 255);
                 }
                 else if(_.contains[STRUCTURE_ROAD], structure[i].structureType){
-                    costs.set(structure[i].pos.x, structure[i].pos.y, 1);
+                    //costs.set(structure[i].pos.x, structure[i].pos.y, 1); #may cause getCenterPath to break
                 }
             }
             for(let i in creeps){

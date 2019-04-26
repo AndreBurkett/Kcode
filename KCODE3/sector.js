@@ -158,7 +158,6 @@ exports.sector = class{
                     }
                     //Create Source Roads
                     this.createRoad(Memory.sector[this.name].source[i].path);
-                    
                 }
             }
         }
