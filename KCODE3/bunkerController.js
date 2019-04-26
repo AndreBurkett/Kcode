@@ -57,6 +57,11 @@ exports.bunkerController = class{
             {x:2,y:4,s:STRUCTURE_ROAD},
             {x:1,y:5,s:STRUCTURE_ROAD},
             {x:0,y:4,s:STRUCTURE_ROAD},
+            {x:-1,y:5,s:STRUCTURE_ROAD},
+            {x:-2,y:4,s:STRUCTURE_ROAD},
+            {x:-3,y:3,s:STRUCTURE_ROAD},
+            {x:-4,y:2,s:STRUCTURE_ROAD},
+            {x:-5,y:1,s:STRUCTURE_ROAD},
 
         ];
         for(let i in siteList){
@@ -120,8 +125,8 @@ exports.bunkerController = class{
             {x:1,y:3, s:STRUCTURE_EXTENSION},
             //5
             {x:1,y:-1, s:STRUCTURE_TOWER},
-            {x:0,y:0, s:STRUCTURE_STORAGE},
-            {x:0,y:2, s:STRUCTURE_LINK},
+            {x:0,y:2, s:STRUCTURE_STORAGE},
+            {x:0,y:0, s:STRUCTURE_LINK},
             {x:1,y:4, s:STRUCTURE_EXTENSION},
             {x:1,y:-6, s:STRUCTURE_EXTENSION},
             {x:2,y:-5, s:STRUCTURE_EXTENSION},
