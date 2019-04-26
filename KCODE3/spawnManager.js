@@ -32,6 +32,7 @@ exports.spawnManager = class{
     }
 
     spawnKeeper(){
+        console.log('Spawn Keeper');
         this.body = [MOVE,CARRY,CARRY,CARRY,CARRY,CARRY];
         if(this.spawner.spawnCreep(this.body, nameBuilder.getName('k'), {memory: {role: 'keeper', sector: this.sector.name}}) == 0){
             nameBuilder.commitName('k');
@@ -40,7 +41,7 @@ exports.spawnManager = class{
     
     spawnMiner(){
         console.log('Spawn Miner');
-        if(this.sector.miners == 0){
+        if(this.sector.miner == 0){
             this.body = [MOVE,CARRY,WORK,WORK];
         }
         else{
