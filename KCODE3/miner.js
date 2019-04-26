@@ -39,7 +39,7 @@ exports.miner = class miner extends role.role{
     }
 
     dump(){
-        let pos = new RoomPosition(Memory.sector[this.creep.memory.sector].source[this.assignment].spawnPath.path[0].x, Memory.sector[this.creep.memory.sector].source[this.assignment].spawnPath.path[0].y, Memory.sector[this.creep.memory.sector].source[this.assignment].spawnPath.path[0].roomName);
+        let pos = this.getPos(Memory.sector[this.creep.memory.sector].source[this.assignment].path[0]);
         let container = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER})[0];
         if(container){
             if(this.creep.transfer(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) this.safeMove(container.pos);
