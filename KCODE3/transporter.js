@@ -29,8 +29,8 @@ exports.transporter = class transporter extends role.role{
             });
             if(!target) target = this.creep.pos.findClosestByRange(FIND_STRUCTURES, {filter: (s) => (s.structureType == STRUCTURE_STORAGE && s.store[RESOURCE_ENERGY] < s.storeCapacity)});
             if(!target){
-                let l = Memory.sector[this.creep.memory.sector].source[this.assignment].spawnPath.path.length - 1;
-                let pos = this.getPos(Memory.sector[this.creep.memory.sector].source[this.assignment].spawnPath.path[l]);
+                let l = Memory.sector[this.creep.memory.sector].source[this.assignment].path.length - 1;
+                let pos = this.getPos(Memory.sector[this.creep.memory.sector].source[this.assignment].path[l]);
                 this.safeMove(pos);
                 return 'NO TARGET';
             }
@@ -41,8 +41,8 @@ exports.transporter = class transporter extends role.role{
         else{
             this.creep.memory.task = 'withdraw';
             let source = this.creep.memory.assignment;
-            if(source && Memory.sector[this.creep.memory.sector].source[source].spawnPath){
-                let pos = this.getPos(Memory.sector[this.creep.memory.sector].source[source].spawnPath.path[0]);
+            if(source && Memory.sector[this.creep.memory.sector].source[source]){
+                let pos = this.getPos(Memory.sector[this.creep.memory.sector].source[source].path[0]);
                 let container = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER})[0];
                 if(container && container.store[RESOURCE_ENERGY] && container.store[RESOURCE_ENERGY] >= this.creep.carryCapacity){
                     if(this.creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
@@ -61,8 +61,8 @@ exports.transporter = class transporter extends role.role{
     controllerTransport(){
         if(this.creep.carry.energy == this.creep.carryCapacity || (this.creep.carry.energy > 0 && this.creep.memory.task == 'deposit')){
             this.creep.memory.task = 'deposit';
-            if(this.assignment && Memory.sector[this.creep.memory.sector].controller[this.assignment].spawnPath){v
-                let pos = this.getPos(Memory.sector[this.creep.memory.sector].controller[this.assignment].spawnPath.path[0]);
+            if(this.assignment && Memory.sector[this.creep.memory.sector].controller[this.assignment]){v
+                let pos = this.getPos(Memory.sector[this.creep.memory.sector].controller[this.assignment].path[0]);
                 let container = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER})[0];
                 if(container){
                     if (this.creep.transfer(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
@@ -81,8 +81,8 @@ exports.transporter = class transporter extends role.role{
         }
         else{
             this.creep.memory.task = 'withdraw';
-            if(this.assignment && Memory.sector[this.creep.memory.sector].controller[this.assignment].spawnPath){
-                let pos = this.getPos(Memory.sector[this.creep.memory.sector].controller[this.assignment].spawnPath.path[0]);
+            if(this.assignment && Memory.sector[this.creep.memory.sector].controller[this.assignment]){
+                let pos = this.getPos(Memory.sector[this.creep.memory.sector].controller[this.assignment].path[0]);
                 let container = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER})[0];
                 let target = this.creep.pos.findClosestByRange(FIND_STRUCTURES, {
                     filter: (s) => (s != container) && (s.structureType == STRUCTURE_CONTAINER || s.structureType == s.structureType == STRUCTURE_STORAGE) && s.store[RESOURCE_ENERGY] > this.creep.carry.energy
