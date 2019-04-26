@@ -14,7 +14,6 @@ exports.spawnManager = class{
     }
 
     spawn(){
-        //console.log(this.role.builder, this.role.miner, this.role.transporter, this.role.upgrader, this.role.scout);
         if(this.sector.role.miner > 1 && this.sector.role.transporter > 1 && this.role.upgrader > 0) this.spawnUpgrader();
         else if(this.sector.role.keeper == 0 && this.role.keeper > 0) this.spawnKeeper();
         else if(this.role.transporter > this.role.miner) this.spawnTransporter();
@@ -32,7 +31,6 @@ exports.spawnManager = class{
     }
 
     spawnKeeper(){
-        console.log('Spawn Keeper');
         this.body = [MOVE,CARRY,CARRY,CARRY,CARRY,CARRY];
         if(this.spawner.spawnCreep(this.body, nameBuilder.getName('k'), {memory: {role: 'keeper', sector: this.sector.name}}) == 0){
             nameBuilder.commitName('k');
@@ -40,7 +38,6 @@ exports.spawnManager = class{
     }
     
     spawnMiner(){
-        console.log('Spawn Miner', this.sector.role.miner);
         if(this.sector.role.miner == 0){
             this.body = [MOVE,CARRY,WORK,WORK];
         }
@@ -65,7 +62,6 @@ exports.spawnManager = class{
     }
 
     spawnTransporter(){
-        console.log('Spawn Transporter');
         if(this.energy < 300) this.energy = 300;
         let cost = 150;
         let parts = Math.floor(this.energy/cost);
@@ -78,9 +74,6 @@ exports.spawnManager = class{
     }
     
     spawnUpgrader(){
-        console.log('Spawn Upgrader');
-        //if(this.energy < 300) this.energy = 300;
-        //this.energy -= 200;
         let cost = 100;
         let parts = Math.floor(this.cap/cost);
         for(let i=0;i<parts; i++){
