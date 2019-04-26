@@ -174,6 +174,10 @@ exports.sector = class{
             else if(controller && controller.my){
                 this.assigner.assignRole(i, Memory.sector[this.name].controller, 'upgrader');
             }
+            //Create Controller Road
+            if(Memory.sector[this.name].controller[i].path && Memory.sector[this.name].controller[i].path[0].roomName){
+                this.createRoad(Memory.sector[this.name].controller[i].path);
+            }
             //Energy Transfer
             let lpos = new RoomPosition(Memory.sector[this.name].controller[i].path[1].x, Memory.sector[this.name].controller[i].path[1].y, Memory.sector[this.name].controller[i].path[1].roomName);
             let link = lpos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_LINK})[0];
