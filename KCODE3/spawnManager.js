@@ -75,7 +75,7 @@ exports.spawnManager = class{
     
     spawnUpgrader(){
         let cost = 100;
-        let parts = Math.floor(this.cap/cost);
+        let parts = Math.floor((this.cap-200)/cost);
         for(let i=0;i<parts; i++){
             this.body.push(WORK);
         }
