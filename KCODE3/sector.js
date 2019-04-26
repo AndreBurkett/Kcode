@@ -156,6 +156,9 @@ exports.sector = class{
                             Game.rooms[pos.roomName].createConstructionSite(pos, STRUCTURE_CONTAINER);
                         }
                     }
+                    //Create Source Roads
+                    this.createRoad(Memory.sector[this.name].source[i].path);
+                    
                 }
             }
         }
@@ -212,6 +215,27 @@ exports.sector = class{
 
         //Create GUI
         this.gui();
+    }
+
+    build(site, type){
+        let pos = new RoomPosition(site.x, site.y, site.roomName);
+        let constructionExists = pos.lookFor(LOOK_CONSTRUCTION_SITES, {filter: (s) => s.structureType == type})[0];
+        if(constructionExists) return true
+        else{
+            let siteExists = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == type})[0];
+            if(siteExists) return false;
+            this.room.createConstructionSite(pos, type);
+            return true;
+        }
+    }
+
+    createRoad(mem){
+        let numSites = 0;
+        let max = 1;
+        for(let i=2; i<=mem.length; i++){
+            if(this.build(mem[i], STRUCTURE_ROAD)) numSites++;
+            if(numSites >= max) return;
+        }
     }
 
     getRoomsInRange(){
