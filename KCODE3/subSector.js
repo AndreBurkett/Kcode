@@ -49,15 +49,14 @@ exports.subSector = class{
             if(!Memory.sector[this.sector.name].source[this.source[i].id].transporter){
                 Memory.sector[this.sector.name].source[this.source[i].id].transporter = [];
             }
-            if(!Memory.sector[this.sector.name].source[this.source[i].id].spawnPath){
-                if(this.spawns && this.spawns.length > 0){
-                    Memory.sector[this.sector.name].source[this.source[i].id].spawnPath = this.getPath(this.source[i].pos, this.spawns[0].pos);
-                }
-                else{
-                    let spawn = Game.spawns['Spawn1'];
-                    Memory.sector[this.sector.name].source[this.source[i].id].spawnPath = this.getPath(this.source[i].pos, spawn.pos);
-                }
+            if(!Memory.sector[this.sector.name].source[this.source[i].id].pathReset){
+                Memory.sector[this.sector.name].source[this.source[i].id].pathReset = 0;
             }
+            if(!Memory.sector[this.sector.name].source[this.source[i].id].path || Memory.sector[this.sector.name].source[this.source[i].id].pathReset > 999){
+                Memory.sector[this.sector.name].source[this.source[i].id].path = this.getCenterPath(this.source[i].pos);
+                Memory.sector[this.sector.name].source[this.source[i].id].pathReset = 0;
+            }
+            Memory.sector[this.sector.name].source[this.source[i].id].pathReset++;
             //update owner
             Memory.sector[this.sector.name].source[this.source[i].id].owner = this.owner;
         }
@@ -82,11 +81,14 @@ exports.subSector = class{
             if(!Memory.sector[this.sector.name].controller[this.room.controller.id].transporter){
                 Memory.sector[this.sector.name].controller[this.room.controller.id].transporter = [];
             }
-            if(this.spawns.length >0 && !Memory.sector[this.sector.name].controller[this.room.controller.id].spawnPath){
-                for(let i in this.spawns){
-                    Memory.sector[this.sector.name].controller[this.room.controller.id].spawnPath = this.getPath(this.room.controller.pos, this.spawns[i].pos);
-                }
+            if(!Memory.sector[this.sector.name].controller[this.room.controller.id].pathReset){
+                Memory.sector[this.sector.name].controller[this.room.controller.id].pathReset = 0;
             }
+            if(this.spawns.length >0 && !Memory.sector[this.sector.name].controller[this.room.controller.id].path || Memory.sector[this.sector.name].controller[this.room.controller.id].pathReset > 999){
+                Memory.sector[this.sector.name].controller[this.room.controller.id].path = this.getCenterPath(this.room.controller.pos);
+                Memory.sector[this.sector.name].controller[this.room.controller.id].pathReset = 0;
+            }
+            Memory.sector[this.sector.name].controller[this.room.controller.id].pathReset++;
         }        
         //Create Bunker Controller
         if(this.room.name == this.sector.name) this.bunker = new bc.bunkerController(this.sector);
@@ -115,9 +117,22 @@ exports.subSector = class{
         else owner = 'hostile';
         return owner;
     }
-    getPath(pos1, pos2){
-        let path = PathFinder.search(pos1, pos2, {swampCost: 1, ignoreRoads: true, roomCallback: this.roomCostMatrix});
-        return path;
+    getCenterPath(pos){
+        let x = Memory.sector[this.sector.name].center[0];
+        let y = Memory.sector[this.sector.name].center[1];
+        let posList = [
+            new RoomPosition(x - 6, y, this.sector.name),
+            new RoomPosition(x + 6, y, this.sector.name),
+            new RoomPosition(x, y - 6, this.sector.name),
+            new RoomPosition(x, y + 6, this.sector.name),
+        ];
+        let path;
+        for(let i in posList){
+            path = PathFinder.search(pos, posList[i], {swampCost: 1, roomCallback: this.roomCostMatrix});
+            if(!minPath) var minPath = path;
+            if(path.path.length < minPath.path.length) minPath = path;
+        }
+        return minPath.path;
     }
 
     getCostMatrix(){

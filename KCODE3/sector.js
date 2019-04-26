@@ -5,6 +5,18 @@ tm = require('taskManager');
 exports.sector = class{
     constructor(name){
         this.name = name;
+        this.primaryController = Game.rooms[name].controller;
+        this.room = Game.rooms[name];
+        this.rooms = this.getRoomsInRange();
+        this.spawn = this.room.find(FIND_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_SPAWN});
+        
+        //Create Roles
+        this.role = {};
+        this.roleNames = ['builder', 'keeper', 'miner', 'scout', 'upgrader', 'transporter'];
+        for(let i of this.roleNames){
+            this.role[i] = _.filter(Game.creeps, (c) => c.memory.sector == this.name && c.memory.role == i).length;
+        }
+
         //Create Memory
         if(!Memory.sector[name]) Memory.sector[name] = {};
         if(!Memory.sector[name].construction) Memory.sector[name].construction = {};
@@ -13,17 +25,9 @@ exports.sector = class{
         if(!Memory.sector[name].spawn) Memory.sector[name].spawn = {};
         if(!Memory.sector[name].storage) Memory.sector[name].storage = {};
         if(!Memory.sector[name].subSector) Memory.sector[name].subSector = {};
-
-        //Create Roles
-        this.role = {};
-        this.roleNames = ['builder', 'keeper', 'miner', 'scout', 'upgrader', 'transporter'];
-        for(let i of this.roleNames){
-            this.role[i] = _.filter(Game.creeps, (c) => c.memory.sector == this.name && c.memory.role == i).length;
+        if(!Memory.sector[name].center){
+            Memory.sector[name].center = [this.spawn[0].pos.x, this.spawn[0].pos.y + 2];
         }
-        this.primaryController = Game.rooms[name].controller;
-        this.room = Game.rooms[name];
-        this.rooms = this.getRoomsInRange();
-        this.spawn = this.room.find(FIND_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_SPAWN});
         
         //Create Assigner
         this.assigner = new am.assignmentManager(this);
@@ -143,8 +147,8 @@ exports.sector = class{
                 }
                 else this.assigner.assignRole(i, Memory.sector[this.name].source, 'transporter');
                 //Create Source Containers
-                if(Memory.sector[this.name].source[i].spawnPath && Game.rooms[Memory.sector[this.name].source[i].spawnPath.path[0].roomName]){
-                    let pos = new RoomPosition(Memory.sector[this.name].source[i].spawnPath.path[0].x, Memory.sector[this.name].source[i].spawnPath.path[0].y, Memory.sector[this.name].source[i].spawnPath.path[0].roomName);
+                if(Memory.sector[this.name].source[i].path && Game.rooms[Memory.sector[this.name].source[i].path[0].roomName]){
+                    let pos = new RoomPosition(Memory.sector[this.name].source[i].path[0].x, Memory.sector[this.name].source[i].path[0].y, Memory.sector[this.name].source[i].path[0].roomName);
                     let container = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER});
                     if(container == false){
                         let site = pos.lookFor(LOOK_CONSTRUCTION_SITES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER});
@@ -169,7 +173,7 @@ exports.sector = class{
                 this.assigner.assignRole(i, Memory.sector[this.name].controller, 'upgrader');
             }
             //Energy Transfer
-            let lpos = new RoomPosition(Memory.sector[this.name].controller[i].spawnPath.path[1].x, Memory.sector[this.name].controller[i].spawnPath.path[1].y, Memory.sector[this.name].controller[i].spawnPath.path[1].roomName);
+            let lpos = new RoomPosition(Memory.sector[this.name].controller[i].path[1].x, Memory.sector[this.name].controller[i].path[1].y, Memory.sector[this.name].controller[i].path[1].roomName);
             let link = lpos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_LINK})[0];
             if(link){
                 Memory.sector[this.name].controller[i].link = link.id;
@@ -182,7 +186,7 @@ exports.sector = class{
                 }
                 else{
                     //Create Controller Container
-                    let pos = new RoomPosition(Memory.sector[this.name].controller[i].spawnPath.path[0].x, Memory.sector[this.name].controller[i].spawnPath.path[0].y, Memory.sector[this.name].controller[i].spawnPath.path[0].roomName);
+                    let pos = new RoomPosition(Memory.sector[this.name].controller[i].path[0].x, Memory.sector[this.name].controller[i].path[0].y, Memory.sector[this.name].controller[i].path[0].roomName);
                     let container = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER});
                     if(container == false){
                         let site = pos.lookFor(LOOK_CONSTRUCTION_SITES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER});

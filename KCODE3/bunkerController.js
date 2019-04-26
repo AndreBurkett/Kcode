@@ -2,8 +2,8 @@ exports.bunkerController = class{
     constructor(sector){
         this.sector = sector;
         this.level = sector.primaryController.level;
-        this.x = sector.spawn[0].pos.x;
-        this.y = sector.spawn[0].pos.y + 2;
+        this.x = Memory.sector[this.sector.name].center[0];
+        this.y = Memory.sector[this.sector.name].center[1];
         this.room = sector.spawn[0].room;
         this.createSites();
         this.link();
