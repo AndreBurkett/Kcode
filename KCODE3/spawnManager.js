@@ -15,7 +15,7 @@ exports.spawnManager = class{
 
     spawn(){
         //console.log(this.role.builder, this.role.miner, this.role.transporter, this.role.upgrader, this.role.scout);
-        if(this.sector.role.miner > 0 && this.sector.role.transporter > 0 && this.role.upgrader > 0) this.spawnUpgrader();
+        if(this.sector.role.miner > 1 && this.sector.role.transporter > 1 && this.role.upgrader > 0) this.spawnUpgrader();
         else if(this.sector.role.keeper == 0 && this.role.keeper > 0) this.spawnKeeper();
         else if(this.role.transporter > this.role.miner) this.spawnTransporter();
         else if(this.role.miner > 0 && this.sector.role.miner < 8) this.spawnMiner();
@@ -79,10 +79,10 @@ exports.spawnManager = class{
     
     spawnUpgrader(){
         console.log('Spawn Upgrader');
-        if(this.energy < 300) this.energy = 300;
-        this.energy -= 200;
+        //if(this.energy < 300) this.energy = 300;
+        //this.energy -= 200;
         let cost = 100;
-        let parts = Math.floor(this.energy/cost);
+        let parts = Math.floor(this.cap/cost);
         for(let i=0;i<parts; i++){
             this.body.push(WORK);
         }
