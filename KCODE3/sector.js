@@ -119,13 +119,16 @@ exports.sector = class{
 
         //Iterate over Storages
         for(let i of Object.keys(Memory.sector[this.name].storage)){
-            if(Memory.sector[this.name].storage[i].keeper && Memory.sector[this.name].storage[i].keeper.length >0){
-                for(let j in Memory.sector[this.name].storage[i].keeper){
-                    let creep = Game.getObjectById(Memory.sector[this.name].storage[i].keeper[j]);
-                    if(!creep) Memory.sector[this.name].storage[i].keeper.splice(j,1);
+            if(Game.getObjectById(i)){
+                if(Memory.sector[this.name].storage[i].keeper && Memory.sector[this.name].storage[i].keeper.length >0){
+                    for(let j in Memory.sector[this.name].storage[i].keeper){
+                        let creep = Game.getObjectById(Memory.sector[this.name].storage[i].keeper[j]);
+                        if(!creep) Memory.sector[this.name].storage[i].keeper.splice(j,1);
+                    }
                 }
+                else this.assigner.assignRole(i, Memory.sector[name].storage, 'keeper');
             }
-            else this.assigner.assignRole(i, Memory.sector[name].storage, 'keeper');
+            else delete Memory.sector[this.name].storage[i];
         }
 
         //Iterate over sources
