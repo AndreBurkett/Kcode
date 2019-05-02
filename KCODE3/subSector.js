@@ -24,7 +24,7 @@ exports.subSector = class{
         if(!Memory.sector[this.sector.name].subSector[this.room.name].scout) Memory.sector[this.sector.name].subSector[this.room.name].scout = [];
         
         //Create Storage Memory
-        if(this.storage.id){
+        if(this.storage){
             if(!Memory.sector[this.sector.name].storage[this.storage.id]){
                 Memory.sector[this.sector.name].storage[this.storage.id] = {};
             }
