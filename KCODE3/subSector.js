@@ -24,11 +24,13 @@ exports.subSector = class{
         if(!Memory.sector[this.sector.name].subSector[this.room.name].scout) Memory.sector[this.sector.name].subSector[this.room.name].scout = [];
         
         //Create Storage Memory
-        if(!Memory.sector[this.sector.name].storage[this.storage.id]){
-            Memory.sector[this.sector.name].storage[this.storage.id] = {};
-        }
-        if(!Memory.sector[this.sector.name].storage[this.storage.id].keeper){
-            Memory.sector[this.sector.name].storage[this.storage.id].keeper = [];
+        if(this.storage.id){
+            if(!Memory.sector[this.sector.name].storage[this.storage.id]){
+                Memory.sector[this.sector.name].storage[this.storage.id] = {};
+            }
+            if(!Memory.sector[this.sector.name].storage[this.storage.id].keeper){
+                Memory.sector[this.sector.name].storage[this.storage.id].keeper = [];
+            }
         }
 
         //Create Source Memory

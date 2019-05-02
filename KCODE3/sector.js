@@ -52,7 +52,7 @@ exports.sector = class{
 
         /*
         //Iterate over sectors
-        for(let i in this.sector){
+        for(let i in this.subSectorList){
             if(this.sector[i].owner != 'hostile'){
                 for(let j in this.sector[i].exits){
                     let exit = this.sector[i].exits[j];
@@ -87,6 +87,7 @@ exports.sector = class{
             }
         }
         */
+        
 
         //Iterate over constructionsites
         for(let i in Game.constructionSites){
