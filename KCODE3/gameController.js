@@ -24,6 +24,6 @@ exports.gameController = class{
         }
         
         //Create Sector Controller
-        this.sector.push(new sc.sector('W24S7'));
+        this.sector.push(new sc.sector('W46S29'));
     }
 }
