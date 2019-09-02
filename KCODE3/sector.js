@@ -212,7 +212,7 @@ exports.sector = class{
                     }
                 }
                 else if(controller && controller.my){
-                    this.assigner.assignTransporter(i);
+                    this.assigner.assignRole(i, Memory.sector[this.name].controller, 'transporter')
                 }
             }
         }
