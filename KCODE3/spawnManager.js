@@ -52,6 +52,7 @@ exports.spawnManager = class{
         if(this.spawner.spawnCreep(this.body, nameBuilder.getName('m'), {memory: {role: 'miner', sector: this.sector.name}}) == 0){
             nameBuilder.commitName('m');
         }
+        else console.log('error');
     }
 
     spawnScout(){
