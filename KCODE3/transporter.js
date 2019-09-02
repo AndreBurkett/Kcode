@@ -61,7 +61,7 @@ exports.transporter = class transporter extends role.role{
     controllerTransport(){
         if(this.creep.carry.energy == this.creep.carryCapacity || (this.creep.carry.energy > 0 && this.creep.memory.task == 'deposit')){
             this.creep.memory.task = 'deposit';
-            if(this.assignment && Memory.sector[this.creep.memory.sector].controller[this.assignment]){v
+            if(this.assignment && Memory.sector[this.creep.memory.sector].controller[this.assignment]){
                 let pos = this.getPos(Memory.sector[this.creep.memory.sector].controller[this.assignment].path[0]);
                 let container = pos.lookFor(LOOK_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_CONTAINER})[0];
                 if(container){
