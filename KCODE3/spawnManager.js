@@ -16,7 +16,7 @@ exports.spawnManager = class{
     spawn(){
         if(this.sector.role.miner > 1 && this.sector.role.transporter > 1 && this.role.upgrader > 0) this.spawnUpgrader();
         else if(this.sector.role.keeper == 0 && this.role.keeper > 0) this.spawnKeeper();
-        else if(this.role.transporter > this.role.miner) this.spawnTransporter();
+        else if(this.role.transporter > this.role.miner && this.role.miner > 0) this.spawnTransporter();
         else if(this.role.miner > 0 && this.sector.role.miner < 8) this.spawnMiner();
         else if(this.role.transporter > 0 && this.sector.role.transporter < 8) this.spawnTransporter();
         else if(this.role.builder > 0 && this.sector.role.builder < 5) this.spawnBuilder();
