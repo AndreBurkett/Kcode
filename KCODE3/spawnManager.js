@@ -42,7 +42,7 @@ exports.spawnManager = class{
             this.body = [MOVE,CARRY,WORK,WORK];
         }
         else{
-            let energy = Math.min(this.cap, 500);
+            let energy = Math.min(this.cap, 600) - 100;
             let parts = Math.floor(energy/100);
             for(let i = 0; i<parts; i++){
                 this.body.push(WORK);
