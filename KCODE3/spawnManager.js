@@ -21,7 +21,6 @@ exports.spawnManager = class{
         else if(this.role.transporter > 0 && this.sector.role.transporter < 8) this.spawnTransporter();
         else if(this.role.builder > 0 && this.sector.role.builder < 5) this.spawnBuilder();
         else if(this.role.scout > 0) this.spawnScout();
-        else if(this.energy == this.energyCapacityAvailable) this.spawnUpgrader()
     }
 
     spawnBuilder(){
